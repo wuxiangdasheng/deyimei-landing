@@ -1,0 +1,802 @@
+<!DOCTYPE html>
+<html lang="zh-HK">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>德醫美 — 中醫美容連鎖</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@300;400;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --brand:#3e0239;--brand-light:#5a1052;
+    --gold:#c9a96e;--gold-warm:#b8944f;
+    --paper:#fcfaf7;--paper-dark:#f5f1e9;
+    --ink:#1a1410;--ink-sub:#6b6258;--ink-light:#a0988c;
+    --white:#fff;--line:#e8e3da;--line-strong:#d4cdc0;
+    --seal-red:#8b1a1a;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    font-family:"PingFang SC","Noto Sans HK","Microsoft YaHei",sans-serif;
+    color:var(--ink);background:var(--paper);line-height:1.85;
+    overflow-x:hidden;-webkit-font-smoothing:antialiased;
+    background-image:
+      radial-gradient(ellipse at 20% 5%,rgba(201,169,110,.03) 0%,transparent 50%),
+      radial-gradient(ellipse at 85% 30%,rgba(62,2,57,.02) 0%,transparent 40%);
+  }
+
+  /* ====== Nav ====== */
+  .nav{
+    position:fixed;top:0;left:0;right:0;z-index:100;
+    padding:24px 0;transition:all .5s cubic-bezier(.4,0,.2,1);
+  }
+  .nav.scrolled{
+    background:rgba(252,250,247,.94);backdrop-filter:blur(20px);
+    -webkit-backdrop-filter:blur(20px);
+    box-shadow:0 1px 0 rgba(0,0,0,.03);
+    padding:12px 0;
+  }
+  .nav-inner{
+    max-width:1240px;margin:0 auto;padding:0 40px;
+    display:flex;align-items:center;justify-content:space-between;
+  }
+  .nav-brand{text-decoration:none;display:flex;align-items:center;gap:0;position:relative}
+  .nav-brand img{height:36px;width:auto;display:block;transition:opacity .35s}
+  .nav-brand .logo-dark{position:absolute;top:0;left:0;opacity:0}
+  .nav-links{display:flex;gap:40px;list-style:none;font-size:16px;letter-spacing:2px}
+  .nav-links a{
+    color:rgba(255,255,255,.7);text-decoration:none;transition:color .3s;
+    position:relative;padding:4px 0;
+  }
+  .nav-links a::after{
+    content:'';position:absolute;bottom:0;left:0;width:0;height:1px;
+    background:var(--gold);transition:width .35s cubic-bezier(.4,0,.2,1);
+  }
+  .nav-links a:hover{color:var(--gold)}
+  .nav-links a:hover::after{width:100%}
+  .nav.scrolled .nav-links a{color:var(--ink-sub)}
+  .nav.scrolled .nav-links a:hover{color:var(--ink)}
+
+  /* ====== Hero ====== */
+  .hero{
+    min-height:100vh;display:flex;align-items:center;
+    position:relative;overflow:hidden;
+  }
+  .hero-video{
+    position:absolute;top:0;left:0;width:100%;height:100%;
+    object-fit:cover;z-index:0;
+  }
+  .hero-overlay{
+    position:absolute;top:0;left:0;width:100%;height:100%;
+    background:rgba(30,2,26,.62);z-index:1;
+  }
+  .hero-content{
+    max-width:1240px;margin:0 auto;padding:120px 40px 0;
+    position:relative;z-index:2;width:100%;
+  }
+  .hero-tag{
+    display:inline-block;font-size:16px;letter-spacing:6px;
+    color:var(--gold);margin-bottom:20px;
+    position:relative;
+    padding-left:48px;
+  }
+  .hero-tag::before{
+    content:'';position:absolute;left:0;top:50%;
+    width:36px;height:1px;background:var(--gold);
+  }
+  .hero h1{
+    font-family:'Noto Serif SC',serif;
+    font-size:clamp(42px,8vw,96px);color:var(--white);
+    line-height:1.08;margin-bottom:24px;font-weight:300;letter-spacing:2px;
+  }
+  .hero h1 em{
+    font-style:normal;font-weight:700;color:var(--gold);
+    display:block;letter-spacing:4px;margin-top:4px;
+  }
+  .hero .sub{
+    font-size:clamp(16px,2vw,17px);color:rgba(255,255,255,.58);
+    max-width:480px;margin:0 0 52px;line-height:2;
+  }
+  .hero-actions{display:flex;gap:20px;flex-wrap:wrap;position:relative}
+  .btn-ink{
+    display:inline-flex;align-items:center;gap:10px;
+    padding:14px 34px;background:var(--gold);color:var(--brand);
+    text-decoration:none;font-size:15px;font-weight:600;letter-spacing:2px;
+    transition:all .35s cubic-bezier(.4,0,.2,1);
+    font-family:'Noto Serif SC',serif;
+  }
+  .btn-ink:hover{background:#d4b87a;transform:translateY(-2px);box-shadow:0 12px 32px rgba(201,169,110,.25)}
+  .btn-line{
+    display:inline-flex;align-items:center;gap:10px;
+    padding:14px 34px;border:1px solid rgba(255,255,255,.2);
+    color:var(--white);text-decoration:none;font-size:15px;letter-spacing:2px;
+    transition:all .35s cubic-bezier(.4,0,.2,1);
+    font-family:'Noto Serif SC',serif;
+  }
+  .btn-line:hover{border-color:var(--gold);color:var(--gold);transform:translateY(-2px)}
+
+  .hero-scroll{
+    position:absolute;bottom:48px;left:50%;transform:translateX(-50%);z-index:2;
+    display:flex;flex-direction:column;align-items:center;gap:12px;
+    color:var(--gold);font-size:16px;letter-spacing:6px;opacity:.7;
+  }
+  .hero-scroll .vline{
+    width:1px;height:40px;
+    background:linear-gradient(to bottom,transparent,var(--gold),transparent);
+    animation:linePulse 2.5s ease-in-out infinite;
+  }
+  @keyframes linePulse{0%,100%{opacity:.3;transform:scaleY(1)}50%{opacity:1;transform:scaleY(1.3)}}
+
+  /* ====== Section Framework ====== */
+  section{padding:140px 0;position:relative}
+  .sec-inner{max-width:1040px;margin:0 auto;padding:0 40px}
+  .sec-knot{text-align:center;padding:60px 0 40px}
+  .sec-knot .stamp{
+    display:inline-flex;align-items:center;justify-content:center;
+    width:48px;height:48px;border:1.5px solid var(--gold);
+    color:var(--gold);font-size:16px;letter-spacing:2px;
+    transform:rotate(-5deg);font-family:'Noto Serif SC',serif;
+    margin-bottom:32px;
+  }
+  .sec-head{margin-bottom:80px}
+  .sec-head .tag{
+    font-size:16px;letter-spacing:6px;color:var(--gold);margin-bottom:20px;
+    display:flex;align-items:center;gap:14px;
+  }
+  .sec-head .tag::after{content:'';flex:1;max-width:40px;height:1px;background:var(--line-strong)}
+  .sec-head h2{
+    font-family:'Noto Serif SC',serif;
+    font-size:clamp(36px,5vw,54px);font-weight:300;color:var(--ink);
+    letter-spacing:3px;margin-bottom:20px;
+  }
+  .sec-head .lead{
+    font-size:17px;color:var(--ink-sub);line-height:2;
+  }
+
+  /* ====== Philosophy ====== */
+  .philosophy{background:var(--white)}
+  .phil-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line)}
+  .phil-cell{
+    background:var(--white);padding:64px 40px;text-align:center;
+    transition:background .4s;position:relative;
+  }
+  .phil-cell:hover{background:var(--paper)}
+  .phil-cell .num{
+    font-family:'Noto Serif SC',serif;
+    font-size:72px;font-weight:300;color:rgba(62,2,57,.08);
+    line-height:1;margin-bottom:-12px;
+  }
+  .phil-cell .icon{font-size:32px;margin:16px 0;opacity:.7}
+  .phil-cell h3{
+    font-family:'Noto Serif SC',serif;
+    font-size:20px;color:var(--brand);margin-bottom:16px;
+    font-weight:600;letter-spacing:3px;
+  }
+  .phil-cell p{font-size:16px;color:var(--ink-sub);line-height:2;max-width:240px;margin:0 auto}
+
+  /* ====== Services ====== */
+  .services{background:var(--paper)}
+  .svc-block{margin-bottom:100px}
+  .svc-block:last-child{margin-bottom:0}
+  .svc-block-label{
+    display:flex;align-items:center;gap:16px;margin-bottom:40px;
+  }
+  .svc-block-label .mark{
+    width:8px;height:8px;background:var(--brand);border-radius:2px;
+  }
+  .svc-block-label h3{
+    font-family:'Noto Serif SC',serif;
+    font-size:20px;color:var(--brand);font-weight:600;letter-spacing:3px;
+  }
+  .svc-grid{
+    display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));
+    gap:1px;background:var(--line);
+  }
+  .svc-card{
+    background:var(--white);padding:40px 32px;
+    transition:all .5s cubic-bezier(.22,1,.36,1);position:relative;
+    overflow:hidden;z-index:1;
+  }
+  .svc-card::before{
+    content:'';position:absolute;top:0;left:0;width:3px;height:0;
+    background:var(--gold);transition:height .4s cubic-bezier(.22,1,.36,1);
+  }
+  .svc-card::after{
+    content:'';position:absolute;bottom:0;left:0;right:0;height:0;
+    background:linear-gradient(to top,rgba(0,0,0,.06),transparent);
+    transition:height .5s cubic-bezier(.22,1,.36,1);z-index:-1;
+  }
+  .svc-card:hover{
+    background:var(--paper-dark);
+    transform:translateX(-12px) translateY(-4px) scale(1.03);
+    z-index:10;
+    box-shadow:8px 12px 32px rgba(0,0,0,.08);
+  }
+  .svc-card:hover::before{height:100%}
+  .svc-card:hover::after{height:60%}
+  .svc-card .badge{
+    display:inline-block;font-size:10px;letter-spacing:3px;
+    color:var(--gold);border:1px solid rgba(201,169,110,.25);
+    padding:2px 10px;margin-bottom:20px;
+    font-family:'Noto Serif SC',serif;
+  }
+  .svc-card .name{
+    font-family:'Noto Serif SC',serif;
+    font-size:22px;font-weight:600;color:var(--ink);
+    margin-bottom:14px;letter-spacing:2px;
+  }
+  .svc-card .desc{font-size:16px;color:var(--ink-sub);line-height:1.9}
+
+  /* ====== Divider with stamp ====== */
+  .divider-line{
+    text-align:center;padding:20px 0;
+  }
+  .divider-line .stamp-row{
+    display:flex;align-items:center;justify-content:center;gap:0;
+  }
+  .divider-line .stroke{
+    width:60px;height:1px;background:linear-gradient(to right,transparent,var(--line-strong),transparent);
+  }
+  .divider-line .seal{
+    width:28px;height:28px;border:1px solid var(--gold);
+    transform:rotate(45deg);margin:0 20px;opacity:.6;
+  }
+
+  /* ====== Products ====== */
+  .products{background:var(--white)}
+  .prod-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line)}
+  .prod-card{
+    background:var(--white);padding:56px 40px;
+    transition:all .4s;position:relative;
+  }
+  .prod-card:hover{background:var(--paper)}
+  .prod-card .prod-emblem{
+    width:56px;height:56px;display:flex;align-items:center;justify-content:center;
+    background:var(--brand);color:var(--gold);font-size:20px;
+    margin-bottom:28px;border-radius:50%;
+    font-family:'Noto Serif SC',serif;
+  }
+  .prod-card .prod-img{
+    width:100%;height:200px;object-fit:cover;margin-bottom:24px;
+    border-radius:4px;
+  }
+  .prod-card h3{
+    font-family:'Noto Serif SC',serif;
+    font-size:26px;color:var(--ink);margin-bottom:6px;font-weight:600;letter-spacing:3px;
+  }
+  .prod-card .en-name{
+    font-size:14px;color:var(--gold);letter-spacing:1px;margin-bottom:20px;
+  }
+  .prod-card p{font-size:16px;color:var(--ink-sub);line-height:2;margin-bottom:28px}
+  .prod-card .prod-link{
+    font-size:16px;color:var(--ink-sub);text-decoration:none;
+    letter-spacing:3px;display:inline-flex;align-items:center;gap:8px;
+    transition:all .3s;font-family:'Noto Serif SC',serif;
+    padding-bottom:2px;border-bottom:1px solid transparent;
+  }
+  .prod-card .prod-link:hover{color:var(--gold);border-bottom-color:var(--gold);gap:14px}
+
+  /* ====== Locations ====== */
+  .locations{
+    background:#f6edfb;
+    color:var(--ink);
+  }
+  .locations .sec-head h2{color:var(--ink)}
+  .locations .sec-head .tag{color:var(--gold)}
+  .locations .sec-head .tag::after{background:var(--line-strong)}
+  .locations .sec-head .lead{color:var(--ink-sub)}
+  .loc-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1px;background:rgba(62,2,57,.06)}
+  .loc-card{
+    background:rgba(255,255,255,.6);padding:0;overflow:hidden;
+    transition:background .35s;
+  }
+  .loc-card:hover{background:rgba(255,255,255,.9)}
+  .loc-card .loc-img{
+    width:100%;height:220px;object-fit:cover;display:block;
+  }
+  .loc-card .loc-body{padding:40px 48px}
+  .loc-card .card-seal{
+    font-family:'Noto Serif SC',serif;
+    font-size:14px;color:var(--gold);letter-spacing:4px;
+    border:1px solid rgba(201,169,110,.3);display:inline-block;
+    padding:4px 14px;margin-bottom:28px;
+  }
+  .loc-card h3{
+    font-family:'Noto Serif SC',serif;
+    font-size:28px;font-weight:300;margin-bottom:12px;letter-spacing:4px;
+    color:var(--ink);
+  }
+  .loc-card .addr{font-size:14px;color:var(--ink-sub);line-height:2.2;margin-bottom:32px}
+  .loc-card .tel{
+    display:inline-flex;align-items:center;gap:10px;
+    padding:12px 28px;border:1px solid var(--line-strong);
+    color:var(--gold);text-decoration:none;font-size:14px;letter-spacing:3px;
+    transition:all .3s;font-family:'Noto Serif SC',serif;
+  }
+  .loc-card .tel:hover{border-color:var(--gold);background:rgba(201,169,110,.08)}
+
+  /* ====== Footer ====== */
+  footer{
+    background:var(--brand);color:rgba(255,255,255,.3);
+    padding:100px 0 48px;font-size:16px;
+  }
+  .ft-inner{max-width:1040px;margin:0 auto;padding:0 40px}
+  .ft-top{display:flex;justify-content:space-between;flex-wrap:wrap;gap:60px;margin-bottom:80px}
+  .ft-brand img{height:48px;width:auto;display:block;margin-bottom:12px}
+  .ft-brand .ft-en{font-size:16px;color:var(--white);letter-spacing:2px;display:block;font-weight:400}
+  .ft-cols{display:flex;gap:80px}
+  .ft-col h4{color:var(--white);margin-bottom:24px;font-size:16px;letter-spacing:4px;font-weight:600}
+  .ft-col a{
+    display:block;color:rgba(255,255,255,.45);text-decoration:none;
+    margin-bottom:12px;font-size:16px;transition:all .3s;padding:2px 0;
+  }
+  .ft-col a:hover{color:var(--gold);padding-left:6px}
+  .ft-bottom{
+    display:flex;justify-content:space-between;align-items:center;
+    padding-top:32px;border-top:1px solid rgba(255,255,255,.04);
+    font-size:14px;letter-spacing:1px;flex-wrap:wrap;gap:16px;
+  }
+
+  /* ====== Herb decorations ====== */
+  .herb-deco{position:absolute;pointer-events:none;z-index:0}
+  .herb-deco.ginseng{right:2%;bottom:5%;width:320px;height:380px;opacity:.7}
+  .herb-deco.chrysanthemum{left:3%;top:5%;width:240px;height:240px;opacity:.65}
+  .herb-deco.chrysanthemum-r{right:2%;bottom:3%;width:200px;height:200px;opacity:.55}
+  .herb-deco.goji{right:5%;top:4%;width:300px;height:180px;opacity:.65}
+  @media(max-width:768px){
+    .herb-deco.ginseng{width:180px;height:220px;right:0;bottom:2%}
+    .herb-deco.chrysanthemum{width:140px;height:140px;left:0;top:2%}
+    .herb-deco.chrysanthemum-r{width:120px;height:120px}
+    .herb-deco.goji{width:180px;height:110px;right:0;top:2%}
+  }
+
+  /* ====== Reveal ====== */
+  .reveal{opacity:0;transform:translateY(32px);transition:opacity .9s cubic-bezier(.4,0,.2,1),transform .9s cubic-bezier(.4,0,.2,1)}
+  .reveal.visible{opacity:1;transform:translateY(0)}
+  .reveal-d1{transition-delay:.08s}.reveal-d2{transition-delay:.16s}.reveal-d3{transition-delay:.24s}
+
+  /* ====== Mobile ====== */
+  .menu-btn{display:none;flex-direction:column;gap:5px;cursor:pointer;z-index:101;padding:4px}
+  .menu-btn span{display:block;width:22px;height:1.5px;background:rgba(255,255,255,.85);transition:all .3s}
+  .nav.scrolled .menu-btn span{background:var(--ink)}
+  .mobile-menu{
+    display:none;position:fixed;top:0;left:0;right:0;bottom:0;
+    background:var(--paper);z-index:99;flex-direction:column;
+    align-items:center;justify-content:center;gap:40px;
+  }
+  .mobile-menu a{
+    font-family:'Noto Serif SC',serif;
+    color:var(--ink);font-size:22px;text-decoration:none;
+    letter-spacing:6px;font-weight:300;transition:color .3s;
+  }
+  .mobile-menu a:hover{color:var(--brand)}
+  .mobile-menu .menu-close{
+    margin-top:16px;padding:12px 40px;
+    border:1px solid var(--line-strong);
+    color:var(--ink-sub);font-size:14px;letter-spacing:3px;
+    cursor:pointer;background:none;font-family:'Noto Serif SC',serif;
+    transition:all .3s;
+  }
+  .mobile-menu .menu-close:hover{color:var(--ink);border-color:var(--ink)}
+
+  @media(max-width:768px){
+    .nav-links{display:none}.menu-btn{display:flex}
+    .nav-inner{padding:0 24px}
+    .hero-content{padding:300px 24px 60px}
+    .hero-scroll{bottom:24px}
+    .hero-video{object-position:center top}
+    .hero h1{font-size:36px;letter-spacing:1px}
+    .hero h1 em{letter-spacing:2px}
+    section{padding:80px 0}
+    .sec-inner{padding:0 24px}
+    .sec-head{margin-bottom:48px}
+    .phil-grid{grid-template-columns:1fr}
+    .phil-cell{padding:48px 32px}
+    .svc-grid{grid-template-columns:1fr}
+    .svc-card:hover{transform:translateY(6px) scale(1.02)}
+    .prod-grid{grid-template-columns:1fr}
+    .prod-card{padding:40px 32px}
+    .loc-grid{grid-template-columns:1fr}
+    .loc-card{padding:0}
+    .loc-card .loc-img{height:160px}
+    .loc-card .loc-body{padding:32px 24px}
+    .ft-cols{flex-direction:column;gap:40px}
+    .ft-top{flex-direction:column;gap:48px}
+  }
+</style>
+</head>
+<body>
+
+<!-- ====== Nav ====== -->
+<nav class="nav" id="navbar">
+  <div class="nav-inner">
+    <a href="#" class="nav-brand">
+      <img class="logo-light" src="logo.png" alt="德醫美 Alchemy">
+      <img class="logo-dark" src="logo-dark.png" alt="德醫美 Alchemy">
+    </a>
+    <ul class="nav-links">
+      <li><a href="#services">漢方微針醫美</a></li>
+      <li><a href="#products">康養產品</a></li>
+      <li><a href="#locations">門店地址</a></li>
+      <li><a href="#contact">聯繫我們</a></li>
+    </ul>
+    <div class="menu-btn" onclick="toggleMenu()"><span></span><span></span><span></span></div>
+  </div>
+</nav>
+<div class="mobile-menu" id="mobile-menu">
+  <a href="#services" onclick="toggleMenu()">漢方微針醫美</a>
+  <a href="#products" onclick="toggleMenu()">康養產品</a>
+  <a href="#locations" onclick="toggleMenu()">門店地址</a>
+  <a href="#contact" onclick="toggleMenu()">聯繫我們</a>
+  <button class="menu-close" onclick="toggleMenu()">✕ 關閉</button>
+</div>
+
+<!-- ====== Hero ====== -->
+<section class="hero">
+  <video class="hero-video" autoplay muted loop playsinline webkit-playsinline
+          disablePictureInPicture disableRemotePlayback
+          controlsList="nodownload nofullscreen noremoteplayback">
+    <source src="model-bg.mp4" type="video/mp4">
+  </video>
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
+    <div class="hero-tag">德醫美中醫醫美</div>
+    <h1>精氣神理<em>德醫之美</em></h1>
+    <p class="sub">先醫療，後醫美。四診評估面部「症/態/形/狀」，以微針/埋線通經絡、理肌膚，喚發身體自癒力，循表及裏還原皮膚先天健康狀態。</p>
+    <div class="hero-actions">
+      <a href="#services" class="btn-ink">中醫美預約</a>
+      <a href="http://sj20655dym.sj168.top/pages/shop/index/index" class="btn-line">商品購買</a>
+    </div>
+  </div>
+  <div class="hero-scroll"><span>scroll</span><div class="vline"></div></div>
+</section>
+
+<!-- ====== Philosophy ====== -->
+<section class="philosophy" style="position:relative;overflow:hidden">
+  <svg class="herb-deco ginseng" viewBox="0 0 320 400" xmlns="http://www.w3.org/2000/svg">
+    <g stroke="#c9a96e" fill="none" stroke-linecap="round" stroke-linejoin="round">
+      <!-- main body -->
+      <path d="M160 380 C155 340,145 290,155 250 C148 230,135 215,120 210 C105 205,95 195,85 180 C78 168,82 155,95 152 C100 148,108 150,115 155" stroke-width="1.4"/>
+      <path d="M115 155 C105 140,95 125,100 110 C105 98,115 95,120 100 C125 90,135 82,145 85 C155 72,165 68,178 72 C185 60,198 58,205 65 C215 55,228 58,232 68 C240 62,250 65,250 75 C258 80,255 92,248 98 C252 108,248 118,240 125" stroke-width="1.4"/>
+      <!-- right branch -->
+      <path d="M160 250 C175 230,195 220,210 225 C225 230,235 225,240 215 C248 200,250 185,245 170" stroke-width="1.2"/>
+      <path d="M210 225 C218 218,225 215,230 218" stroke-width=".8"/>
+      <circle cx="230" cy="218" r="2" fill="#c9a96e" opacity=".3"/>
+      <!-- left branch -->
+      <path d="M148 280 C135 270,120 268,105 272 C90 278,82 285,75 295" stroke-width="1.2"/>
+      <!-- lower tendrils -->
+      <path d="M160 320 C148 310,135 315,125 325 C118 332,112 340,108 350" stroke-width="1"/>
+      <path d="M160 340 C172 332,185 335,195 345 C202 352,210 358,215 365" stroke-width="1"/>
+      <path d="M155 365 C145 358,132 362,122 372" stroke-width=".8"/>
+      <path d="M165 370 C178 365,190 370,198 378" stroke-width=".8"/>
+      <!-- root hairs -->
+      <path d="M75 295 C68 300,60 308,55 318" stroke-width=".6"/>
+      <path d="M245 170 C252 165,258 158,262 148" stroke-width=".6"/>
+      <path d="M108 350 C102 355,95 360,88 368" stroke-width=".6"/>
+      <path d="M215 365 C220 370,225 378,228 385" stroke-width=".6"/>
+      <!-- top leaves -->
+      <path d="M115 155 C95 130,75 110,55 100" stroke-width="1"/>
+      <path d="M115 155 C100 118,85 95,70 78" stroke-width=".8"/>
+      <path d="M240 125 C258 108,275 95,290 88" stroke-width="1"/>
+      <path d="M240 125 C255 100,268 82,278 68" stroke-width=".8"/>
+      <!-- grain dots -->
+      <circle cx="90" cy="152" r="1.5" fill="#c9a96e" opacity=".25"/>
+      <circle cx="210" cy="162" r="1.5" fill="#c9a96e" opacity=".25"/>
+      <circle cx="145" cy="85" r="1.5" fill="#c9a96e" opacity=".25"/>
+      <circle cx="60" cy="100" r="1.5" fill="#c9a96e" opacity=".25"/>
+      <circle cx="285" cy="88" r="1.5" fill="#c9a96e" opacity=".25"/>
+    </g>
+  </svg>
+  <div class="sec-inner">
+    <div class="sec-head reveal">
+      <div class="tag">理念</div>
+      <h2>德醫美之道</h2>
+    </div>
+    <div class="phil-grid">
+      <div class="phil-cell reveal reveal-d1">
+        <div class="num">壹</div>
+        <div class="icon">✦</div>
+        <h3>中醫為根</h3>
+        <p>以中醫理論為基礎，辨證施治，針對不同體質定制專屬方案，非流水線式標準化操作</p>
+      </div>
+      <div class="phil-cell reveal reveal-d2">
+        <div class="num">貳</div>
+        <div class="icon">◎</div>
+        <h3>科學為用</h3>
+        <p>每人建立專屬檔案，以皮膚檢測儀器長期追蹤療效，依數據動態調整方案，輔以現代美容儀器，科學化、個性化管理</p>
+      </div>
+      <div class="phil-cell reveal reveal-d3">
+        <div class="num">叁</div>
+        <div class="icon">☯</div>
+        <h3>內外兼修</h3>
+        <p>線下醫美服務配合康養產品內服，實現標本同治的長期效果，而非單次急救式處理</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ====== Services ====== -->
+<section class="services" id="services" style="position:relative;overflow:hidden">
+  <svg class="herb-deco chrysanthemum" viewBox="0 0 240 240" xmlns="http://www.w3.org/2000/svg">
+    <g stroke="#c9a96e" fill="none" stroke-linecap="round">
+      <!-- main flower center -->
+      <circle cx="100" cy="110" r="14" stroke-width="1.2"/>
+      <circle cx="100" cy="110" r="5" fill="#c9a96e" opacity=".25"/>
+      <!-- petals layer 1 -->
+      <path d="M100 96 C95 82, 88 68, 82 58" stroke-width="1"/>
+      <path d="M110 100 C118 85, 125 72, 130 62" stroke-width="1"/>
+      <path d="M114 110 C128 108, 142 105, 152 100" stroke-width="1"/>
+      <path d="M110 120 C120 132, 128 142, 132 152" stroke-width="1"/>
+      <path d="M100 124 C98 138, 95 150, 90 160" stroke-width="1"/>
+      <path d="M90 120 C80 132, 70 140, 60 148" stroke-width="1"/>
+      <path d="M86 110 C72 112, 60 114, 50 118" stroke-width="1"/>
+      <path d="M90 100 C78 90, 68 82, 60 72" stroke-width="1"/>
+      <!-- petals layer 2 (between) -->
+      <path d="M96 100 C88 88, 82 72, 78 62" stroke-width=".8"/>
+      <path d="M108 96 C112 80, 118 68, 122 58" stroke-width=".8"/>
+      <path d="M118 108 C130 102, 145 98, 155 92" stroke-width=".8"/>
+      <path d="M114 118 C125 128, 135 138, 142 148" stroke-width=".8"/>
+      <path d="M104 120 C102 135, 98 148, 92 158" stroke-width=".8"/>
+      <path d="M94 118 C82 128, 72 138, 62 145" stroke-width=".8"/>
+      <path d="M90 112 C75 114, 62 118, 52 122" stroke-width=".8"/>
+      <!-- stem -->
+      <path d="M100 124 C98 140, 96 155, 100 170 C104 182, 108 190, 105 200" stroke-width="1"/>
+      <!-- leaves -->
+      <path d="M100 150 C85 148, 72 142, 60 135" stroke-width=".8"/>
+      <path d="M100 160 C115 155, 128 148, 138 140" stroke-width=".8"/>
+      <path d="M102 175 C90 175, 78 178, 68 182" stroke-width=".7"/>
+      <!-- small bud -->
+      <circle cx="175" cy="70" r="6" stroke-width="1"/>
+      <circle cx="175" cy="70" r="2" fill="#c9a96e" opacity=".2"/>
+      <path d="M175 64 C173 55, 170 48, 165 42" stroke-width=".7"/>
+      <path d="M179 66 C182 55, 186 48, 190 42" stroke-width=".7"/>
+      <path d="M169 70 C158 68, 148 70, 140 72" stroke-width=".7"/>
+      <path d="M169 74 C158 78, 148 80, 140 78" stroke-width=".7"/>
+      <!-- scattered dots -->
+      <circle cx="55" cy="140" r="1.5" fill="#c9a96e" opacity=".2"/>
+      <circle cx="140" cy="145" r="1.5" fill="#c9a96e" opacity=".2"/>
+      <circle cx="75" cy="65" r="1.5" fill="#c9a96e" opacity=".2"/>
+    </g>
+  </svg>
+  <svg class="herb-deco chrysanthemum-r" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+    <g stroke="#c9a96e" fill="none" stroke-linecap="round">
+      <circle cx="70" cy="80" r="12" stroke-width="1.1"/>
+      <circle cx="70" cy="80" r="4" fill="#c9a96e" opacity=".2"/>
+      <path d="M70 68 C65 55, 58 42, 52 32" stroke-width=".9"/>
+      <path d="M78 72 C85 58, 90 45, 95 35" stroke-width=".9"/>
+      <path d="M82 80 C95 78, 108 75, 118 70" stroke-width=".9"/>
+      <path d="M78 88 C88 100, 95 110, 100 120" stroke-width=".9"/>
+      <path d="M70 92 C68 105, 65 118, 60 128" stroke-width=".9"/>
+      <path d="M62 88 C52 100, 42 108, 32 115" stroke-width=".9"/>
+      <path d="M58 80 C46 82, 34 85, 24 88" stroke-width=".9"/>
+      <path d="M62 72 C50 64, 40 55, 32 45" stroke-width=".9"/>
+      <path d="M70 95 C70 110, 68 125, 72 140 C76 150, 80 158, 78 170" stroke-width=".9"/>
+      <path d="M72 120 C60 118, 50 115, 42 108" stroke-width=".7"/>
+      <path d="M72 130 C82 128, 92 125, 100 118" stroke-width=".7"/>
+      <!-- second small flower -->
+      <circle cx="140" cy="45" r="8" stroke-width=".9"/>
+      <circle cx="140" cy="45" r="2.5" fill="#c9a96e" opacity=".18"/>
+      <path d="M140 37 C138 28, 135 20, 130 14" stroke-width=".7"/>
+      <path d="M145 40 C150 30, 155 22, 160 16" stroke-width=".7"/>
+      <path d="M148 45 C158 43, 168 40, 175 38" stroke-width=".7"/>
+      <path d="M145 50 C152 58, 158 65, 162 72" stroke-width=".7"/>
+      <circle cx="38" cy="20" r="1.5" fill="#c9a96e" opacity=".2"/>
+      <circle cx="165" cy="72" r="1.5" fill="#c9a96e" opacity=".2"/>
+    </g>
+  </svg>
+  <div class="sec-inner">
+    <div class="sec-head reveal">
+      <div class="tag">服務</div>
+      <h2>漢方微針醫美</h2>
+      <p class="lead">以中醫微針為核心技術，涵蓋醫療級皮膚治療與醫美級抗衰修復兩大板塊。</p>
+    </div>
+
+    <div class="svc-block reveal">
+      <div class="svc-block-label">
+        <div class="mark"></div>
+        <h3>中醫微針醫療</h3>
+      </div>
+      <div class="svc-grid">
+        <div class="svc-card"><span class="badge">Complexion Revival</span><div class="name">氣色調理</div><div class="desc">針對面色暗沉、氣血不足，以微針激活面部經絡、促進氣血運行，恢復紅潤光澤。</div></div>
+        <div class="svc-card"><span class="badge">Derma Inflammation</span><div class="name">皮膚炎症處理</div><div class="desc">針對痤瘡、玫瑰痤瘡、敏感肌等炎症性問題，以微針疏通經絡、清熱解毒，從根源調理。</div></div>
+        <div class="svc-card"><span class="badge">Post-Aesthetic Repair</span><div class="name">醫美後遺症修復</div><div class="desc">針對饅化臉、皮膚屏障受損、色素沉著等醫美後遺症，以微針刺激自體修復，系統性重建皮膚健康。</div></div>
+      </div>
+    </div>
+
+    <div class="divider-line reveal">
+      <div class="stamp-row">
+        <div class="stroke"></div>
+        <div class="seal"></div>
+        <div class="stroke"></div>
+      </div>
+    </div>
+
+    <div class="svc-block reveal">
+      <div class="svc-block-label">
+        <div class="mark"></div>
+        <h3>中醫微針醫美</h3>
+      </div>
+      <div class="svc-grid">
+        <div class="svc-card"><span class="badge">Dynamic Line Tx</span><div class="name">動態紋處理</div><div class="desc">魚尾紋、川字紋、抬頭紋、口周紋 — 以微針疏通面部經絡，促進膠原自生，表情自然不僵硬。</div></div>
+        <div class="svc-card"><span class="badge">Static Wrinkle Tx</span><div class="name">靜態紋處理</div><div class="desc">法令紋等深層靜態紋路，以微針刺激真皮層自體修復，持續使用逐步撫平。</div></div>
+        <div class="svc-card"><span class="badge">Skin Tightening</span><div class="name">皮膚緊致提拉</div><div class="desc">非手術面部提升方案，微針刺激筋膜層收緊，重塑下頜線和面部輪廓。</div></div>
+        <div class="svc-card"><span class="badge">Skin Tone Balance</span><div class="name">膚色調理</div><div class="desc">針對色斑、膚色不均、暗黃等問題，以微針疏通面部經絡、促進代謝，實現均勻透亮。</div></div>
+        <div class="svc-card"><span class="badge">Scar Revision</span><div class="name">疤痕處理</div><div class="desc">痘疤、手術疤痕、妊娠紋 — 以微針刺激自體膠原再生，逐步淡化修復。</div></div>
+        <div class="svc-card"><span class="badge">Thread Slimming</span><div class="name">埋線減肥</div><div class="desc">以穴位埋線持續刺激經絡，調節食慾與代謝，實現健康減重。</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ====== Products ====== -->
+<section class="products" id="products" style="position:relative;overflow:hidden">
+  <svg class="herb-deco goji" viewBox="0 0 300 180" xmlns="http://www.w3.org/2000/svg">
+    <g stroke="#c9a96e" fill="none" stroke-linecap="round">
+      <!-- main branch -->
+      <path d="M15 90 C30 82, 50 78, 75 72 C100 65, 130 62, 160 68 C185 72, 210 78, 235 75 C255 72, 275 68, 290 62" stroke-width="1.2"/>
+      <path d="M160 68 C168 55, 175 42, 178 30" stroke-width="1"/>
+      <path d="M210 78 C218 65, 225 52, 230 42" stroke-width="1"/>
+      <path d="M75 72 C70 55, 65 42, 58 30" stroke-width=".9"/>
+      <path d="M235 75 C242 88, 250 98, 258 105" stroke-width=".9"/>
+      <!-- berries -->
+      <circle cx="110" cy="65" r="4.5" fill="#c9a96e" opacity=".3"/>
+      <circle cx="108" cy="62" r="2" fill="#c9a96e" opacity=".15"/>
+      <circle cx="145" cy="72" r="4" fill="#c9a96e" opacity=".3"/>
+      <circle cx="142" cy="69" r="1.8" fill="#c9a96e" opacity=".15"/>
+      <circle cx="178" cy="30" r="4.5" fill="#c9a96e" opacity=".3"/>
+      <circle cx="176" cy="28" r="2" fill="#c9a96e" opacity=".15"/>
+      <circle cx="195" cy="75" r="4" fill="#c9a96e" opacity=".28"/>
+      <circle cx="192" cy="72" r="1.8" fill="#c9a96e" opacity=".15"/>
+      <circle cx="230" cy="42" r="4.5" fill="#c9a96e" opacity=".3"/>
+      <circle cx="228" cy="40" r="2" fill="#c9a96e" opacity=".15"/>
+      <circle cx="58" cy="30" r="3.5" fill="#c9a96e" opacity=".25"/>
+      <circle cx="260" cy="72" r="4" fill="#c9a96e" opacity=".3"/>
+      <circle cx="258" cy="70" r="1.8" fill="#c9a96e" opacity=".15"/>
+      <!-- leaves -->
+      <path d="M90 68 C85 55, 80 48, 72 42" stroke-width=".7"/>
+      <path d="M130 70 C135 58, 138 50, 142 42" stroke-width=".7"/>
+      <path d="M165 72 C160 82, 155 90, 148 96" stroke-width=".7"/>
+      <path d="M218 76 C222 88, 228 98, 235 105" stroke-width=".7"/>
+      <path d="M245 73 C248 85, 252 92, 258 98" stroke-width=".7"/>
+      <!-- scattered dots -->
+      <circle cx="35" cy="85" r="1.5" fill="#c9a96e" opacity=".2"/>
+      <circle cx="175" cy="65" r="1.3" fill="#c9a96e" opacity=".2"/>
+      <circle cx="240" cy="68" r="1.3" fill="#c9a96e" opacity=".2"/>
+    </g>
+  </svg>
+  <div class="sec-inner">
+    <div class="sec-head reveal">
+      <div class="tag">產品</div>
+      <h2>康養內服</h2>
+      <p class="lead">以中醫經典方劑為基礎，古法炮製。內服調理，與外治服務相輔相成。</p>
+    </div>
+    <div class="prod-grid">
+      <div class="prod-card reveal reveal-d1">
+        <img class="prod-img" src="product-aoye.jpg" alt="熬夜丸">
+        <h3>熬夜丸</h3>
+        <div class="en-name">Liver Nourishing Capsules</div>
+        <p>以清肝利膽、行氣解鬱為核心，針對肝膽瘀堵、脂肪堆積及便秘問題，適合長期熬夜與飲食油膩人士，由內淨化體質。</p>
+        <a href="#contact" class="prod-link">查詢詳情 →</a>
+      </div>
+      <div class="prod-card reveal reveal-d2">
+        <img class="prod-img" src="product-piwei.jpg" alt="脾胃丸">
+        <h3>脾胃丸</h3>
+        <div class="en-name">Stomach Spleen Nourish</div>
+        <p>健脾益氣、溫中和胃、祛濕消積。針對脾胃虛弱引起的腹脹、積食、反覆便秘或溏稀，大人小孩皆宜。</p>
+        <a href="#contact" class="prod-link">查詢詳情 →</a>
+      </div>
+      <div class="prod-card reveal reveal-d3">
+        <img class="prod-img" src="product-zhuyan.jpg" alt="駐顏丹">
+        <h3>駐顏丹</h3>
+        <div class="en-name">Replenish Vitality Capsules</div>
+        <p>補氣養血、調經養顏。甄選人參、燕窩、藏紅花等名貴藥材，針對月經不調、備孕調理、肌膚暗沉，由內而外煥亮。</p>
+        <a href="#contact" class="prod-link">查詢詳情 →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ====== Locations ====== -->
+<section class="locations" id="locations">
+  <div class="sec-inner">
+    <div class="sec-head reveal">
+      <div class="tag">門店</div>
+      <h2>雙城連鎖</h2>
+      <p class="lead">香港中環 · 北京海淀，為您提供便捷的中醫美容服務。</p>
+    </div>
+    <div class="loc-grid reveal">
+      <div class="loc-card">
+        <img class="loc-img" src="loc-beijing.jpg" alt="德醫美香港中環店">
+        <div class="loc-body">
+        <div class="card-seal">Hong Kong</div>
+        <h3>香港 · 中環店</h3>
+        <p class="addr">中環萬邦行<br>敬請預約</p>
+        <a href="tel:+85200000000" class="tel">致電查詢</a>
+        </div>
+      </div>
+      <div class="loc-card">
+        <img class="loc-img" src="loc-hongkong.jpg" alt="德醫美北京海淀店">
+        <div class="loc-body">
+        <div class="card-seal">Beijing</div>
+        <h3>北京 · 海淀店</h3>
+        <p class="addr">海淀區田村<br>集冉漢方中醫美 · 敬請預約</p>
+        <a href="tel:+8610000000000" class="tel">致電查詢</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ====== Footer ====== -->
+<footer id="contact">
+  <div class="ft-inner">
+    <div class="ft-top">
+      <div class="ft-brand">
+        <img src="logo.png" alt="德醫美 Alchemy">
+        <div class="ft-en">Alchemy · 中醫美容連鎖</div>
+      </div>
+      <div class="ft-cols">
+        <div class="ft-col">
+          <h4>服務項目</h4>
+          <a href="#services">中醫微針醫療</a>
+          <a href="#services">中醫微針醫美</a>
+          <a href="#products">康養產品</a>
+        </div>
+        <div class="ft-col">
+          <h4>聯繫我們</h4>
+          <a href="tel:+85200000000">香港 +852 XXXX XXXX</a>
+          <a href="tel:+8610000000000">北京 +86 10 XXXX XXXX</a>
+        </div>
+        <div class="ft-col">
+          <h4>關注我們</h4>
+          <a href="#">微信公眾號</a>
+          <a href="#">小紅書</a>
+        </div>
+      </div>
+    </div>
+    <div class="ft-bottom">
+      <span>&copy; 2025 德醫美 Alchemy. 保留所有權利。</span>
+      <span>中醫美容 · 香港中環 &amp; 北京海淀</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+// Nav scroll
+const nav=document.getElementById('navbar');
+const logoLight=document.querySelector('.logo-light');
+const logoDark=document.querySelector('.logo-dark');
+window.addEventListener('scroll',()=>{
+  const scrolled=window.scrollY>60;
+  nav.classList.toggle('scrolled',scrolled);
+  if(logoLight&&logoDark){
+    logoLight.style.opacity=scrolled?'0':'1';
+    logoDark.style.opacity=scrolled?'1':'0';
+  }
+});
+
+// Force video play (fixes browsers that block autoplay)
+(function(){
+  var v=document.querySelector('.hero-video');
+  if(v){v.play().catch(function(){})}
+})();
+
+// Mobile menu
+let menuOpen=false;
+function toggleMenu(){
+  menuOpen=!menuOpen;
+  const m=document.getElementById('mobile-menu');
+  m.style.display=menuOpen?'flex':'none';
+  document.body.style.overflow=menuOpen?'hidden':'';
+}
+
+// Scroll reveal
+const observer=new IntersectionObserver((entries)=>{
+  entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible')});
+},{threshold:.1,rootMargin:'0px 0px -40px 0px'});
+document.querySelectorAll('.reveal').forEach(el=>observer.observe(el));
+</script>
+</body>
+</html>
