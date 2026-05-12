@@ -33,9 +33,9 @@
     padding:24px 0;transition:all .5s cubic-bezier(.4,0,.2,1);
   }
   .nav.scrolled{
-    background:rgba(252,250,247,.94);backdrop-filter:blur(20px);
+    background:rgba(255,255,255,.82);backdrop-filter:blur(24px);
     -webkit-backdrop-filter:blur(20px);
-    box-shadow:0 1px 0 rgba(0,0,0,.03);
+    box-shadow:0 1px 0 rgba(62,2,57,.08);
     padding:12px 0;
   }
   .nav-inner{
@@ -98,7 +98,7 @@
     display:block;letter-spacing:4px;margin-top:4px;
   }
   .hero .sub{
-    font-size:clamp(16px,2vw,17px);color:rgba(255,255,255,.58);
+    font-size:clamp(16px,2vw,17px);color:rgba(255,255,255,.6);
     max-width:480px;margin:0 0 52px;line-height:2;
   }
   .hero-actions{display:flex;gap:20px;flex-wrap:wrap;position:relative}
@@ -153,6 +153,8 @@
     font-size:clamp(36px,5vw,54px);font-weight:300;color:var(--ink);
     letter-spacing:3px;margin-bottom:20px;
   }
+  .services .sec-head h2{color:var(--brand)}
+  .products .sec-head h2{color:var(--brand)}
   .sec-head .lead{
     font-size:17px;color:var(--ink-sub);line-height:2;
   }
@@ -226,7 +228,7 @@
   }
   .svc-card .name{
     font-family:'Noto Serif SC',serif;
-    font-size:22px;font-weight:600;color:var(--ink);
+    font-size:22px;font-weight:600;color:var(--brand);
     margin-bottom:14px;letter-spacing:2px;
   }
   .svc-card .desc{font-size:16px;color:var(--ink-sub);line-height:1.9}
@@ -266,7 +268,7 @@
   }
   .prod-card h3{
     font-family:'Noto Serif SC',serif;
-    font-size:26px;color:var(--ink);margin-bottom:6px;font-weight:600;letter-spacing:3px;
+    font-size:26px;color:var(--brand);margin-bottom:6px;font-weight:600;letter-spacing:3px;
   }
   .prod-card .en-name{
     font-size:14px;color:var(--gold);letter-spacing:1px;margin-bottom:20px;
@@ -285,7 +287,8 @@
     background:#f6edfb;
     color:var(--ink);
   }
-  .locations .sec-head h2{color:var(--ink)}
+  .locations .sec-head h2{color:var(--brand)}
+  .philosophy .sec-head h2{color:var(--brand)}
   .locations .sec-head .tag{color:var(--gold)}
   .locations .sec-head .tag::after{background:var(--line-strong)}
   .locations .sec-head .lead{color:var(--ink-sub)}
@@ -500,19 +503,19 @@
     <div class="phil-grid">
       <div class="phil-cell reveal reveal-d1">
         <div class="num">壹</div>
-        <div class="icon">✦</div>
+        <div class="icon">♾️</div>
         <h3>中醫為根</h3>
         <p>以中醫理論為基礎，辨證施治，針對不同體質定制專屬方案，非流水線式標準化操作</p>
       </div>
       <div class="phil-cell reveal reveal-d2">
         <div class="num">貳</div>
-        <div class="icon">◎</div>
+        <div class="icon">♾️</div>
         <h3>科學為用</h3>
         <p>每人建立專屬檔案，以皮膚檢測儀器長期追蹤療效，依數據動態調整方案，輔以現代美容儀器，科學化、個性化管理</p>
       </div>
       <div class="phil-cell reveal reveal-d3">
         <div class="num">叁</div>
-        <div class="icon">☯</div>
+        <div class="icon">♾️</div>
         <h3>內外兼修</h3>
         <p>線下醫美服務配合康養產品內服，實現標本同治的長期效果，而非單次急救式處理</p>
       </div>
@@ -724,8 +727,8 @@
         <div class="loc-body">
         <div class="card-seal">Beijing</div>
         <h3>北京 · 海淀店</h3>
-        <p class="addr">海淀區田村<br>集冉漢方中醫美 · 敬請預約</p>
-        <a href="tel:+8610000000000" class="tel">致電查詢</a>
+        <p class="addr">海淀區阜石路甲19號<br>+86 18511841531<br>敬請預約</p>
+        <a href="tel:+8618511841531" class="tel">致電查詢</a>
         </div>
       </div>
     </div>
@@ -750,7 +753,7 @@
         <div class="ft-col">
           <h4>聯繫我們</h4>
           <a href="tel:+85265141328">香港 +852 65141328</a>
-          <a href="tel:+8610000000000">北京 +86 10 XXXX XXXX</a>
+          <a href="tel:+8618511841531">北京 +86 18511841531</a>
         </div>
         <div class="ft-col">
           <h4>關注我們</h4>
