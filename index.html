@@ -60,6 +60,7 @@
   .nav.scrolled .nav-links a:hover{color:var(--ink)}
 
   /* ====== Hero ====== */
+  @keyframes fadeUp{from{opacity:0;transform:translateY(28px)}to{opacity:1;transform:translateY(0)}}
   .hero{
     min-height:100vh;display:flex;align-items:center;
     position:relative;overflow:hidden;
@@ -83,6 +84,7 @@
     color:var(--gold);margin-bottom:20px;
     position:relative;
     padding-left:48px;
+    opacity:0;animation:fadeUp 1.4s .3s cubic-bezier(.22,1,.36,1) forwards;
   }
   .hero-tag::before{
     content:'';position:absolute;left:0;top:50%;
@@ -92,6 +94,7 @@
     font-family:'Noto Serif SC',serif;
     font-size:clamp(42px,8vw,96px);color:var(--white);
     line-height:1.08;margin-bottom:24px;font-weight:300;letter-spacing:2px;
+    opacity:0;animation:fadeUp 1.4s .6s cubic-bezier(.22,1,.36,1) forwards;
   }
   .hero h1 em{
     font-style:normal;font-weight:700;color:var(--gold);
@@ -100,8 +103,9 @@
   .hero .sub{
     font-size:clamp(16px,2vw,17px);color:rgba(255,255,255,.6);
     max-width:480px;margin:0 0 52px;line-height:2;
+    opacity:0;animation:fadeUp 1.4s .9s cubic-bezier(.22,1,.36,1) forwards;
   }
-  .hero-actions{display:flex;gap:20px;flex-wrap:wrap;position:relative}
+  .hero-actions{display:flex;gap:20px;flex-wrap:wrap;position:relative;opacity:0;animation:fadeUp 1.4s 1.2s cubic-bezier(.22,1,.36,1) forwards}
   .btn-ink{
     display:inline-flex;align-items:center;gap:10px;
     padding:14px 34px;background:var(--gold);color:var(--brand);
@@ -207,18 +211,28 @@
     content:'';position:absolute;top:0;left:0;width:3px;height:0;
     background:var(--gold);transition:height .4s cubic-bezier(.22,1,.36,1);
   }
+  .svc-card:nth-child(3n+2)::before{
+    top:0;left:0;width:0;height:3px;
+    transition:width .4s cubic-bezier(.22,1,.36,1);
+  }
+  .svc-card:nth-child(3n+3)::before{
+    top:0;right:0;left:auto;width:3px;height:0;
+    transition:height .4s cubic-bezier(.22,1,.36,1);
+  }
   .svc-card::after{
     content:'';position:absolute;bottom:0;left:0;right:0;height:0;
-    background:linear-gradient(to top,rgba(0,0,0,.06),transparent);
+    background:linear-gradient(to top,rgba(255,255,255,.08),transparent);
     transition:height .5s cubic-bezier(.22,1,.36,1);z-index:-1;
   }
   .svc-card:hover{
     background:var(--paper-dark);
-    transform:translateX(-12px) translateY(-4px) scale(1.03);
     z-index:10;
-    box-shadow:8px 12px 32px rgba(0,0,0,.08);
   }
+  .svc-card:nth-child(3n+1):hover{transform:translateX(-12px) translateY(-10px) scale(1.03);box-shadow:8px 12px 28px rgba(62,2,57,.14)}
+  .svc-card:nth-child(3n+2):hover{transform:translateY(-10px) scale(1.03);box-shadow:0 12px 28px rgba(62,2,57,.14)}
+  .svc-card:nth-child(3n+3):hover{transform:translateX(12px) translateY(-10px) scale(1.03);box-shadow:-8px 12px 28px rgba(62,2,57,.14)}
   .svc-card:hover::before{height:100%}
+  .svc-card:nth-child(3n+2):hover::before{width:100%;height:3px}
   .svc-card:hover::after{height:60%}
   .svc-card .badge{
     display:inline-block;font-size:10px;letter-spacing:3px;
