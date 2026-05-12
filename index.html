@@ -68,6 +68,8 @@
     position:absolute;top:0;left:0;width:100%;height:100%;
     object-fit:cover;z-index:0;
   }
+  .hero-video::-webkit-media-controls{display:none!important}
+  .hero-video::-webkit-media-controls-enclosure{display:none!important}
   .hero-overlay{
     position:absolute;top:0;left:0;width:100%;height:100%;
     background:rgba(30,2,26,.62);z-index:1;
@@ -436,6 +438,7 @@
 <!-- ====== Hero ====== -->
 <section class="hero">
   <video class="hero-video" autoplay muted loop playsinline webkit-playsinline
+          x5-video-player-type="h5" x5-video-player-fullscreen="false" x5-playsinline
           disablePictureInPicture disableRemotePlayback
           controlsList="nodownload nofullscreen noremoteplayback">
     <source src="model-bg.mp4" type="video/mp4">
@@ -777,10 +780,19 @@ window.addEventListener('scroll',()=>{
   }
 });
 
-// Force video play (fixes browsers that block autoplay)
+// Force video play (fixes WeChat & browsers that block autoplay)
 (function(){
   var v=document.querySelector('.hero-video');
-  if(v){v.play().catch(function(){})}
+  function play(){if(v)v.play().catch(function(){})}
+  // Standard autoplay
+  play();
+  // WeChat WeixinJSBridge ready
+  document.addEventListener('WeixinJSBridgeReady',play,false);
+  // Touch fallback for stubborn blockers
+  document.addEventListener('touchstart',function once(){
+    play();
+    document.removeEventListener('touchstart',once);
+  },{once:true});
 })();
 
 // Mobile menu
