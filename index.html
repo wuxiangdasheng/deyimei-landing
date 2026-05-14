@@ -62,7 +62,7 @@
   /* ====== Hero ====== */
   @keyframes fadeUp{from{opacity:0;transform:translateY(28px)}to{opacity:1;transform:translateY(0)}}
   .hero{
-    min-height:100vh;display:flex;align-items:center;
+    height:100vh;display:flex;align-items:center;
     position:relative;overflow:hidden;
   }
   .hero-video{
@@ -76,7 +76,7 @@
     background:rgb(100 69 96 / 62%);z-index:1;
   }
   .hero-content{
-    max-width:1240px;margin:0 auto;padding:120px 40px 0;
+    max-width:1240px;margin:0 auto;padding:60px 40px 0;
     position:relative;z-index:2;width:100%;
   }
   .hero-tag{
@@ -383,7 +383,7 @@
   .nav.scrolled .menu-btn span{background:var(--ink)}
   .mobile-menu{
     display:none;position:fixed;top:0;left:0;right:0;bottom:0;
-    background:var(--paper);z-index:99;flex-direction:column;
+    background:#f9f1fa;backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);z-index:101;flex-direction:column;
     align-items:center;justify-content:center;gap:40px;
   }
   .mobile-menu a{
@@ -404,9 +404,9 @@
   @media(max-width:768px){
     .nav-links{display:none}.menu-btn{display:flex}
     .nav-inner{padding:0 24px}
-    .hero-content{padding:300px 24px 60px}
+    .hero-content{padding:160px 24px 0}
     .hero-scroll{bottom:24px}
-    .hero-video{object-position:center top}
+    .hero-video{object-position:center bottom;transform:scale(1.1);transform-origin:center bottom}
     .hero h1{font-size:36px;letter-spacing:1px}
     .hero h1 em{letter-spacing:2px}
     section{padding:80px 0}
