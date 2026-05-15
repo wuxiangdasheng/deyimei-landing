@@ -56,6 +56,13 @@ body{font-family:system-ui,-apple-system,sans-serif;background:var(--paper);colo
 .avatar-preview{width:80px;height:80px;border-radius:50%;margin-bottom:12px;background:#f5f1f7;overflow:hidden}
 .avatar-preview img{width:100%;height:100%;object-fit:cover}
 .hint{font-size:11px;color:#aaa;margin-top:-10px;margin-bottom:16px}
+.upload-row{display:flex;gap:12px;margin-bottom:16px;align-items:center}
+.upload-row label.btn-upload{display:inline-flex;align-items:center;gap:6px;padding:10px 18px;border:1px dashed var(--line);background:var(--white);font-size:13px;color:var(--ink-sub);cursor:pointer;letter-spacing:1px;transition:all .3s;border-radius:2px}
+.upload-row label.btn-upload:hover{border-color:var(--gold);color:var(--brand)}
+.upload-row label.btn-upload input{display:none}
+.upload-row .upload-preview{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+.upload-row .upload-preview img{height:32px;border-radius:2px;border:1px solid var(--line)}
+.upload-row .upload-preview .remove-preview{font-size:11px;color:var(--danger);cursor:pointer;margin-left:2px}
 
 .empty-admin{text-align:center;padding:60px 20px;color:#ccc;font-size:14px;line-height:1.8}
 </style>
@@ -96,9 +103,13 @@ body{font-family:system-ui,-apple-system,sans-serif;background:var(--paper);colo
     <input type="text" id="edit-date" placeholder="例如：2026年3月">
     <label>寄語 *</label>
     <textarea id="edit-quote" placeholder="客戶的原話或感想..."></textarea>
-    <label>詳細內容（支持 HTML）</label>
+    <label>詳細內容（支持 HTML + 圖片上傳）</label>
+    <div class="upload-row">
+      <label class="btn-upload">📷 上傳圖片<input type="file" accept="image/*" multiple onchange="uploadImages(this)"></label>
+      <span style="font-size:11px;color:#aaa">或直接粘貼圖片</span>
+    </div>
     <textarea id="edit-detail" placeholder="<p>治療過程、前後對比、心得分享...</p>" style="min-height:200px"></textarea>
-    <div class="hint">可使用 HTML 標籤排版，如 &lt;p&gt; &lt;b&gt; &lt;br&gt; &lt;img src=&quot;...&quot;&gt;</div>
+    <div class="hint">支援拖放圖片、Ctrl+V 粘貼圖片，自動轉換為內嵌格式</div>
     <div class="modal-actions">
       <button class="btn-cancel" onclick="closeModal()">取消</button>
       <button class="btn-save" onclick="saveCase()">保存</button>
@@ -204,6 +215,70 @@ function saveCase(){
   closeModal();
   renderCaseList();
 }
+function uploadImages(input){
+  const detail=document.getElementById('edit-detail');
+  const files=input.files;
+  let count=0;
+  Array.from(files).forEach(file=>{
+    if(!file.type.startsWith('image/')) return;
+    const reader=new FileReader();
+    reader.onload=function(e){
+      const imgTag=`<img src="${e.target.result}" style="max-width:100%;border-radius:2px;margin:8px 0">`;
+      insertAtCursor(detail,imgTag+'\n');
+      count++;
+    };
+    reader.readAsDataURL(file);
+  });
+  input.value='';
+}
+
+function insertAtCursor(el,text){
+  const start=el.selectionStart;
+  const end=el.selectionEnd;
+  el.value=el.value.slice(0,start)+text+el.value.slice(end);
+  el.selectionStart=el.selectionEnd=start+text.length;
+  el.focus();
+}
+
+// Drag & drop images into detail textarea
+document.addEventListener('DOMContentLoaded',function(){
+  const detail=document.getElementById('edit-detail');
+  if(!detail) return;
+  detail.addEventListener('dragover',function(e){e.preventDefault();this.style.borderColor='var(--gold)'});
+  detail.addEventListener('dragleave',function(){this.style.borderColor='var(--line)'});
+  detail.addEventListener('drop',function(e){
+    e.preventDefault();
+    this.style.borderColor='var(--line)';
+    const files=e.dataTransfer.files;
+    Array.from(files).forEach(file=>{
+      if(!file.type.startsWith('image/')) return;
+      const reader=new FileReader();
+      reader.onload=function(ev){
+        const imgTag=`<img src="${ev.target.result}" style="max-width:100%;border-radius:2px;margin:8px 0">`;
+        insertAtCursor(detail,imgTag+'\n');
+      };
+      reader.readAsDataURL(file);
+    });
+  });
+  // Paste images
+  detail.addEventListener('paste',function(e){
+    const items=e.clipboardData.items;
+    for(let item of items){
+      if(item.type.startsWith('image/')){
+        e.preventDefault();
+        const blob=item.getAsFile();
+        const reader=new FileReader();
+        reader.onload=function(ev){
+          const imgTag=`<img src="${ev.target.result}" style="max-width:100%;border-radius:2px;margin:8px 0">`;
+          insertAtCursor(detail,imgTag+'\n');
+        };
+        reader.readAsDataURL(blob);
+        break;
+      }
+    }
+  });
+});
+
 function deleteCase(i){
   if(!confirm('確定刪除「'+getCases()[i].name+'」的案例？'))return;
   const cases=getCases();
