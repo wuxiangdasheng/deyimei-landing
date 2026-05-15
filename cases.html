@@ -79,48 +79,52 @@ a{text-decoration:none;color:inherit}
 <div id="shared-footer"></div>
 
 <script>
-function loadCases(){
-  const raw=localStorage.getItem('deyimei_cases');
-  const cases=raw?JSON.parse(raw):[];
-  const el=document.getElementById('cases-container');
-  if(!cases.length){el.innerHTML='<div class="empty-state">暫無客戶案例<br>敬請期待</div>';return}
-  el.innerHTML=cases.map((c,i)=>{
-    // Extract first image from detail as hero
-    let heroImg='';
-    if(c.detail){
-      const m=c.detail.match(/<img[^>]+src=["']([^"']+)["'][^>]*>/i);
-      if(m) heroImg=m[1];
-    }
-    return `
-    <div class="case-card">
-      <div class="card-hero">
-        ${heroImg?`<img src="${heroImg}" alt="${c.name}" loading="lazy">`:`<div class="hero-placeholder">🌸</div>`}
-      </div>
-      <div class="card-body">
-        <div class="card-top-row">
-          <div class="case-avatar">
-            ${c.avatar?`<img src="${c.avatar}" alt="">`:`<div class="avatar-placeholder">${c.name[0]}</div>`}
-          </div>
-          <div>
-            <div class="case-name">${c.name}</div>
-            <div class="case-meta">${c.date||''}</div>
-          </div>
-        </div>
-        <div class="case-quote">${c.quote}</div>
-        ${c.detail?`<button class="case-detail-toggle" onclick="toggleDetail(${i})">閱讀更多 ▾</button>`:''}
-      </div>
-      ${c.detail?`<div class="case-detail" id="detail-${i}"><div class="case-detail-content">${c.detail}</div><button class="case-detail-collapse" onclick="toggleDetail(${i})">收起 ▴</button></div>`:''}
-    </div>
-  `}).join('');
-}
+// Hardcoded cases — edit here to update
+var HARDCODED_CASES = [
+  {
+    name: "Jenny Wang",
+    date: "2026-05",
+    quote: "祝德醫美越做越好，揀呢度絕對冇錯！",
+    heroImg: "新对话1.jpg",
+    detail: `我做咗饅化嘅經典教材㗎。兩年打咗三次針，額頭、蘋果肌、下巴全部填過。朋友話我「笑起上嚟好似戴咗面具咁」，自己照鏡都覺得唔對路——五官冇變，但個表情死晒。<br><br>嚟德醫美嗰日喺診室喊咗出嚟。醫師話填充物塞住咗塊面嘅經絡，氣血行唔到，塊面先會僵到一嚿嚿。用微針逐寸逐寸疏通，第一次做完塊面即刻有種「透到氣」嘅感覺。兩個月之後浮腫退晒，下頜線出返嚟，笑嗰陣眼角終於有紋喇。<br><br><img src="新对话1.jpg" alt="Jenny 治療前後" style="max-width:100%;margin:12px 0;border-radius:2px"><br><img src="新对话-(1).jpg" alt="Jenny 面部變化" style="max-width:100%;margin:12px 0;border-radius:2px"><br><img src="新对话-(2).jpg" alt="Jenny 復原過程" style="max-width:100%;margin:12px 0;border-radius:2px">`
+  },
+  {
+    name: "Sofia",
+    date: "2026-05",
+    quote: "本來淨係想塊面整光亮啲，點知連睡眠同經期都改善埋多謝",
+    heroImg: "",
+    detail: `做廣告做咗五年，塊面捱到變咗調色盤：額頭又黃又暗，兩頰出晒斑，下巴灰灰沉沉。美白精華買到成個櫃桶都係，白得幾日又打回原形。<br><br>醫師把脈之後話：「脾胃弱，氣血上唔到塊面。出邊查乜都冇用，要喺入邊通。」微針通面部經絡，加埋足三里、三陰交調脾胃。一個月後同事問我係咪換咗粉底；兩個月後啲斑淡咗，塊面終於有返血色。仲有個意外收穫：經痛輕咗好多，一覺瞓到天光。`
+  }
+];
+
+(function render(){
+  var el=document.getElementById('cases-container');
+  el.innerHTML=HARDCODED_CASES.map(function(c,i){
+    var hero=c.heroImg
+      ?'<img src="'+c.heroImg+'" alt="'+c.name+'" loading="lazy">'
+      :'<div class="hero-placeholder">🌸</div>';
+    var initial=c.name[0];
+    return '<div class="case-card">'+
+      '<div class="card-hero">'+hero+'</div>'+
+      '<div class="card-body">'+
+        '<div class="card-top-row">'+
+          '<div class="case-avatar"><div class="avatar-placeholder">'+initial+'</div></div>'+
+          '<div><div class="case-name">'+c.name+'</div><div class="case-meta">'+c.date+'</div></div>'+
+        '</div>'+
+        '<div class="case-quote">'+c.quote+'</div>'+
+        (c.detail?'<button class="case-detail-toggle" onclick="toggleDetail('+i+')">閱讀更多 ▾</button>':'')+
+      '</div>'+
+      (c.detail?'<div class="case-detail" id="detail-'+i+'"><div class="case-detail-content">'+c.detail+'</div><button class="case-detail-collapse" onclick="toggleDetail('+i+')">收起 ▴</button></div>':'')+
+    '</div>';
+  }).join('');
+})();
+
 function toggleDetail(i){
-  const el=document.getElementById('detail-'+i);
-  const card=el.parentElement;
-  const top=card.querySelector('.case-detail-toggle');
+  var el=document.getElementById('detail-'+i);
+  var top=el.parentElement.querySelector('.case-detail-toggle');
   if(el.classList.contains('open')){el.classList.remove('open');top.textContent='閱讀更多 ▾'}
   else{el.classList.add('open');top.textContent='收起 ▴'}
 }
-loadCases();
 </script>
 <script src="header.js"></script>
 <script src="footer.js"></script>
