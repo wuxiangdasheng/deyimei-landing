@@ -102,7 +102,7 @@
   }
   .hero .sub{
     font-size:clamp(16px,2vw,17px);color:rgba(255,255,255,.6);
-    max-width:480px;margin:0 0 52px;line-height:2;
+    max-width:480px;margin:0 0 22px;line-height:2;
     opacity:0;animation:fadeUp 1.4s .9s cubic-bezier(.22,1,.36,1) forwards;
   }
   .hero-actions{display:flex;gap:20px;flex-wrap:wrap;position:relative;opacity:0;animation:fadeUp 1.4s 1.2s cubic-bezier(.22,1,.36,1) forwards}
@@ -125,11 +125,11 @@
 
   .hero-scroll{
     position:absolute;bottom:48px;left:50%;transform:translateX(-50%);z-index:2;
-    display:flex;flex-direction:column;align-items:center;gap:12px;
-    color:var(--gold);font-size:16px;letter-spacing:6px;opacity:.7;
+    display:flex;flex-direction:column;align-items:center;
+    color:var(--gold);font-size:12px;letter-spacing:1px;opacity:.7;
   }
   .hero-scroll .vline{
-    width:1px;height:40px;
+    width:1px;height:20px;
     background:linear-gradient(to bottom,transparent,var(--gold),transparent);
     animation:linePulse 2.5s ease-in-out infinite;
   }
@@ -243,7 +243,9 @@
   .svc-card .treat-info span{display:block;margin-bottom:2px}
   .svc-card .treat-info b{color:var(--brand);font-weight:600;margin-right:4px}
   .svc-card .treat-price{font-size:18px;color:var(--gold);font-weight:600;margin-top:12px;padding-top:12px;border-top:1px solid var(--line);font-family:'Noto Serif SC',serif}
-  .svc-card .treat-note{font-size:12px;color:#aaa;margin-top:4px;line-height:1.5}
+  .svc-swipe-hint{display:none}
+  .svc-swipe-hint .arrow-left{display:none}
+  .svc-swipe-hint .arrow-right{display:none}
 
   /* ====== Core Values ====== */
   .core-values .value-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:20px}
@@ -389,7 +391,7 @@
   @media(max-width:768px){
     .nav-links{display:none}.menu-btn{display:flex}
     .nav-inner{padding:0 24px}
-    .hero-content{padding:160px 24px 0}
+    .hero-content{padding:200px 24px 0}
     .hero-scroll{bottom:24px}
     .hero-video{object-position:center bottom;transform:scale(1.1);transform-origin:center bottom}
     .hero h1{font-size:36px;letter-spacing:1px}
@@ -403,6 +405,10 @@
     .svc-grid::-webkit-scrollbar{display:none}
     .svc-grid .svc-card{flex:0 0 78vw;scroll-snap-align:start}
     .svc-card:hover{transform:none}
+    .svc-swipe-hint{display:flex;justify-content:space-between;padding:12px 24px 0;pointer-events:none}
+    .svc-swipe-hint .arrow-right{margin-left:auto}
+    .svc-swipe-hint span{font-size:22px;color:var(--brand);opacity:.35;letter-spacing:-2px;pointer-events:auto;cursor:pointer;padding:8px;transition:opacity .3s;-webkit-tap-highlight-color:transparent;user-select:none}
+    .svc-swipe-hint span:active{opacity:.7}
     .prod-grid{grid-template-columns:1fr}
     .prod-card{padding:40px 32px}
     .loc-grid{grid-template-columns:1fr}
@@ -411,6 +417,7 @@
     .loc-card .loc-body{padding:32px 24px}
     .ft-cols{flex-direction:column;gap:40px}
     .ft-top{flex-direction:column;gap:48px}
+    a[href^="tel"]{color:inherit!important;text-decoration:none!important}
     .core-values .value-grid{grid-template-columns:1fr;gap:12px}
     .core-values .value-card{padding:24px 20px;gap:14px}
     .core-values .value-num{font-size:26px}
@@ -587,6 +594,7 @@
         <div class="svc-card"><span class="badge">Scar Revision</span><div class="name">疤痕處理</div><div class="desc">痘疤、手術疤痕、妊娠紋 — 以微針刺激自體膠原再生，逐步淡化修復</div></div>
         <div class="svc-card"><span class="badge">Thread Slimming</span><div class="name">埋線減肥</div><div class="desc">以穴位埋線持續刺激經絡，調節食慾與代謝，實現健康減重</div></div>
       </div>
+    <div class="svc-swipe-hint"><span class="arrow-left">‹</span><span class="arrow-right">›</span></div>
   </div>
 </section>
 
@@ -732,6 +740,29 @@ const observer=new IntersectionObserver((entries)=>{
   entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible')});
 },{threshold:.1,rootMargin:'0px 0px -40px 0px'});
 document.querySelectorAll('.reveal').forEach(el=>observer.observe(el));
+
+// Service card swipe navigation (mobile)
+(function(){
+  var grid=document.querySelector('.svc-grid');
+  var left=document.querySelector('.svc-swipe-hint .arrow-left');
+  var right=document.querySelector('.svc-swipe-hint .arrow-right');
+  if(!grid||!left||!right)return;
+  function cardW(){var c=grid.querySelector('.svc-card');return c?c.offsetWidth+12:0}
+  function update(){
+    var w=cardW();if(!w)return;
+    var sl=grid.scrollLeft,sw=grid.scrollWidth- grid.clientWidth;
+    left.style.display=sl<4?'none':'inline';
+    right.style.display=sl>sw-4?'none':'inline';
+    if(sl<4){left.style.display='none';right.style.display='inline'}
+    else if(sl>sw-4){right.style.display='none';left.style.display='inline'}
+    else{left.style.display='inline';right.style.display='inline'}
+  }
+  left.addEventListener('click',function(){grid.scrollBy({left:-cardW(),behavior:'smooth'})});
+  right.addEventListener('click',function(){grid.scrollBy({left:cardW(),behavior:'smooth'})});
+  grid.addEventListener('scroll',update);
+  window.addEventListener('resize',update);
+  update();
+})();
 </script>
 </body>
 </html>
