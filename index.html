@@ -138,14 +138,6 @@
   /* ====== Section Framework ====== */
   section{padding:140px 0;position:relative}
   .sec-inner{max-width:1040px;margin:0 auto;padding:0 40px}
-  .sec-knot{text-align:center;padding:60px 0 40px}
-  .sec-knot .stamp{
-    display:inline-flex;align-items:center;justify-content:center;
-    width:48px;height:48px;border:1.5px solid var(--gold);
-    color:var(--gold);font-size:16px;letter-spacing:2px;
-    transform:rotate(-5deg);font-family:'Noto Serif SC',serif;
-    margin-bottom:32px;
-  }
   .sec-head{margin-bottom:80px}
   .sec-head .tag{
     font-size:16px;letter-spacing:6px;color:var(--gold);margin-bottom:20px;
@@ -162,6 +154,7 @@
   .sec-head .lead{
     font-size:17px;color:var(--ink-sub);line-height:2;
   }
+  @media(max-width:768px){.core-values .value-grid{grid-template-columns:1fr}}
 
   /* ====== Philosophy ====== */
   .philosophy{background:var(--white)}
@@ -179,7 +172,7 @@
   .phil-cell .icon{font-size:32px;margin:16px 0;opacity:.7}
   .phil-cell h3{
     font-family:'Noto Serif SC',serif;
-    font-size:20px;color:var(--brand);margin-bottom:16px;
+    font-size:22px;color:var(--brand);margin-bottom:16px;
     font-weight:600;letter-spacing:3px;
   }
   .phil-cell p{font-size:16px;color:var(--ink-sub);line-height:2;max-width:240px;margin:0 auto}
@@ -252,46 +245,12 @@
   .svc-card .treat-price{font-size:18px;color:var(--gold);font-weight:600;margin-top:12px;padding-top:12px;border-top:1px solid var(--line);font-family:'Noto Serif SC',serif}
   .svc-card .treat-note{font-size:12px;color:#aaa;margin-top:4px;line-height:1.5}
 
-  /* ====== What is TCM Beauty ====== */
-  .what-tcm .tcm-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
-  .what-tcm .tcm-item{text-align:center;padding:36px 28px}
-  .what-tcm .tcm-num{font-family:'Noto Serif SC',serif;font-size:48px;color:var(--gold);font-weight:300;margin-bottom:16px;letter-spacing:2px}
-  .what-tcm .tcm-title{font-family:'Noto Serif SC',serif;font-size:18px;color:var(--brand);font-weight:600;margin-bottom:12px;letter-spacing:1px}
-  .what-tcm .tcm-desc{font-size:16px;color:var(--ink-sub);line-height:1.9}
-
   /* ====== Core Values ====== */
   .core-values .value-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:20px}
   .core-values .value-card{padding:36px 32px;display:flex;gap:20px;align-items:flex-start}
   .core-values .value-num{font-family:'Noto Serif SC',serif;font-size:32px;color:var(--gold);font-weight:300;flex-shrink:0;line-height:1}
-  .core-values .value-text h4{font-family:'Noto Serif SC',serif;font-size:18px;color:var(--brand);font-weight:600;margin-bottom:8px;letter-spacing:1px}
+  .core-values .value-text h4{font-family:'Noto Serif SC',serif;font-size:22px;color:var(--brand);font-weight:600;margin-bottom:8px;letter-spacing:1px}
   .core-values .value-text p{font-size:16px;color:var(--ink-sub);line-height:1.9}
-
-  /* ====== Placeholder Images ====== */
-  .ph-img{width:100%;border-radius:2px;overflow:hidden;position:relative;background:linear-gradient(135deg,#f9f1fa 0%,#ede0f0 40%,#e8d5ee 100%)}
-  .ph-img::after{content:'';position:absolute;top:0;left:0;right:0;bottom:0;background:radial-gradient(ellipse at 30% 50%,rgba(62,2,57,.06) 0%,transparent 70%)}
-  .ph-img .ph-label{position:absolute;bottom:0;left:0;right:0;padding:20px 24px;background:linear-gradient(to top,rgba(62,2,57,.7),transparent);z-index:2}
-  .ph-img .ph-label span{color:var(--white);font-size:13px;letter-spacing:1px;display:block;line-height:1.6}
-  .ph-img .ph-label .ph-icon{font-size:20px;margin-bottom:4px}
-  .ph-hero-img{height:320px}
-  .ph-inline-img{height:240px}
-  .ph-card-img{height:200px}
-  @media(max-width:768px){.what-tcm .tcm-grid{grid-template-columns:1fr}.core-values .value-grid{grid-template-columns:1fr}.ph-hero-img{height:200px}.ph-inline-img{height:180px}}
-
-  /* ====== Divider with stamp ====== */
-  .divider-line{
-    text-align:center;padding:20px 0;
-  }
-  .divider-line .stamp-row{
-    display:flex;align-items:center;justify-content:center;gap:0;
-  }
-  .divider-line .stroke{
-    width:60px;height:1px;background:linear-gradient(to right,transparent,var(--line-strong),transparent);
-  }
-  .divider-line .seal{
-    width:28px;height:28px;border:1px solid var(--gold);
-    transform:rotate(45deg);margin:0 20px;opacity:.6;
-  }
-  .divider-line.reveal.visible{padding-bottom:100px}
 
   /* ====== Products ====== */
   .products{background:var(--white)}
@@ -318,7 +277,7 @@
   .prod-card .en-name{
     font-size:14px;color:var(--gold);letter-spacing:1px;margin-bottom:20px;
   }
-  .prod-card p{font-size:16px;color:var(--ink-sub);line-height:2;margin-bottom:28px}
+  .prod-card p{font-size:16px;color:var(--ink-sub);line-height:2;}
   .prod-card .prod-link{
     font-size:16px;color:var(--ink-sub);text-decoration:none;
     letter-spacing:3px;display:inline-flex;align-items:center;gap:8px;
@@ -392,13 +351,9 @@
   /* ====== Herb decorations ====== */
   .herb-deco{position:absolute;pointer-events:none;z-index:0}
   .herb-deco.ginseng{right:2%;bottom:5%;width:320px;height:380px;opacity:.7}
-  .herb-deco.chrysanthemum{left:3%;top:5%;width:240px;height:240px;opacity:.65}
-  .herb-deco.chrysanthemum-r{right:2%;bottom:3%;width:200px;height:200px;opacity:.55}
   .herb-deco.goji{right:5%;top:4%;width:300px;height:180px;opacity:.65}
   @media(max-width:768px){
     .herb-deco.ginseng{width:180px;height:220px;right:0;bottom:2%}
-    .herb-deco.chrysanthemum{width:140px;height:140px;left:0;top:2%}
-    .herb-deco.chrysanthemum-r{width:120px;height:120px}
     .herb-deco.goji{width:180px;height:110px;right:0;top:2%}
   }
 
@@ -456,6 +411,11 @@
     .loc-card .loc-body{padding:32px 24px}
     .ft-cols{flex-direction:column;gap:40px}
     .ft-top{flex-direction:column;gap:48px}
+    .core-values .value-grid{grid-template-columns:1fr;gap:12px}
+    .core-values .value-card{padding:24px 20px;gap:14px}
+    .core-values .value-num{font-size:26px}
+    .core-values .value-text h4{font-size:18px}
+    .core-values .value-text p{font-size:15px}
   }
 </style>
 </head>
@@ -473,7 +433,7 @@
       <li><a href="#products">康養產品</a></li>
       <li><a href="#locations">門店</a></li>
       <li><a href="cases.html">客戶案例</a></li>
-      <li><a href="#contact">聯繫我們</a></li>
+      <li><a href="#locations">聯繫我們</a></li>
     </ul>
     <div class="menu-btn" onclick="toggleMenu()"><span></span><span></span><span></span></div>
   </div>
@@ -483,7 +443,7 @@
   <a href="#products" onclick="toggleMenu()">康養產品</a>
   <a href="#locations" onclick="toggleMenu()">門店</a>
   <a href="cases.html" onclick="toggleMenu()">客戶案例</a>
-  <a href="#contact" onclick="toggleMenu()">聯繫我們</a>
+  <a href="#locations" onclick="toggleMenu()">聯繫我們</a>
   <button class="menu-close" onclick="toggleMenu()">✕ 關閉</button>
 </div>
 
@@ -577,28 +537,28 @@
       <h2 style="color:var(--brand)">伏針理肌，煥養新膚</h2>
     </div>
     <div class="value-grid reveal">
-      <div class="card value-card">
+      <div class="value-card">
         <div class="value-num">01</div>
         <div class="value-text">
           <h4>「不只是臉，更是命」</h4>
           <p>醫美同時調理五臟六腑、疏通氣血經絡。不僅皮膚變好，更能改善痛經、睡眠及情緒，實現表裡同調</p>
         </div>
       </div>
-      <div class="card value-card">
+      <div class="value-card">
         <div class="value-num">02</div>
         <div class="value-text">
           <h4>「激發自愈，不填充」</h4>
           <p>拒絕過度倚賴外源物質，激發自身氣血及膠原蛋白再生。效果自然，杜絕「假臉」，回歸原生之美</p>
         </div>
       </div>
-      <div class="card value-card">
+      <div class="value-card">
         <div class="value-num">03</div>
         <div class="value-text">
           <h4>「沒有保質期，只有積累期」</h4>
           <p>區別於易代謝的醫美產品，微針醫療是給身體「存錢」。每次治療都在改善機能，實現逆齡生長</p>
         </div>
       </div>
-      <div class="card value-card">
+      <div class="value-card">
         <div class="value-num">04</div>
         <div class="value-text">
           <h4>「從快速變美到自然健康」</h4>
