@@ -377,12 +377,8 @@
 
 <!-- ====== Hero ====== -->
 <section class="hero">
-  <video class="hero-video" autoplay muted loop playsinline webkit-playsinline="true"
-          x5-video-player-type="h5-page" x5-video-player-fullscreen="false" x5-playsinline="true"
-          disablePictureInPicture disableRemotePlayback
-          controlsList="nodownload nofullscreen noremoteplayback">
-    <source src="model-bg.mp4" type="video/mp4">
-  </video>
+  <video class="hero-video-src" src="model-bg.mp4" autoplay muted loop playsinline style="display:none"></video>
+  <canvas class="hero-video" id="hero-canvas"></canvas>
   <div class="hero-overlay"></div>
   <div class="hero-content">
     <div class="hero-tag">德醫美 · 漢方中醫美</div>
@@ -621,15 +617,40 @@
 <script src="footer.js"></script>
 <script>
 // Nav scroll (now in header.js)
-// Force video play
+// Canvas video render — bypasses Quark/UC player detection
 (function(){
-  var v=document.querySelector('.hero-video');
+  var v=document.querySelector('.hero-video-src');
+  var c=document.getElementById('hero-canvas');
+  if(!v||!c)return;
+  var ctx=c.getContext('2d');
+  v.play().catch(function(){});
+  function resize(){c.width=c.offsetWidth;c.height=c.offsetHeight}
+  resize();window.addEventListener('resize',resize);
+  function draw(){
+    if(v.paused||v.ended)return;
+    var vw=v.videoWidth,vh=v.videoHeight;
+    var cw=c.width,ch=c.height;
+    var scale=Math.max(cw/vw,ch/vh);
+    var dw=vw*scale,dh=vh*scale;
+    var dx=(cw-dw)/2,dy=(ch-dh)/2;
+    ctx.drawImage(v,dx,dy,dw,dh);
+    requestAnimationFrame(draw);
+  }
+  v.addEventListener('play',draw);
+  v.addEventListener('loadeddata',function(){v.play().catch(function(){})});
+  // Touch fallback
+  document.addEventListener('touchstart',function once(){
+    v.play().catch(function(){});
+    document.removeEventListener('touchstart',once);
+  },{once:true});
+})();
+
+// Force video play (canvas mode — now handled by Canvas block above)
+(function(){
+  var v=document.querySelector('.hero-video-src');
   function play(){if(v)v.play().catch(function(){})}
-  // Standard autoplay
   play();
-  // WeChat WeixinJSBridge ready
   document.addEventListener('WeixinJSBridgeReady',play,false);
-  // Touch fallback for stubborn blockers
   document.addEventListener('touchstart',function once(){
     play();
     document.removeEventListener('touchstart',once);
