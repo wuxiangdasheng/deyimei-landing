@@ -51,6 +51,8 @@ a{text-decoration:none;color:inherit}
 .case-detail{padding:0 28px 28px;display:none}
 .case-detail.open{display:block}
 .case-detail-content{font-size:15px;color:var(--ink-sub);line-height:2;padding-top:20px;border-top:1px solid var(--line)}
+.case-detail-collapse{display:block;margin-top:20px;padding:12px 0 0;width:100%;text-align:center;font-size:12px;color:var(--gold);letter-spacing:2px;cursor:pointer;background:none;border:none;border-top:1px solid var(--line);font-family:'Noto Serif SC',serif;transition:color .3s}
+.case-detail-collapse:hover{color:var(--brand)}
 .case-detail-content p{margin-bottom:16px}
 .case-detail-content img{max-width:100%;margin:12px 0;border-radius:2px}
 
@@ -149,15 +151,16 @@ function loadCases(){
         <div class="case-quote">${c.quote}</div>
         ${c.detail?`<button class="case-detail-toggle" onclick="toggleDetail(${i})">閱讀更多 ▾</button>`:''}
       </div>
-      ${c.detail?`<div class="case-detail" id="detail-${i}"><div class="case-detail-content">${c.detail}</div></div>`:''}
+      ${c.detail?`<div class="case-detail" id="detail-${i}"><div class="case-detail-content">${c.detail}</div><button class="case-detail-collapse" onclick="toggleDetail(${i})">收起 ▴</button></div>`:''}
     </div>
   `}).join('');
 }
 function toggleDetail(i){
   const el=document.getElementById('detail-'+i);
-  const btn=el.parentElement.querySelector('.case-detail-toggle');
-  if(el.classList.contains('open')){el.classList.remove('open');btn.textContent='閱讀更多 ▾'}
-  else{el.classList.add('open');btn.textContent='收起 ▴'}
+  const card=el.parentElement;
+  const top=card.querySelector('.case-detail-toggle');
+  if(el.classList.contains('open')){el.classList.remove('open');top.textContent='閱讀更多 ▾'}
+  else{el.classList.add('open');top.textContent='收起 ▴';el.scrollIntoView({behavior:'smooth',block:'nearest'})}
 }
 loadCases();
 </script>
