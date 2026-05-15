@@ -444,8 +444,10 @@
     .sec-head{margin-bottom:48px}
     .phil-grid{grid-template-columns:1fr}
     .phil-cell{padding:48px 32px}
-    .svc-grid{grid-template-columns:1fr}
-    .svc-card:hover{transform:translateY(6px) scale(1.02)}
+    .svc-grid{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;gap:12px;padding-bottom:8px}
+    .svc-grid::-webkit-scrollbar{display:none}
+    .svc-grid .svc-card{flex:0 0 78vw;scroll-snap-align:start}
+    .svc-card:hover{transform:none}
     .prod-grid{grid-template-columns:1fr}
     .prod-card{padding:40px 32px}
     .loc-grid{grid-template-columns:1fr}
@@ -470,6 +472,7 @@
       <li><a href="#services">漢方微針醫美</a></li>
       <li><a href="#products">康養產品</a></li>
       <li><a href="#locations">門店地址</a></li>
+      <li><a href="cases.html">客戶案例</a></li>
       <li><a href="#contact">聯繫我們</a></li>
     </ul>
     <div class="menu-btn" onclick="toggleMenu()"><span></span><span></span><span></span></div>
@@ -479,6 +482,7 @@
   <a href="#services" onclick="toggleMenu()">漢方微針醫美</a>
   <a href="#products" onclick="toggleMenu()">康養產品</a>
   <a href="#locations" onclick="toggleMenu()">門店地址</a>
+  <a href="cases.html" onclick="toggleMenu()">客戶案例</a>
   <a href="#contact" onclick="toggleMenu()">聯繫我們</a>
   <button class="menu-close" onclick="toggleMenu()">✕ 關閉</button>
 </div>
@@ -541,10 +545,6 @@
     </g>
   </svg>
   <div class="sec-inner">
-    <div class="sec-head reveal">
-      <div class="tag">理念</div>
-      <h2>德醫美之道</h2>
-    </div>
     <div class="phil-grid">
       <div class="phil-cell reveal reveal-d1">
         <div class="num">壹</div>
@@ -565,55 +565,6 @@
         <p>線下醫美服務配合康養產品內服，實現標本同治的長期效果，而非單次急救式處理</p>
       </div>
     </div>
-  </div>
-</section>
-
-<!-- ====== What is TCM Beauty ====== -->
-<section class="what-tcm" style="position:relative;overflow:hidden;background:var(--paper)">
-  <div class="sec-inner">
-    <div class="sec-head reveal">
-      <div class="tag">理念</div>
-      <h2>什麼是真正的中醫美？</h2>
-    </div>
-    <div class="sec-img reveal" style="margin-bottom:32px"><img src="ph-clinic.jpg" alt="德醫美診所" style="width:100%;height:320px;object-fit:cover;display:block"></div>
-    <div class="tcm-grid reveal">
-      <div class="card tcm-item">
-        <div class="tcm-num">1</div>
-        <div class="tcm-title">整體觀的審美投射</div>
-        <div class="tcm-desc">中醫認為「有諸內，必形諸外」。面部問題皆是五臟六腑功能失調的信號，美容的本質是調整身體的內環境。</div>
-      </div>
-      <div class="card tcm-item">
-        <div class="tcm-num">2</div>
-        <div class="tcm-title">雙向調節的智慧</div>
-        <div class="tcm-desc">針刺既能控油又能保濕，既能抗炎又能修復。這是喚醒人體自愈力，達到陰陽平衡的結果。</div>
-      </div>
-      <div class="card tcm-item">
-        <div class="tcm-num">3</div>
-        <div class="tcm-title">自然美與個性化</div>
-        <div class="tcm-desc">不同於模板化的「網紅臉」，中醫美容追求「神采」與「和諧」。不改變骨相，而是提升軟組織，讓你回到自己的最佳狀態。</div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ====== Services ====== -->
-<section class="services" id="services" style="position:relative;overflow:hidden">
-  <div class="sec-inner">
-    <div class="sec-head reveal">
-      <div class="tag">服務</div>
-      <h2>漢方微針醫美</h2>
-      <p class="lead">以中醫微針為核心技術，涵蓋醫療級皮膚治療與醫美級抗衰修復兩大板塊。</p>
-    </div>
-
-    <div class="sec-img reveal" style="margin-bottom:28px"><img src="ph-treatment.jpg" alt="面部針灸治療" style="width:100%;height:240px;object-fit:cover;display:block"></div>
-    <div class="svc-grid reveal">
-        <div class="svc-card"><span class="badge">Dynamic Line Tx</span><div class="name">動態紋處理</div><div class="desc">魚尾紋、川字紋、抬頭紋、口周紋 — 以微針疏通面部經絡，促進膠原自生，表情自然不僵硬。</div></div>
-        <div class="svc-card"><span class="badge">Static Wrinkle Tx</span><div class="name">靜態紋處理</div><div class="desc">法令紋等深層靜態紋路，以微針刺激真皮層自體修復，持續使用逐步撫平。</div></div>
-        <div class="svc-card"><span class="badge">Skin Tightening</span><div class="name">皮膚緊致提拉</div><div class="desc">非手術面部提升方案，微針刺激筋膜層收緊，重塑下頜線和面部輪廓。</div></div>
-        <div class="svc-card"><span class="badge">Skin Tone Balance</span><div class="name">膚色調理</div><div class="desc">針對色斑、膚色不均、暗黃等問題，以微針疏通面部經絡、促進代謝，實現均勻透亮。</div></div>
-        <div class="svc-card"><span class="badge">Scar Revision</span><div class="name">疤痕處理</div><div class="desc">痘疤、手術疤痕、妊娠紋 — 以微針刺激自體膠原再生，逐步淡化修復。</div></div>
-        <div class="svc-card"><span class="badge">Thread Slimming</span><div class="name">埋線減肥</div><div class="desc">以穴位埋線持續刺激經絡，調節食慾與代謝，實現健康減重。</div></div>
-      </div>
   </div>
 </section>
 
@@ -655,6 +606,27 @@
       </div>
     </div>
     <div class="sec-img reveal" style="margin-top:20px"><img src="ph-herbs.jpg" alt="中藥材" style="width:100%;height:240px;object-fit:cover;display:block"></div>
+  </div>
+</section>
+
+<!-- ====== Services ====== -->
+<section class="services" id="services" style="position:relative;overflow:hidden">
+  <div class="sec-inner">
+    <div class="sec-head reveal">
+      <div class="tag">服務</div>
+      <h2>漢方微針醫美</h2>
+      <p class="lead">以中醫微針為核心技術，涵蓋醫療級皮膚治療與醫美級抗衰修復兩大板塊。</p>
+    </div>
+
+    <div class="sec-img reveal" style="margin-bottom:28px"><img src="ph-treatment.jpg" alt="面部針灸治療" style="width:100%;height:240px;object-fit:cover;display:block"></div>
+    <div class="svc-grid reveal">
+        <div class="svc-card"><span class="badge">Dynamic Line Tx</span><div class="name">動態紋處理</div><div class="desc">魚尾紋、川字紋、抬頭紋、口周紋 — 以微針疏通面部經絡，促進膠原自生，表情自然不僵硬。</div></div>
+        <div class="svc-card"><span class="badge">Static Wrinkle Tx</span><div class="name">靜態紋處理</div><div class="desc">法令紋等深層靜態紋路，以微針刺激真皮層自體修復，持續使用逐步撫平。</div></div>
+        <div class="svc-card"><span class="badge">Skin Tightening</span><div class="name">皮膚緊致提拉</div><div class="desc">非手術面部提升方案，微針刺激筋膜層收緊，重塑下頜線和面部輪廓。</div></div>
+        <div class="svc-card"><span class="badge">Skin Tone Balance</span><div class="name">膚色調理</div><div class="desc">針對色斑、膚色不均、暗黃等問題，以微針疏通面部經絡、促進代謝，實現均勻透亮。</div></div>
+        <div class="svc-card"><span class="badge">Scar Revision</span><div class="name">疤痕處理</div><div class="desc">痘疤、手術疤痕、妊娠紋 — 以微針刺激自體膠原再生，逐步淡化修復。</div></div>
+        <div class="svc-card"><span class="badge">Thread Slimming</span><div class="name">埋線減肥</div><div class="desc">以穴位埋線持續刺激經絡，調節食慾與代謝，實現健康減重。</div></div>
+      </div>
   </div>
 </section>
 
@@ -758,39 +730,8 @@
 </section>
 
 <!-- ====== Footer ====== -->
-<footer id="contact">
-  <div class="ft-inner">
-    <div class="ft-top">
-      <div class="ft-brand">
-        <img src="logo.png" alt="德醫美 Alchemy">
-        <div class="ft-en">Alchemy · 中醫醫美連鎖</div>
-      </div>
-      <div class="ft-cols">
-        <div class="ft-col">
-          <h4>服務項目</h4>
-          <a href="#services">中醫微針醫療</a>
-          <a href="#services">中醫微針醫美</a>
-          <a href="#products">康養產品</a>
-        </div>
-        <div class="ft-col">
-          <h4>聯繫我們</h4>
-          <a href="tel:+85265141328">香港 +852 65141328</a>
-          <a href="tel:+8618511841531">北京 +86 18511841531</a>
-        </div>
-        <div class="ft-col">
-          <h4>關注我們</h4>
-          <a href="#">微信公眾號</a>
-          <a href="#">小紅書</a>
-        </div>
-      </div>
-    </div>
-    <div class="ft-bottom">
-      <span>&copy; 2025 德醫美 Alchemy. 保留所有權利。</span>
-      <span>中醫美容 · 香港中環 &amp; 北京海淀</span>
-    </div>
-  </div>
-</footer>
-
+<div id="shared-footer"></div>
+<script src="footer.js"></script>
 <script>
 // Nav scroll
 const nav=document.getElementById('navbar');
