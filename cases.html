@@ -12,16 +12,6 @@
 body{font-family:system-ui,-apple-system,sans-serif;background:var(--paper);color:var(--ink);line-height:1.6}
 a{text-decoration:none;color:inherit}
 
-/* Nav */
-.nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:24px 0;transition:all .5s;background:rgba(252,250,247,.92);backdrop-filter:blur(20px)}
-.nav-inner{max-width:1240px;margin:0 auto;padding:0 40px;display:flex;align-items:center;justify-content:space-between}
-.nav-logo img{height:36px}
-.nav-links{display:flex;gap:40px;list-style:none}
-.nav-links a{font-family:'Noto Serif SC',serif;font-size:14px;letter-spacing:3px;color:var(--ink);transition:color .3s}
-.nav-links a:hover,.nav-links a.active{color:var(--brand)}
-.menu-btn{display:none;flex-direction:column;gap:5px;cursor:pointer;background:none;border:none;padding:4px}
-.menu-btn span{display:block;width:24px;height:2px;background:var(--ink);transition:all .3s}
-
 /* Page Header */
 .page-hero{padding:160px 40px 60px;text-align:center}
 .page-hero .tag{display:inline-block;font-size:13px;letter-spacing:6px;color:var(--gold);margin-bottom:12px}
@@ -58,21 +48,8 @@ a{text-decoration:none;color:inherit}
 
 .empty-state{text-align:center;padding:80px 20px;color:#ccc;font-size:14px;line-height:1.8;grid-column:1/-1}
 
-/* Footer */
-.ft{background:var(--brand);color:rgba(255,255,255,.6);padding:60px 40px 32px}
-.ft-inner{max-width:1240px;margin:0 auto}
-.ft-top{display:flex;justify-content:space-between;align-items:flex-start;padding-bottom:40px;border-bottom:1px solid rgba(255,255,255,.1);margin-bottom:32px;gap:48px}
-.ft-brand h3{font-family:'Noto Serif SC',serif;font-size:20px;color:var(--white);font-weight:300;letter-spacing:4px;margin-bottom:8px}
-.ft-brand p{font-size:13px;line-height:1.8}
-.ft-cols{display:flex;gap:80px}
-.ft-col h4{font-size:12px;color:var(--gold);letter-spacing:3px;margin-bottom:16px;font-weight:400}
-.ft-col p{font-size:13px;line-height:2}
-.ft-bottom{text-align:center;font-size:12px}
-
 @media(max-width:768px){
-  .nav-links{display:none}.menu-btn{display:flex}
-  .nav-inner{padding:0 24px}
-  .page-hero{padding:120px 24px 36px}
+.page-hero{padding:120px 24px 36px}
   .page-hero h1{font-size:28px}
   .page-hero .sub{font-size:14px}
   .cases-sec{padding:0 20px 80px}
@@ -82,31 +59,12 @@ a{text-decoration:none;color:inherit}
   .case-name{font-size:17px}
   .case-quote{font-size:14px}
   .case-detail{padding:0 24px 24px}
-  .ft-top{flex-direction:column;gap:48px}
-  .ft-cols{flex-direction:column;gap:40px}
 }
 </style>
 </head>
 <body>
 
-<nav class="nav">
-  <div class="nav-inner">
-    <a href="index.html" class="nav-logo"><img src="logo.png" alt="德醫美"></a>
-    <ul class="nav-links">
-      <li><a href="index.html">首頁</a></li>
-      <li><a href="cases.html" class="active">客戶案例</a></li>
-    </ul>
-    <button class="menu-btn" onclick="document.getElementById('mobile-menu').style.display='flex'">
-      <span></span><span></span><span></span>
-    </button>
-  </div>
-</nav>
-
-<div class="mobile-menu" id="mobile-menu" style="display:none;position:fixed;top:0;left:0;right:0;bottom:0;background:#f9f1fa;z-index:101;flex-direction:column;align-items:center;justify-content:center;gap:40px">
-  <a href="index.html" style="font-family:'Noto Serif SC',serif;font-size:22px;letter-spacing:6px">首頁</a>
-  <a href="cases.html" style="font-family:'Noto Serif SC',serif;font-size:22px;letter-spacing:6px;color:var(--brand)">客戶案例</a>
-  <button onclick="document.getElementById('mobile-menu').style.display='none'" style="margin-top:16px;padding:12px 40px;border:1px solid #d4cec6;color:var(--ink-sub);font-size:14px;letter-spacing:3px;cursor:pointer;background:none;font-family:'Noto Serif SC',serif">✕ 關閉</button>
-</div>
+<div id="shared-header"></div>
 
 <div class="page-hero">
   <div class="tag">見證</div>
@@ -160,10 +118,11 @@ function toggleDetail(i){
   const card=el.parentElement;
   const top=card.querySelector('.case-detail-toggle');
   if(el.classList.contains('open')){el.classList.remove('open');top.textContent='閱讀更多 ▾'}
-  else{el.classList.add('open');top.textContent='收起 ▴';el.scrollIntoView({behavior:'smooth',block:'nearest'})}
+  else{el.classList.add('open');top.textContent='收起 ▴'}
 }
 loadCases();
 </script>
+<script src="header.js"></script>
 <script src="footer.js"></script>
 </body>
 </html>
