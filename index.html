@@ -265,7 +265,17 @@
   .core-values .value-num{font-family:'Noto Serif SC',serif;font-size:32px;color:var(--gold);font-weight:300;flex-shrink:0;line-height:1}
   .core-values .value-text h4{font-family:'Noto Serif SC',serif;font-size:18px;color:var(--brand);font-weight:600;margin-bottom:8px;letter-spacing:1px}
   .core-values .value-text p{font-size:16px;color:var(--ink-sub);line-height:1.9}
-  @media(max-width:768px){.what-tcm .tcm-grid{grid-template-columns:1fr}.core-values .value-grid{grid-template-columns:1fr}}
+
+  /* ====== Placeholder Images ====== */
+  .ph-img{width:100%;border-radius:2px;overflow:hidden;position:relative;background:linear-gradient(135deg,#f9f1fa 0%,#ede0f0 40%,#e8d5ee 100%)}
+  .ph-img::after{content:'';position:absolute;top:0;left:0;right:0;bottom:0;background:radial-gradient(ellipse at 30% 50%,rgba(62,2,57,.06) 0%,transparent 70%)}
+  .ph-img .ph-label{position:absolute;bottom:0;left:0;right:0;padding:20px 24px;background:linear-gradient(to top,rgba(62,2,57,.7),transparent);z-index:2}
+  .ph-img .ph-label span{color:var(--white);font-size:13px;letter-spacing:1px;display:block;line-height:1.6}
+  .ph-img .ph-label .ph-icon{font-size:20px;margin-bottom:4px}
+  .ph-hero-img{height:320px}
+  .ph-inline-img{height:240px}
+  .ph-card-img{height:200px}
+  @media(max-width:768px){.what-tcm .tcm-grid{grid-template-columns:1fr}.core-values .value-grid{grid-template-columns:1fr}.ph-hero-img{height:200px}.ph-inline-img{height:180px}}
 
   /* ====== Divider with stamp ====== */
   .divider-line{
@@ -565,6 +575,9 @@
       <div class="tag">理念</div>
       <h2>什麼是真正的中醫美？</h2>
     </div>
+    <div class="ph-img ph-hero-img reveal" style="margin-bottom:32px">
+      <div class="ph-label"><span class="ph-icon">📷</span><span>拍摄建议：诊所环境全景或医师端坐诊脉场景，暖光侧打，景深虚化背景</span></div>
+    </div>
     <div class="tcm-grid reveal">
       <div class="card tcm-item">
         <div class="tcm-num">1</div>
@@ -590,40 +603,21 @@
   <div class="sec-inner">
     <div class="sec-head reveal">
       <div class="tag">服務</div>
-      <h2>面部針灸四大核心療程</h2>
-      <p class="lead">以中醫「通經絡、活氣血、修組織、塑輪廓」為本，融合現代醫美精準護理，從深層筋膜至表皮進行全層調理，實現自然、安全、由內而外的抗衰養護。</p>
+      <h2>漢方微針醫美</h2>
+      <p class="lead">以中醫微針為核心技術，涵蓋醫療級皮膚治療與醫美級抗衰修復兩大板塊。</p>
     </div>
 
-    <div class="svc-grid reveal">
-      <div class="svc-card">
-        <span class="badge">Peach Blossom Needle</span>
-        <div class="name">桃花針｜表皮煥活基礎款</div>
-        <div class="treat-info"><span><b>功效：</b>亮肌活膚、改善暗沉、細緻毛孔、調節淺層色素</span><span><b>適合：</b>膚色暗啞、乾燥、有淺層痘印色斑、需基礎養護的年輕/輕熟齡肌</span></div>
-        <div class="treat-price">單次 HK$800</div>
-        <div class="treat-note">建議每週護理，4-6次見效</div>
-      </div>
-      <div class="svc-card">
-        <span class="badge">Sculpting Needle</span>
-        <div class="name">塑顏針｜筋膜緊致塑形款</div>
-        <div class="treat-info"><span><b>功效：</b>提拉輪廓、緊緻下頜線、消浮腫、改善輕度鬆垮</span><span><b>適合：</b>面部浮腫、下頜線模糊、蘋果肌輕度流失、初老徵兆者</span></div>
-        <div class="treat-price">單次 HK$1,800 <span style="font-size:13px;font-weight:400;color:var(--ink-sub)">（首次可享組合療程優惠）</span></div>
-        <div class="treat-note">建議每15天一次，2-3次塑形可見</div>
-      </div>
-      <div class="svc-card">
-        <span class="badge">Derma Reconstruction</span>
-        <div class="name">肌底重建術｜深度修復急救款</div>
-        <div class="treat-info"><span><b>功效：</b>修復屏障、改善敏感泛紅、強化肌底、急救炎症後肌膚</span><span><b>適合：</b>屏障受損、敏感泛紅、痘肌修復、醫美後脆弱肌膚</span></div>
-        <div class="treat-price">單次 HK$3,900 <span style="font-size:13px;font-weight:400;color:var(--ink-sub)">（首次可享組合療程優惠）</span></div>
-        <div class="treat-note">急性期每15天一次，穩定期定期養護</div>
-      </div>
-      <div class="svc-card">
-        <span class="badge">Chinese Super-Lift</span>
-        <div class="name">中式超提拉｜深層回春抗衰款</div>
-        <div class="treat-info"><span><b>功效：</b>填充凹陷、淡化深紋、全層再生、重塑立體輪廓</span><span><b>適合：</b>深度皺紋、面部凹陷、重度鬆垮、有強抗衰需求者</span></div>
-        <div class="treat-price">按膚定製 <span style="font-size:13px;font-weight:400;color:var(--ink-sub)">（歡迎線上線下查詢）</span></div>
-        <div class="treat-note">建議每年1-2次，實現長效深層回春</div>
-      </div>
+    <div class="ph-img ph-inline-img reveal" style="margin-bottom:28px">
+      <div class="ph-label"><span class="ph-icon">📷</span><span>拍摄建议：面部针灸治疗过程的侧面特写，医师手部与顾客面部同框，突出微针细节</span></div>
     </div>
+    <div class="svc-grid reveal">
+        <div class="svc-card"><span class="badge">Dynamic Line Tx</span><div class="name">動態紋處理</div><div class="desc">魚尾紋、川字紋、抬頭紋、口周紋 — 以微針疏通面部經絡，促進膠原自生，表情自然不僵硬。</div></div>
+        <div class="svc-card"><span class="badge">Static Wrinkle Tx</span><div class="name">靜態紋處理</div><div class="desc">法令紋等深層靜態紋路，以微針刺激真皮層自體修復，持續使用逐步撫平。</div></div>
+        <div class="svc-card"><span class="badge">Skin Tightening</span><div class="name">皮膚緊致提拉</div><div class="desc">非手術面部提升方案，微針刺激筋膜層收緊，重塑下頜線和面部輪廓。</div></div>
+        <div class="svc-card"><span class="badge">Skin Tone Balance</span><div class="name">膚色調理</div><div class="desc">針對色斑、膚色不均、暗黃等問題，以微針疏通面部經絡、促進代謝，實現均勻透亮。</div></div>
+        <div class="svc-card"><span class="badge">Scar Revision</span><div class="name">疤痕處理</div><div class="desc">痘疤、手術疤痕、妊娠紋 — 以微針刺激自體膠原再生，逐步淡化修復。</div></div>
+        <div class="svc-card"><span class="badge">Thread Slimming</span><div class="name">埋線減肥</div><div class="desc">以穴位埋線持續刺激經絡，調節食慾與代謝，實現健康減重。</div></div>
+      </div>
   </div>
 </section>
 
@@ -663,6 +657,9 @@
           <p>不再追求局部的突兀改變，而是渴望改善整體氣色，由內而外的自然抗衰。</p>
         </div>
       </div>
+    </div>
+    <div class="ph-img ph-inline-img reveal" style="margin-top:20px">
+      <div class="ph-label"><span class="ph-icon">📷</span><span>拍摄建议：顾客满意的自然笑容或护理后的肌肤特写，自然光，温馨治愈氛围</span></div>
     </div>
   </div>
 </section>
