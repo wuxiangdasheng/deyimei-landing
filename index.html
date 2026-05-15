@@ -369,6 +369,7 @@
     .core-values .value-text p{font-size:15px}
   }
 </style>
+<noscript><style>.reveal{opacity:1!important;transform:none!important}</style></noscript>
 </head>
 <body>
 
@@ -618,40 +619,51 @@
 // Nav scroll (now in header.js)
 // Canvas video render — video never in DOM, Quark can't detect it
 (function(){
-  var c=document.getElementById('hero-canvas');
-  if(!c)return;
-  var ctx=c.getContext('2d');
-  var v=document.createElement('video');
-  v.muted=true;v.loop=true;v.playsInline=true;
-  v.src='model-bg.mp4';
-  v.play().catch(function(){});
-  function resize(){c.width=c.offsetWidth;c.height=c.offsetHeight}
-  resize();window.addEventListener('resize',resize);
-  function draw(){
-    if(v.paused||v.ended)return;
-    var vw=v.videoWidth,vh=v.videoHeight;
-    if(!vw||!vh){requestAnimationFrame(draw);return}
-    var cw=c.width,ch=c.height;
-    var scale=Math.max(cw/vw,ch/vh);
-    var dw=vw*scale,dh=vh*scale;
-    var dx=(cw-dw)/2,dy=(ch-dh)/2;
-    ctx.drawImage(v,dx,dy,dw,dh);
-    requestAnimationFrame(draw);
-  }
-  v.addEventListener('play',draw);
-  v.addEventListener('loadeddata',function(){v.play().catch(function(){})});
-  document.addEventListener('touchstart',function once(){
+  try{
+    var c=document.getElementById('hero-canvas');
+    if(!c)return;
+    var ctx=c.getContext('2d');
+    var v=document.createElement('video');
+    v.muted=true;v.loop=true;v.playsInline=true;
+    v.src='model-bg.mp4';
     v.play().catch(function(){});
-    document.removeEventListener('touchstart',once);
-  },{once:true});
+    function resize(){c.width=c.offsetWidth;c.height=c.offsetHeight}
+    resize();window.addEventListener('resize',resize);
+    function draw(){
+      if(v.paused||v.ended)return;
+      var vw=v.videoWidth,vh=v.videoHeight;
+      if(!vw||!vh){requestAnimationFrame(draw);return}
+      var cw=c.width,ch=c.height;
+      var scale=Math.max(cw/vw,ch/vh);
+      var dw=vw*scale,dh=vh*scale;
+      var dx=(cw-dw)/2,dy=(ch-dh)/2;
+      ctx.drawImage(v,dx,dy,dw,dh);
+      requestAnimationFrame(draw);
+    }
+    v.addEventListener('play',draw);
+    v.addEventListener('loadeddata',function(){v.play().catch(function(){})});
+    document.addEventListener('touchstart',function once(){
+      v.play().catch(function(){});
+      document.removeEventListener('touchstart',once);
+    },{once:true});
+  }catch(e){
+    // Quark bailout: hide canvas, let overlay be the background
+    var c=document.getElementById('hero-canvas');
+    if(c)c.style.display='none';
+  }
 })();
 
 
-// Scroll reveal
-const observer=new IntersectionObserver((entries)=>{
-  entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible')});
-},{threshold:.1,rootMargin:'0px 0px -40px 0px'});
-document.querySelectorAll('.reveal').forEach(el=>observer.observe(el));
+// Scroll reveal (with IntersectionObserver fallback)
+if(typeof IntersectionObserver!=='undefined'){
+  var observer=new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible')});
+  },{threshold:.1,rootMargin:'0px 0px -40px 0px'});
+  document.querySelectorAll('.reveal').forEach(el=>observer.observe(el));
+}else{
+  // Fallback: show all
+  document.querySelectorAll('.reveal').forEach(function(el){el.classList.add('visible')});
+}
 
 // Service card swipe navigation (mobile)
 (function(){
