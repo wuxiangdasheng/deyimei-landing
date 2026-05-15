@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="zh-HK">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>客戶案例 — 德醫美 Alchemy</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@300;400;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--brand:#3e0239;--gold:#c9a96e;--paper:#fcfaf7;--white:#fff;--ink:#1a1a1a;--ink-sub:#666;--line:#e8e3dd;--line-strong:#d4cec6}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:system-ui,-apple-system,sans-serif;background:var(--paper);color:var(--ink);line-height:1.6}
+a{text-decoration:none;color:inherit}
+
+/* Nav */
+.nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:24px 0;transition:all .5s;background:rgba(252,250,247,.92);backdrop-filter:blur(20px)}
+.nav-inner{max-width:1240px;margin:0 auto;padding:0 40px;display:flex;align-items:center;justify-content:space-between}
+.nav-logo img{height:36px}
+.nav-links{display:flex;gap:40px;list-style:none}
+.nav-links a{font-family:'Noto Serif SC',serif;font-size:14px;letter-spacing:3px;color:var(--ink);transition:color .3s}
+.nav-links a:hover,.nav-links a.active{color:var(--brand)}
+.menu-btn{display:none;flex-direction:column;gap:5px;cursor:pointer;background:none;border:none;padding:4px}
+.menu-btn span{display:block;width:24px;height:2px;background:var(--ink);transition:all .3s}
+
+/* Page Header */
+.page-hero{padding:160px 40px 60px;text-align:center}
+.page-hero .tag{display:inline-block;font-size:13px;letter-spacing:6px;color:var(--gold);margin-bottom:12px}
+.page-hero h1{font-family:'Noto Serif SC',serif;font-size:clamp(32px,5vw,56px);color:var(--brand);font-weight:300;letter-spacing:3px;margin-bottom:12px}
+.page-hero .sub{font-size:16px;color:var(--ink-sub);max-width:480px;margin:0 auto;line-height:1.8}
+
+/* Cases Grid */
+.cases-sec{padding:0 40px 100px}
+.cases-inner{max-width:960px;margin:0 auto}
+.case-card{background:var(--white);margin-bottom:24px;padding:0;overflow:hidden;transition:all .3s}
+.case-card:hover{box-shadow:0 4px 24px rgba(0,0,0,.06)}
+.case-main{display:flex;gap:32px;padding:40px;align-items:flex-start}
+.case-avatar{flex-shrink:0;width:80px;height:80px;border-radius:50%;overflow:hidden;background:#f5f1f7}
+.case-avatar img{width:100%;height:100%;object-fit:cover}
+.case-avatar .avatar-placeholder{width:100%;height:100%;display:flex;align-items:center;justify-content:center;font-family:'Noto Serif SC',serif;font-size:28px;color:var(--gold);background:linear-gradient(135deg,#f9f1fa,#ede0f0)}
+.case-info{flex:1}
+.case-name{font-family:'Noto Serif SC',serif;font-size:22px;color:var(--brand);font-weight:600;margin-bottom:4px}
+.case-meta{font-size:12px;color:#aaa;letter-spacing:1px;margin-bottom:12px}
+.case-quote{font-size:16px;color:var(--ink);line-height:1.9;font-style:italic;padding-left:16px;border-left:2px solid var(--gold);margin-bottom:0}
+.case-detail-toggle{display:inline-block;margin-top:16px;font-size:12px;color:var(--gold);letter-spacing:2px;cursor:pointer;background:none;border:none;font-family:'Noto Serif SC',serif;transition:opacity .3s}
+.case-detail-toggle:hover{opacity:.7}
+.case-detail{padding:0 40px 40px;display:none}
+.case-detail.open{display:block}
+.case-detail-content{font-size:16px;color:var(--ink-sub);line-height:2;padding-top:16px;border-top:1px solid var(--line)}
+.case-detail-content p{margin-bottom:16px}
+.case-detail-content img{max-width:100%;margin:12px 0;border-radius:2px}
+
+.empty-state{text-align:center;padding:80px 20px;color:#ccc;font-size:14px;line-height:1.8}
+
+/* Footer */
+.ft{background:var(--brand);color:rgba(255,255,255,.6);padding:60px 40px 32px}
+.ft-inner{max-width:1240px;margin:0 auto}
+.ft-top{display:flex;justify-content:space-between;align-items:flex-start;padding-bottom:40px;border-bottom:1px solid rgba(255,255,255,.1);margin-bottom:32px;gap:48px}
+.ft-brand h3{font-family:'Noto Serif SC',serif;font-size:20px;color:var(--white);font-weight:300;letter-spacing:4px;margin-bottom:8px}
+.ft-brand p{font-size:13px;line-height:1.8}
+.ft-cols{display:flex;gap:80px}
+.ft-col h4{font-size:12px;color:var(--gold);letter-spacing:3px;margin-bottom:16px;font-weight:400}
+.ft-col p{font-size:13px;line-height:2}
+.ft-bottom{text-align:center;font-size:12px}
+
+@media(max-width:768px){
+  .nav-links{display:none}.menu-btn{display:flex}
+  .nav-inner{padding:0 24px}
+  .page-hero{padding:140px 24px 40px}
+  .cases-sec{padding:0 24px 80px}
+  .case-main{flex-direction:column;align-items:center;text-align:center;padding:32px 24px}
+  .case-quote{border-left:none;border-top:2px solid var(--gold);padding:16px 0 0;text-align:left}
+  .case-detail{padding:0 24px 32px}
+  .ft-top{flex-direction:column;gap:48px}
+  .ft-cols{flex-direction:column;gap:40px}
+}
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo"><img src="logo.png" alt="德醫美"></a>
+    <ul class="nav-links">
+      <li><a href="index.html">首頁</a></li>
+      <li><a href="cases.html" class="active">客戶案例</a></li>
+    </ul>
+    <button class="menu-btn" onclick="document.getElementById('mobile-menu').style.display='flex'">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<div class="mobile-menu" id="mobile-menu" style="display:none;position:fixed;top:0;left:0;right:0;bottom:0;background:#f9f1fa;z-index:101;flex-direction:column;align-items:center;justify-content:center;gap:40px">
+  <a href="index.html" style="font-family:'Noto Serif SC',serif;font-size:22px;letter-spacing:6px">首頁</a>
+  <a href="cases.html" style="font-family:'Noto Serif SC',serif;font-size:22px;letter-spacing:6px;color:var(--brand)">客戶案例</a>
+  <button onclick="document.getElementById('mobile-menu').style.display='none'" style="margin-top:16px;padding:12px 40px;border:1px solid #d4cec6;color:var(--ink-sub);font-size:14px;letter-spacing:3px;cursor:pointer;background:none;font-family:'Noto Serif SC',serif">✕ 關閉</button>
+</div>
+
+<div class="page-hero">
+  <div class="tag">見證</div>
+  <h1>客戶案例</h1>
+  <div class="sub">每一次治療都是一段旅程。聽聽她們的真實經歷與改變。</div>
+</div>
+
+<div class="cases-sec">
+  <div class="cases-inner" id="cases-container"></div>
+</div>
+
+<div id="shared-footer"></div>
+
+<script>
+function loadCases(){
+  const raw=localStorage.getItem('deyimei_cases');
+  const cases=raw?JSON.parse(raw):[];
+  const el=document.getElementById('cases-container');
+  if(!cases.length){el.innerHTML='<div class="empty-state">暫無客戶案例<br>敬請期待</div>';return}
+  el.innerHTML=cases.map((c,i)=>`
+    <div class="case-card">
+      <div class="case-main">
+        <div class="case-avatar">
+          ${c.avatar?`<img src="${c.avatar}" alt="${c.name}">`:`<div class="avatar-placeholder">${c.name[0]}</div>`}
+        </div>
+        <div class="case-info">
+          <div class="case-name">${c.name}</div>
+          <div class="case-meta">${c.date||''}</div>
+          <div class="case-quote">${c.quote}</div>
+          ${c.detail?`<button class="case-detail-toggle" onclick="toggleDetail(${i})">閱讀更多 ▾</button>`:''}
+        </div>
+      </div>
+      ${c.detail?`<div class="case-detail" id="detail-${i}"><div class="case-detail-content">${c.detail}</div></div>`:''}
+    </div>
+  `).join('');
+}
+function toggleDetail(i){
+  const el=document.getElementById('detail-'+i);
+  const btn=el.parentElement.querySelector('.case-detail-toggle');
+  if(el.classList.contains('open')){el.classList.remove('open');btn.textContent='閱讀更多 ▾'}
+  else{el.classList.add('open');btn.textContent='收起 ▴'}
+}
+loadCases();
+</script>
+<script src="footer.js"></script>
+</body>
+</html>

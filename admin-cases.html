@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="zh-HK">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>後台管理 — 德醫美 Alchemy</title>
+<style>
+:root{--brand:#3e0239;--gold:#c9a96e;--paper:#fcfaf7;--white:#fff;--ink:#1a1a1a;--ink-sub:#666;--line:#e8e3dd;--danger:#c0392b}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:system-ui,-apple-system,sans-serif;background:var(--paper);color:var(--ink);line-height:1.6}
+
+.login-wrap{display:flex;align-items:center;justify-content:center;min-height:100vh;padding:40px}
+.login-box{background:var(--white);padding:60px 48px;width:100%;max-width:400px;text-align:center}
+.login-box h1{font-family:'Noto Serif SC',serif;font-size:24px;color:var(--brand);font-weight:300;letter-spacing:4px;margin-bottom:8px}
+.login-box .sub{font-size:13px;color:var(--ink-sub);margin-bottom:40px}
+.login-box input{width:100%;padding:14px 16px;border:1px solid var(--line);font-size:14px;margin-bottom:12px;outline:none;transition:border-color .3s}
+.login-box input:focus{border-color:var(--gold)}
+.login-box button{width:100%;padding:14px;background:var(--brand);color:var(--white);border:none;font-size:14px;letter-spacing:3px;cursor:pointer;font-family:'Noto Serif SC',serif;transition:background .3s}
+.login-box button:hover{background:#5a1052}
+.login-error{color:var(--danger);font-size:12px;margin-top:12px;display:none}
+
+.admin-wrap{display:none;max-width:900px;margin:0 auto;padding:40px 24px}
+.admin-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:40px;padding-bottom:20px;border-bottom:1px solid var(--line)}
+.admin-head h1{font-family:'Noto Serif SC',serif;font-size:22px;color:var(--brand);font-weight:300;letter-spacing:3px}
+.admin-head button{padding:8px 20px;border:1px solid var(--line);background:none;font-size:12px;letter-spacing:2px;cursor:pointer;color:var(--ink-sub);transition:all .3s}
+.admin-head button:hover{border-color:var(--danger);color:var(--danger)}
+
+.toolbar{display:flex;gap:12px;margin-bottom:32px}
+.toolbar button{padding:12px 28px;background:var(--brand);color:var(--white);border:none;font-size:13px;letter-spacing:2px;cursor:pointer;font-family:'Noto Serif SC',serif;transition:background .3s}
+.toolbar button:hover{background:#5a1052}
+
+.case-list-item{background:var(--white);padding:24px;margin-bottom:12px;display:flex;align-items:center;gap:20px}
+.case-list-item .cl-avatar{width:48px;height:48px;border-radius:50%;background:#f5f1f7;flex-shrink:0;overflow:hidden;display:flex;align-items:center;justify-content:center;font-family:'Noto Serif SC',serif;font-size:18px;color:var(--gold)}
+.case-list-item .cl-avatar img{width:100%;height:100%;object-fit:cover}
+.case-list-item .cl-info{flex:1;min-width:0}
+.case-list-item .cl-name{font-weight:600;color:var(--brand);font-size:15px}
+.case-list-item .cl-quote{font-size:13px;color:var(--ink-sub);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.case-list-item .cl-actions{display:flex;gap:8px;flex-shrink:0}
+.case-list-item .cl-actions button{padding:6px 14px;border:1px solid var(--line);background:none;font-size:11px;cursor:pointer;letter-spacing:1px;transition:all .2s}
+.case-list-item .cl-actions .btn-edit:hover{border-color:var(--brand);color:var(--brand)}
+.case-list-item .cl-actions .btn-del:hover{border-color:var(--danger);color:var(--danger)}
+
+.modal-overlay{display:none;position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,.3);z-index:200;align-items:center;justify-content:center}
+.modal-overlay.open{display:flex}
+.modal-box{background:var(--white);padding:40px;width:100%;max-width:600px;max-height:90vh;overflow-y:auto}
+.modal-box h2{font-family:'Noto Serif SC',serif;font-size:18px;color:var(--brand);margin-bottom:24px;letter-spacing:2px}
+.modal-box label{display:block;font-size:12px;color:var(--ink-sub);margin-bottom:6px;letter-spacing:1px}
+.modal-box input,.modal-box textarea{width:100%;padding:12px 14px;border:1px solid var(--line);font-size:14px;margin-bottom:16px;outline:none;font-family:inherit;transition:border-color .3s}
+.modal-box input:focus,.modal-box textarea:focus{border-color:var(--gold)}
+.modal-box textarea{min-height:120px;resize:vertical}
+.modal-box .modal-actions{display:flex;gap:12px;justify-content:flex-end;margin-top:8px}
+.modal-box .modal-actions button{padding:12px 24px;font-size:13px;letter-spacing:2px;border:none;cursor:pointer;font-family:'Noto Serif SC',serif}
+.modal-box .btn-save{background:var(--brand);color:var(--white)}
+.modal-box .btn-save:hover{background:#5a1052}
+.modal-box .btn-cancel{background:none;border:1px solid var(--line);color:var(--ink-sub)}
+.avatar-preview{width:80px;height:80px;border-radius:50%;margin-bottom:12px;background:#f5f1f7;overflow:hidden}
+.avatar-preview img{width:100%;height:100%;object-fit:cover}
+.hint{font-size:11px;color:#aaa;margin-top:-10px;margin-bottom:16px}
+
+.empty-admin{text-align:center;padding:60px 20px;color:#ccc;font-size:14px;line-height:1.8}
+</style>
+</head>
+<body>
+
+<div class="login-wrap" id="login-wrap">
+  <div class="login-box">
+    <h1>德醫美 Alchemy</h1>
+    <div class="sub">後台管理系統</div>
+    <input type="text" id="login-user" placeholder="帳戶" autocomplete="off">
+    <input type="password" id="login-pass" placeholder="密碼" autocomplete="off">
+    <button onclick="doLogin()">登 入</button>
+    <div class="login-error" id="login-error">帳戶或密碼錯誤</div>
+  </div>
+</div>
+
+<div class="admin-wrap" id="admin-wrap">
+  <div class="admin-head">
+    <h1>客戶案例管理</h1>
+    <button onclick="doLogout()">登出</button>
+  </div>
+  <div class="toolbar">
+    <button onclick="openModal()">＋ 新增案例</button>
+  </div>
+  <div id="case-list"></div>
+</div>
+
+<div class="modal-overlay" id="modal">
+  <div class="modal-box">
+    <h2 id="modal-title">新增案例</h2>
+    <label>頭像 URL（可選，留空顯示姓氏）</label>
+    <input type="text" id="edit-avatar" placeholder="https://...">
+    <div class="avatar-preview" id="avatar-preview" style="display:none"><img src="" id="avatar-img"></div>
+    <label>姓名 *</label>
+    <input type="text" id="edit-name" placeholder="客戶姓名">
+    <label>日期</label>
+    <input type="text" id="edit-date" placeholder="例如：2026年3月">
+    <label>寄語 *</label>
+    <textarea id="edit-quote" placeholder="客戶的原話或感想..."></textarea>
+    <label>詳細內容（支持 HTML）</label>
+    <textarea id="edit-detail" placeholder="<p>治療過程、前後對比、心得分享...</p>" style="min-height:200px"></textarea>
+    <div class="hint">可使用 HTML 標籤排版，如 &lt;p&gt; &lt;b&gt; &lt;br&gt; &lt;img src=&quot;...&quot;&gt;</div>
+    <div class="modal-actions">
+      <button class="btn-cancel" onclick="closeModal()">取消</button>
+      <button class="btn-save" onclick="saveCase()">保存</button>
+    </div>
+  </div>
+</div>
+
+<script>
+const ADMIN_USER='admin';
+const ADMIN_PASS='deyimei2026';
+let editingIndex=-1;
+
+function doLogin(){
+  const u=document.getElementById('login-user').value;
+  const p=document.getElementById('login-pass').value;
+  if(u===ADMIN_USER&&p===ADMIN_PASS){
+    sessionStorage.setItem('deyimei_admin','1');
+    document.getElementById('login-wrap').style.display='none';
+    document.getElementById('admin-wrap').style.display='block';
+    renderCaseList();
+  }else{
+    document.getElementById('login-error').style.display='block';
+  }
+}
+function doLogout(){
+  sessionStorage.removeItem('deyimei_admin');
+  location.reload();
+}
+// Auto-login if session exists
+if(sessionStorage.getItem('deyimei_admin')){
+  document.getElementById('login-wrap').style.display='none';
+  document.getElementById('admin-wrap').style.display='block';
+  renderCaseList();
+}
+
+function getCases(){
+  const raw=localStorage.getItem('deyimei_cases');
+  return raw?JSON.parse(raw):[];
+}
+function saveCases(arr){localStorage.setItem('deyimei_cases',JSON.stringify(arr))}
+
+function renderCaseList(){
+  const cases=getCases();
+  const el=document.getElementById('case-list');
+  if(!cases.length){el.innerHTML='<div class="empty-admin">暫無案例<br>點擊上方按鈕新增</div>';return}
+  el.innerHTML=cases.map((c,i)=>`
+    <div class="case-list-item">
+      <div class="cl-avatar">${c.avatar?`<img src="${c.avatar}" alt="">`:c.name[0]}</div>
+      <div class="cl-info">
+        <div class="cl-name">${c.name}${c.date?` · ${c.date}`:''}</div>
+        <div class="cl-quote">${c.quote.slice(0,60)}</div>
+      </div>
+      <div class="cl-actions">
+        <button class="btn-edit" onclick="openModal(${i})">編輯</button>
+        <button class="btn-del" onclick="deleteCase(${i})">刪除</button>
+      </div>
+    </div>
+  `).join('');
+}
+
+function openModal(i){
+  const cases=getCases();
+  editingIndex=i!==undefined?i:-1;
+  document.getElementById('modal-title').textContent=i!==undefined?'編輯案例':'新增案例';
+  if(i!==undefined){
+    const c=cases[i];
+    document.getElementById('edit-avatar').value=c.avatar||'';
+    document.getElementById('edit-name').value=c.name||'';
+    document.getElementById('edit-date').value=c.date||'';
+    document.getElementById('edit-quote').value=c.quote||'';
+    document.getElementById('edit-detail').value=c.detail||'';
+    if(c.avatar){document.getElementById('avatar-preview').style.display='block';document.getElementById('avatar-img').src=c.avatar}
+    else{document.getElementById('avatar-preview').style.display='none'}
+  }else{
+    ['edit-avatar','edit-name','edit-date','edit-quote','edit-detail'].forEach(id=>document.getElementById(id).value='');
+    document.getElementById('avatar-preview').style.display='none';
+  }
+  document.getElementById('modal').classList.add('open');
+}
+function closeModal(){document.getElementById('modal').classList.remove('open')}
+
+document.getElementById('edit-avatar').addEventListener('input',function(){
+  const v=this.value.trim();
+  if(v){document.getElementById('avatar-preview').style.display='block';document.getElementById('avatar-img').src=v}
+  else{document.getElementById('avatar-preview').style.display='none'}
+});
+
+function saveCase(){
+  const name=document.getElementById('edit-name').value.trim();
+  const quote=document.getElementById('edit-quote').value.trim();
+  if(!name||!quote){alert('姓名和寄語為必填');return}
+  const data={
+    avatar:document.getElementById('edit-avatar').value.trim(),
+    name,
+    date:document.getElementById('edit-date').value.trim(),
+    quote,
+    detail:document.getElementById('edit-detail').value.trim()
+  };
+  const cases=getCases();
+  if(editingIndex>=0){cases[editingIndex]=data}
+  else{cases.push(data)}
+  saveCases(cases);
+  closeModal();
+  renderCaseList();
+}
+function deleteCase(i){
+  if(!confirm('確定刪除「'+getCases()[i].name+'」的案例？'))return;
+  const cases=getCases();
+  cases.splice(i,1);
+  saveCases(cases);
+  renderCaseList();
+}
+</script>
+</body>
+</html>
