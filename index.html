@@ -211,9 +211,9 @@
   .svc-card .treat-info span{display:block;margin-bottom:2px}
   .svc-card .treat-info b{color:var(--brand);font-weight:600;margin-right:4px}
   .svc-card .treat-price{font-size:18px;color:var(--gold);font-weight:600;margin-top:12px;padding-top:12px;border-top:1px solid var(--line);font-family:'Noto Serif SC',serif}
-  .svc-swipe-hint{display:none}
-  .svc-swipe-hint .arrow-left{display:none}
-  .svc-swipe-hint .arrow-right{display:none}
+  .svc-swipe-hint{display:none;justify-content:space-between}
+  .svc-swipe-hint .swipe-left{display:none}
+  .svc-swipe-hint .swipe-right{display:none}
 
   /* ====== Core Values ====== */
   .core-values .value-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:20px}
@@ -349,10 +349,14 @@
     .svc-grid::-webkit-scrollbar{display:none}
     .svc-grid .svc-card{flex:0 0 78vw;scroll-snap-align:start}
     .svc-card:hover{transform:none}
-    .svc-swipe-hint{display:flex;justify-content:space-between;padding:12px 24px 0;pointer-events:none}
-    .svc-swipe-hint .arrow-right{margin-left:auto}
-    .svc-swipe-hint span{font-size:22px;color:var(--brand);opacity:.35;letter-spacing:-2px;pointer-events:auto;cursor:pointer;padding:8px;transition:opacity .3s;-webkit-tap-highlight-color:transparent;user-select:none}
-    .svc-swipe-hint span:active{opacity:.7}
+    .svc-swipe-hint{display:flex;padding:12px 16px 0}
+    .swipe-btn{width:24px;height:24px;border-radius:50%;border:0px solid var(--brand);background:rgba(62,2,57,.06);position:relative;cursor:pointer;-webkit-tap-highlight-color:transparent;transition:all .25s;flex-shrink:0}
+    .swipe-btn::after{content:'';position:absolute;top:50%;left:50%;width:8px;height:8px;border-right:1.5px solid var(--brand);border-top:1.5px solid var(--brand);opacity:.65}
+    .swipe-left::after{transform:translate(-30%,-50%) rotate(-135deg)}
+    .swipe-right::after{transform:translate(-70%,-50%) rotate(45deg)}
+    .swipe-right{margin-left:auto}
+    .swipe-btn:active{background:rgba(62,2,57,.15)}
+    .swipe-btn:active::after{opacity:.9}
     .prod-grid{grid-template-columns:1fr}
     .prod-card{padding:40px 32px}
     .loc-grid{grid-template-columns:1fr}
@@ -511,7 +515,7 @@
         <div class="svc-card"><span class="badge">Scar Revision</span><div class="name">疤痕處理</div><div class="desc">痘疤、手術疤痕、妊娠紋 — 以微針刺激自體膠原再生，逐步淡化修復</div></div>
         <div class="svc-card"><span class="badge">Thread Slimming</span><div class="name">埋線減肥</div><div class="desc">以穴位埋線持續刺激經絡，調節食慾與代謝，實現健康減重</div></div>
       </div>
-    <div class="svc-swipe-hint"><span class="arrow-left">‹</span><span class="arrow-right">›</span></div>
+    <div class="svc-swipe-hint"><button class="swipe-btn swipe-left" aria-label="上一张"></button><button class="swipe-btn swipe-right" aria-label="下一张"></button></div>
   </div>
 </section>
 
@@ -625,7 +629,7 @@
     var ctx=c.getContext('2d');
     var v=document.createElement('video');
     v.muted=true;v.loop=true;v.playsInline=true;
-    v.src='model-bg.mp4';
+    v.src='model-bg-compressed.mp4';
     v.play().catch(function(){});
     function resize(){c.width=c.offsetWidth;c.height=c.offsetHeight}
     resize();window.addEventListener('resize',resize);
@@ -668,8 +672,8 @@ if(typeof IntersectionObserver!=='undefined'){
 // Service card swipe navigation (mobile)
 (function(){
   var grid=document.querySelector('.svc-grid');
-  var left=document.querySelector('.svc-swipe-hint .arrow-left');
-  var right=document.querySelector('.svc-swipe-hint .arrow-right');
+  var left=document.querySelector('.swipe-left');
+  var right=document.querySelector('.swipe-right');
   if(!grid||!left||!right)return;
   function cardW(){var c=grid.querySelector('.svc-card');return c?c.offsetWidth+12:0}
   function update(){
