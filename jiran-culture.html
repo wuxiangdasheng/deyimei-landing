@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="zh-HK">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>集冉堂 — 連接未來</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@300;400;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --brand:#2c2416;--brand-light:#4a3f2e;
+    --gold:#c9a96e;--gold-warm:#b8944f;
+    --paper:#fcfaf7;--paper-dark:#f5f1e9;
+    --ink:#1a1410;--ink-sub:#6b6258;--ink-light:#a0988c;
+    --white:#fff;--line:#e8e3da;--line-strong:#d4cdc0;
+    --seal-red:#8b1a1a;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    font-family:"PingFang SC","Noto Sans HK","Microsoft YaHei",sans-serif;
+    color:var(--ink);background:var(--paper);line-height:1.85;
+    overflow-x:hidden;-webkit-font-smoothing:antialiased;
+    background-image:
+      radial-gradient(ellipse at 50% 2%,rgba(201,169,110,.04) 0%,transparent 60%),
+      radial-gradient(ellipse at 20% 60%,rgba(44,36,22,.02) 0%,transparent 40%);
+  }
+
+  /* ====== Reveal ====== */
+  .reveal{opacity:0;transform:translateY(32px);transition:all .9s cubic-bezier(.22,1,.36,1)}
+  .reveal.visible{opacity:1;transform:translateY(0)}
+  .reveal-d1{transition-delay:.1s}.reveal-d2{transition-delay:.2s}.reveal-d3{transition-delay:.3s}.reveal-d4{transition-delay:.4s}
+
+  /* ====== Top Bar ====== */
+  .top-bar{
+    position:fixed;top:0;left:0;width:100%;z-index:100;
+    padding:16px 40px;display:flex;justify-content:space-between;align-items:center;
+    background:rgba(252,250,247,.92);backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px);
+    border-bottom:1px solid var(--line);
+  }
+  .top-bar .brand{font-family:'Noto Serif SC',serif;font-size:20px;color:var(--brand);letter-spacing:4px;font-weight:600}
+  .top-bar .nav-links{display:flex;gap:32px}
+  .top-bar .nav-links a{color:var(--ink-sub);text-decoration:none;font-size:15px;letter-spacing:2px;transition:color .3s}
+  .top-bar .nav-links a:hover{color:var(--gold)}
+
+  /* ====== Hero ====== */
+  .hero{
+    min-height:100vh;display:flex;align-items:center;justify-content:center;
+    position:relative;overflow:hidden;
+    background:linear-gradient(180deg, var(--paper) 0%, var(--white) 60%, var(--paper-dark) 100%);
+    text-align:center;
+  }
+  .hero-bg-seal{
+    position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);
+    width:480px;height:480px;
+    border:1px solid var(--gold);border-radius:50%;opacity:.06;
+  }
+  .hero-bg-seal2{
+    position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);
+    width:300px;height:300px;
+    border:1px solid var(--brand);border-radius:50%;opacity:.04;
+  }
+  .hero-content{
+    position:relative;z-index:2;padding:80px 40px;
+  }
+  .hero-tag{
+    font-size:15px;letter-spacing:6px;color:var(--gold);margin-bottom:24px;
+    opacity:0;animation:fadeUp 1.4s .2s cubic-bezier(.22,1,.36,1) forwards;
+  }
+  @keyframes fadeUp{from{opacity:0;transform:translateY(28px)}to{opacity:1;transform:translateY(0)}}
+  .hero h1{
+    font-family:'Noto Serif SC',serif;
+    font-size:clamp(36px,6vw,72px);color:var(--brand);
+    line-height:1.18;margin-bottom:16px;font-weight:300;letter-spacing:6px;
+    opacity:0;animation:fadeUp 1.4s .5s cubic-bezier(.22,1,.36,1) forwards;
+  }
+  .hero h1 em{
+    font-style:normal;font-weight:700;color:var(--gold);
+    display:block;font-size:clamp(20px,3vw,28px);letter-spacing:8px;margin-top:8px;
+  }
+  .hero .sub{
+    font-size:17px;color:var(--ink-sub);letter-spacing:2px;line-height:2;
+    max-width:560px;margin:0 auto;
+    opacity:0;animation:fadeUp 1.4s .8s cubic-bezier(.22,1,.36,1) forwards;
+  }
+  .hero-scroll{
+    position:absolute;bottom:48px;left:50%;transform:translateX(-50%);z-index:2;
+    display:flex;flex-direction:column;align-items:center;
+    color:var(--gold);font-size:12px;letter-spacing:1px;opacity:.6;
+  }
+  .hero-scroll .vline{
+    width:1px;height:20px;
+    background:linear-gradient(to bottom,transparent,var(--gold),transparent);
+    animation:linePulse 2.5s ease-in-out infinite;
+  }
+  @keyframes linePulse{0%,100%{opacity:.3;transform:scaleY(1)}50%{opacity:1;transform:scaleY(1.3)}}
+
+  /* ====== Section Framework ====== */
+  section{padding:120px 0;position:relative}
+  .sec-inner{max-width:960px;margin:0 auto;padding:0 40px}
+  .sec-head{margin-bottom:72px;text-align:center}
+  .sec-head .tag{
+    font-size:16px;letter-spacing:8px;color:var(--gold);margin-bottom:20px;
+  }
+  .sec-head h2{
+    font-family:'Noto Serif SC',serif;
+    font-size:clamp(28px,4vw,38px);font-weight:300;color:var(--ink);
+    letter-spacing:4px;
+  }
+
+  /* ====== Intro Section ====== */
+  .intro-sec{background:var(--white)}
+  .intro-text{
+    max-width:680px;margin:0 auto;text-align:center;
+    font-size:17px;color:var(--ink-sub);line-height:2.2;
+  }
+  .intro-text p{margin-bottom:24px}
+  .intro-text .emph{
+    font-family:'Noto Serif SC',serif;
+    font-size:20px;color:var(--brand);font-weight:600;letter-spacing:2px;
+  }
+
+  /* ====== Business Cards ====== */
+  .biz-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:36px}
+  .biz-card{
+    padding:52px 36px;text-align:center;
+    border:1px solid var(--line);background:var(--white);
+    transition:all .4s cubic-bezier(.4,0,.2,1);
+    text-decoration:none;display:block;color:inherit;
+    position:relative;overflow:hidden;
+  }
+  .biz-card::after{
+    content:'';position:absolute;top:0;left:0;right:0;height:3px;
+    background:var(--gold);transform:scaleX(0);transform-origin:left;
+    transition:transform .5s cubic-bezier(.4,0,.2,1);
+  }
+  .biz-card:hover{transform:translateY(-6px);box-shadow:0 20px 48px rgba(0,0,0,.06)}
+  .biz-card:hover::after{transform:scaleX(1)}
+  .biz-card .num{
+    font-family:'Noto Serif SC',serif;
+    font-size:14px;color:var(--gold);letter-spacing:4px;margin-bottom:20px;
+  }
+  .biz-card .icon{
+    font-size:40px;margin-bottom:20px;opacity:.5;
+  }
+  .biz-card h3{
+    font-family:'Noto Serif SC',serif;
+    font-size:24px;color:var(--brand);font-weight:300;letter-spacing:3px;margin-bottom:14px;
+  }
+  .biz-card .subtitle{
+    font-size:15px;color:var(--ink-sub);line-height:1.9;
+  }
+  .biz-card .locations{
+    margin-top:20px;font-size:14px;color:var(--ink-light);letter-spacing:1px;line-height:2;
+  }
+  .biz-card .arrow{
+    display:inline-block;margin-top:20px;
+    font-size:18px;color:var(--gold);transition:transform .3s;
+  }
+  .biz-card:hover .arrow{transform:translateX(4px)}
+
+  /* ====== About Section ====== */
+  .about-sec{background:var(--white)}
+  .about-body{
+    max-width:680px;margin:0 auto;text-align:center;
+    font-size:17px;color:var(--ink-sub);line-height:2.2;
+  }
+  .about-body p{margin-bottom:24px}
+
+  /* ====== Locations ====== */
+  .loc-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:40px;text-align:center}
+  .loc-item{font-size:16px;color:var(--ink-sub);line-height:2}
+  .loc-item .city{
+    font-family:'Noto Serif SC',serif;
+    font-size:20px;color:var(--brand);letter-spacing:3px;margin-bottom:8px;
+  }
+
+  /* ====== Footer ====== */
+  .ft{background:var(--brand);color:rgba(255,255,255,.5);padding:60px 40px 32px;text-align:center}
+  .ft-inner{max-width:700px;margin:0 auto}
+  .ft h4{color:var(--white);margin-bottom:12px;font-size:16px;letter-spacing:4px;font-weight:600}
+  .ft p{font-size:16px;line-height:2;margin-bottom:8px}
+  .ft-bottom{margin-top:36px;font-size:14px;color:rgba(255,255,255,.3)}
+
+  /* ====== Mobile ====== */
+  @media(max-width:768px){
+    .top-bar{padding:14px 24px}
+    .top-bar .nav-links{gap:20px}
+    .top-bar .nav-links a{font-size:14px;letter-spacing:1px}
+    .hero-content{padding:100px 24px 60px}
+    .hero-bg-seal{width:260px;height:260px}.hero-bg-seal2{width:180px;height:180px}
+    .biz-grid{grid-template-columns:1fr;gap:24px}
+    .biz-card{padding:44px 32px}
+    .loc-grid{grid-template-columns:1fr;gap:32px}
+    section{padding:72px 0}
+    .hero h1{font-size:32px;letter-spacing:4px}
+  }
+</style>
+<noscript><style>.reveal{opacity:1!important;transform:none!important}</style></noscript>
+</head>
+<body>
+
+<!-- ====== Top Bar ====== -->
+<div class="top-bar">
+  <div class="brand">集冉堂</div>
+  <div class="nav-links">
+    <a href="#biz">業務</a>
+    <a href="#about">關於</a>
+    <a href="#contact">聯繫</a>
+  </div>
+</div>
+
+<!-- ====== Hero ====== -->
+<section class="hero">
+  <div class="hero-bg-seal"></div>
+  <div class="hero-bg-seal2"></div>
+  <div class="hero-content">
+    <div class="hero-tag">集 冉 文 化</div>
+    <h1>集冉堂<em>連接未來</em></h1>
+    <div class="sub">立足華夏傳統文化體系<br>服務居民健康 · 弘揚傳統文化</div>
+  </div>
+  <div class="hero-scroll"><div class="vline"></div>scroll</div>
+</section>
+
+<!-- ====== 简介 ====== -->
+<section class="intro-sec" id="about">
+  <div class="sec-inner">
+    <div class="sec-head reveal">
+      <div class="tag">關於集冉</div>
+      <h2>連接未來</h2>
+    </div>
+    <div class="intro-text">
+      <p class="reveal reveal-d1">集冉文化立足華夏傳統文化體系，以服務居民健康、弘揚傳統文化為目標，佈局並研發精品道門、中醫康養服務及產品，為大眾帶去安全、天然、自然的康養方案。</p>
+      <p class="reveal reveal-d2"><span class="emph">力求中醫、傳統康養的生活化、簡單化、人性化。</span></p>
+      <p class="reveal reveal-d3">企業總部位於北京，同時在廣州、香港、東南亞各地區開展業務。</p>
+    </div>
+  </div>
+</section>
+
+<!-- ====== 三大板块 ====== -->
+<section id="biz">
+  <div class="sec-inner">
+    <div class="sec-head reveal">
+      <div class="tag">三大板塊</div>
+      <h2>業務佈局</h2>
+    </div>
+    <div class="biz-grid">
+      <a href="index.html" class="biz-card reveal reveal-d1">
+        <div class="num">壹</div>
+        <div class="icon">◇</div>
+        <h3>中醫美</h3>
+        <div class="subtitle">先醫療 · 後醫美</div>
+        <div class="locations">
+          中國大陸&nbsp;&nbsp;冉漢方中醫美<br>
+          香港&nbsp;&nbsp;德醫美 Alchemy
+        </div>
+        <div class="arrow">→</div>
+      </a>
+      <a href="taichi-ortho.html" class="biz-card reveal reveal-d2">
+        <div class="num">貳</div>
+        <div class="icon">◎</div>
+        <h3>道門正骨</h3>
+        <div class="subtitle">太乙正骨 · 微雕<br>千峰先天派非遺傳承</div>
+        <div class="arrow">→</div>
+      </a>
+      <a href="wellness-products.html" class="biz-card reveal reveal-d3">
+        <div class="num">參</div>
+        <div class="icon">✦</div>
+        <h3>康養內服</h3>
+        <div class="subtitle">熬夜丸 · 脾胃丸 · 駐顏丹<br>藥食同源 · 內養外煥</div>
+        <div class="arrow">→</div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ====== 各地布局 ====== -->
+<section class="about-sec" id="contact">
+  <div class="sec-inner">
+    <div class="sec-head reveal">
+      <div class="tag">各地佈局</div>
+      <h2>立足北京 · 輻射亞洲</h2>
+    </div>
+    <div class="loc-grid">
+      <div class="loc-item reveal reveal-d1">
+        <div class="city">中國大陸</div>
+        <div>企業總部 · 北京<br>冉漢方中醫美<br>太乙正骨</div>
+      </div>
+      <div class="loc-item reveal reveal-d2">
+        <div class="city">香港</div>
+        <div>德醫美 Alchemy<br>中環 · 中醫醫美連鎖</div>
+      </div>
+      <div class="loc-item reveal reveal-d3">
+        <div class="city">廣州 · 東南亞</div>
+        <div>業務拓展中<br>敬請期待</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ====== Footer ====== -->
+<footer class="ft">
+  <div class="ft-inner">
+    <h4>集 冉 堂</h4>
+    <p>初創者，連接未來</p>
+    <p style="font-size:15px;color:rgba(255,255,255,.4);margin-top:12px">立足華夏傳統文化體系 · 服務居民健康</p>
+    <div class="ft-bottom">&copy; 2025 集冉文化. All Rights Reserved.</div>
+  </div>
+</footer>
+
+<script>
+if(typeof IntersectionObserver!=='undefined'){
+  var observer=new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible')});
+  },{threshold:.1,rootMargin:'0px 0px -40px 0px'});
+  document.querySelectorAll('.reveal').forEach(el=>observer.observe(el));
+}else{
+  document.querySelectorAll('.reveal').forEach(function(el){el.classList.add('visible')});
+}
+</script>
+</body>
+</html>

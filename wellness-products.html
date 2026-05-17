@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="zh-HK">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>集冉堂 · 康養內服</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@300;400;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --brand:#5c6a3e;--brand-light:#72854e;
+    --gold:#c9a96e;--gold-warm:#b8944f;
+    --paper:#fcfaf7;--paper-dark:#f5f1e9;
+    --ink:#1a1410;--ink-sub:#6b6258;--ink-light:#a0988c;
+    --white:#fff;--line:#e8e3da;--line-strong:#d4cdc0;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    font-family:"PingFang SC","Noto Sans HK","Microsoft YaHei",sans-serif;
+    color:var(--ink);background:var(--paper);line-height:1.85;
+    overflow-x:hidden;-webkit-font-smoothing:antialiased;
+  }
+
+  /* ====== Reveal ====== */
+  .reveal{opacity:0;transform:translateY(32px);transition:all .9s cubic-bezier(.22,1,.36,1)}
+  .reveal.visible{opacity:1;transform:translateY(0)}
+  .reveal-d1{transition-delay:.1s}.reveal-d2{transition-delay:.2s}.reveal-d3{transition-delay:.3s}.reveal-d4{transition-delay:.4s}
+
+  /* ====== Top Bar ====== */
+  .top-bar{
+    position:fixed;top:0;left:0;width:100%;z-index:100;
+    padding:16px 40px;display:flex;justify-content:space-between;align-items:center;
+    background:rgba(252,250,247,.92);backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px);
+    border-bottom:1px solid var(--line);
+  }
+  .top-bar .brand{font-family:'Noto Serif SC',serif;font-size:18px;color:var(--brand);letter-spacing:4px;font-weight:600}
+  .top-bar a{color:var(--ink-sub);text-decoration:none;font-size:15px;letter-spacing:2px;transition:color .3s}
+  .top-bar a:hover{color:var(--brand)}
+
+  /* ====== Hero ====== */
+  .hero{
+    min-height:90vh;display:flex;align-items:center;
+    position:relative;overflow:hidden;
+    background:linear-gradient(175deg, var(--paper) 0%, var(--white) 60%, var(--paper-dark) 100%);
+  }
+  .hero-bg-herb{
+    position:absolute;top:10%;right:10%;
+    font-size:280px;color:var(--brand);opacity:.025;line-height:1;
+  }
+  .hero-bg-line{
+    position:absolute;bottom:0;left:0;right:0;height:1px;
+    background:linear-gradient(to right,transparent,var(--brand),transparent);
+    opacity:.1;
+  }
+  .hero-content{
+    max-width:1040px;margin:0 auto;padding:100px 40px 60px;
+    position:relative;z-index:2;width:100%;
+  }
+  .hero-tag{
+    display:inline-block;font-size:15px;letter-spacing:6px;color:var(--gold);margin-bottom:28px;
+    opacity:0;animation:fadeUp 1.4s .2s cubic-bezier(.22,1,.36,1) forwards;
+  }
+  @keyframes fadeUp{from{opacity:0;transform:translateY(28px)}to{opacity:1;transform:translateY(0)}}
+  .hero h1{
+    font-family:'Noto Serif SC',serif;
+    font-size:clamp(36px,6vw,66px);color:var(--ink);line-height:1.15;
+    margin-bottom:20px;font-weight:300;letter-spacing:4px;
+    opacity:0;animation:fadeUp 1.4s .5s cubic-bezier(.22,1,.36,1) forwards;
+  }
+  .hero h1 em{
+    font-style:normal;font-weight:700;color:var(--brand);
+    display:block;font-size:clamp(22px,3vw,30px);letter-spacing:8px;margin-top:10px;
+  }
+  .hero .sub{
+    font-size:17px;color:var(--ink-sub);line-height:2;max-width:480px;
+    opacity:0;animation:fadeUp 1.4s .8s cubic-bezier(.22,1,.36,1) forwards;
+  }
+  .hero-scroll{
+    position:absolute;bottom:48px;left:50%;transform:translateX(-50%);z-index:2;
+    display:flex;flex-direction:column;align-items:center;
+    color:var(--brand);font-size:12px;letter-spacing:1px;opacity:.5;
+  }
+  .hero-scroll .vline{
+    width:1px;height:20px;
+    background:linear-gradient(to bottom,transparent,var(--brand),transparent);
+    animation:linePulse 2.5s ease-in-out infinite;
+  }
+  @keyframes linePulse{0%,100%{opacity:.3;transform:scaleY(1)}50%{opacity:1;transform:scaleY(1.3)}}
+
+  /* ====== Section Framework ====== */
+  section{padding:100px 0;position:relative}
+  .sec-inner{max-width:960px;margin:0 auto;padding:0 40px}
+  .sec-head{margin-bottom:64px;text-align:center}
+  .sec-head .tag{
+    font-size:16px;letter-spacing:8px;color:var(--gold);margin-bottom:20px;
+  }
+  .sec-head h2{
+    font-family:'Noto Serif SC',serif;
+    font-size:clamp(28px,4vw,38px);font-weight:300;color:var(--ink);
+    letter-spacing:4px;margin-bottom:16px;
+  }
+  .sec-head .lead{
+    font-size:17px;color:var(--ink-sub);line-height:2;max-width:560px;margin:0 auto;
+  }
+
+  /* ====== Philosophy ====== */
+  .philosophy{background:var(--white)}
+  .phil-quote{
+    max-width:720px;margin:0 auto;text-align:center;
+    padding:48px 0;
+    border-top:1px solid var(--line);border-bottom:1px solid var(--line);
+  }
+  .phil-quote .q{
+    font-family:'Noto Serif SC',serif;
+    font-size:clamp(20px,3vw,26px);color:var(--brand);line-height:1.8;
+    font-weight:600;letter-spacing:2px;margin-bottom:8px;
+  }
+  .phil-quote .src{
+    font-size:14px;color:var(--ink-light);letter-spacing:2px;
+  }
+
+  /* ====== Products ====== */
+  .prod-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:36px}
+  .prod-card{
+    text-align:center;padding:0 0 48px;
+    border:1px solid var(--line);background:var(--white);
+    transition:all .4s cubic-bezier(.4,0,.2,1);
+    position:relative;overflow:hidden;
+  }
+  .prod-card:hover{transform:translateY(-6px);box-shadow:0 20px 48px rgba(0,0,0,.06)}
+  .prod-card .prod-visual{
+    height:200px;display:flex;align-items:center;justify-content:center;
+    background:linear-gradient(160deg, var(--paper-dark) 0%, var(--paper) 50%, var(--white) 100%);
+    border-bottom:1px solid var(--line);
+    position:relative;overflow:hidden;
+  }
+  .prod-card .prod-visual .herb-icon{
+    font-size:72px;opacity:.18;
+  }
+  .prod-card .prod-visual::after{
+    content:'';position:absolute;bottom:0;left:0;right:0;height:2px;
+    background:var(--brand);opacity:.15;
+  }
+  .prod-card .prod-info{padding:36px 32px 0}
+  .prod-card .en{
+    font-size:12px;color:var(--gold);letter-spacing:3px;margin-bottom:10px;
+  }
+  .prod-card h3{
+    font-family:'Noto Serif SC',serif;
+    font-size:24px;color:var(--ink);font-weight:300;letter-spacing:3px;margin-bottom:12px;
+  }
+  .prod-card .tagline{
+    font-size:15px;color:var(--brand);margin-bottom:20px;line-height:1.8;
+  }
+  .prod-card .desc{
+    font-size:15px;color:var(--ink-sub);line-height:2;
+  }
+  .prod-card .features{
+    margin-top:24px;display:flex;flex-wrap:wrap;justify-content:center;gap:10px;
+  }
+  .prod-card .features span{
+    display:inline-block;padding:6px 16px;
+    font-size:13px;color:var(--ink-sub);letter-spacing:1px;
+    border:1px solid var(--line);background:var(--paper);
+  }
+
+  /* ====== CTA ====== */
+  .cta-sec{background:var(--brand);text-align:center;padding:80px 40px}
+  .cta-sec h3{
+    font-family:'Noto Serif SC',serif;
+    font-size:clamp(22px,3vw,30px);color:var(--white);font-weight:300;letter-spacing:4px;margin-bottom:12px;
+  }
+  .cta-sec p{font-size:16px;color:rgba(255,255,255,.55);margin-bottom:32px;letter-spacing:1px}
+  .btn-gold{
+    display:inline-block;padding:14px 40px;
+    background:var(--gold);color:var(--ink);
+    text-decoration:none;font-size:16px;font-weight:600;letter-spacing:3px;
+    font-family:'Noto Serif SC',serif;
+    transition:all .3s;
+  }
+  .btn-gold:hover{background:#d4b87a;transform:translateY(-2px);box-shadow:0 12px 32px rgba(201,169,110,.25)}
+
+  /* ====== Footer ====== */
+  .ft{background:var(--brand);color:rgba(255,255,255,.5);padding:56px 40px 32px;text-align:center}
+  .ft h4{color:var(--white);margin-bottom:12px;font-size:16px;letter-spacing:4px;font-weight:600}
+  .ft p{font-size:16px;line-height:2}
+  .ft-bottom{margin-top:36px;font-size:14px;color:rgba(255,255,255,.3)}
+
+  /* ====== Mobile ====== */
+  @media(max-width:768px){
+    .top-bar{padding:14px 24px}
+    .hero-content{padding:100px 24px 60px}
+    .hero-bg-herb{font-size:160px;right:2%;top:15%}
+    .prod-grid{grid-template-columns:1fr;gap:28px}
+    .prod-card .prod-visual{height:160px}
+    section{padding:72px 0}
+  }
+</style>
+<noscript><style>.reveal{opacity:1!important;transform:none!important}</style></noscript>
+</head>
+<body>
+
+<!-- ====== Top Bar ====== -->
+<div class="top-bar">
+  <div class="brand">集冉堂</div>
+  <a href="jiran-culture.html">← 集冉堂</a>
+</div>
+
+<!-- ====== Hero ====== -->
+<section class="hero">
+  <div class="hero-bg-herb">藥</div>
+  <div class="hero-bg-line"></div>
+  <div class="hero-content">
+    <div class="hero-tag">藥 食 同 源</div>
+    <h1>康養內服<em>內養外煥</em></h1>
+    <div class="sub">以中醫藥食同源為根基<br>從內在調理出發，喚醒身體自癒力</div>
+  </div>
+  <div class="hero-scroll"><div class="vline"></div>scroll</div>
+</section>
+
+<!-- ====== Philosophy ====== -->
+<section class="philosophy">
+  <div class="sec-inner">
+    <div class="sec-head reveal">
+      <div class="tag">理 念</div>
+      <h2>養於內 · 形於外</h2>
+      <div class="lead">五臟安和，氣血充盈，肌膚自有光澤。真正的養護不靠外塗，從根處調起。</div>
+    </div>
+    <div class="phil-quote reveal">
+      <div class="q">正氣存內，邪不可干</div>
+      <div class="src">——《黃帝內經》</div>
+    </div>
+  </div>
+</section>
+
+<!-- ====== Products ====== -->
+<section id="products">
+  <div class="sec-inner">
+    <div class="sec-head reveal">
+      <div class="tag">產 品</div>
+      <h2>三味本草 · 各司其職</h2>
+    </div>
+    <div class="prod-grid">
+      <!-- 熬夜丸 -->
+      <div class="prod-card reveal reveal-d1">
+        <div class="prod-visual"><span class="herb-icon">🌙</span></div>
+        <div class="prod-info">
+          <div class="en">Liver Nourishing Capsules</div>
+          <h3>熬夜丸</h3>
+          <div class="tagline">養肝護肝 · 修復透支</div>
+          <div class="desc">肝藏血，主疏泄。長期熬夜耗傷肝陰，面色暗沉、雙目乾澀、情緒易躁。熬夜丸以疏肝養血為方，助肝恢復藏血機能。</div>
+          <div class="features">
+            <span>養肝血</span><span>明雙目</span><span>安情緒</span>
+          </div>
+        </div>
+      </div>
+      <!-- 脾胃丸 -->
+      <div class="prod-card reveal reveal-d2">
+        <div class="prod-visual"><span class="herb-icon">⚲</span></div>
+        <div class="prod-info">
+          <div class="en">Stomach Spleen Nourish</div>
+          <h3>脾胃丸</h3>
+          <div class="tagline">健脾和胃 · 運化之源</div>
+          <div class="desc">脾胃為後天之本，氣血生化之源。飲食不節、思慮過度最傷脾胃，令氣血無以化生，面黃肌瘦、倦怠無力。脾胃丸補中益氣、健運脾胃。</div>
+          <div class="features">
+            <span>健脾胃</span><span>生氣血</span><span>消倦怠</span>
+          </div>
+        </div>
+      </div>
+      <!-- 驻颜丹 -->
+      <div class="prod-card reveal reveal-d3">
+        <div class="prod-visual"><span class="herb-icon">◎</span></div>
+        <div class="prod-info">
+          <div class="en">Replenish Vitality Capsules</div>
+          <h3>駐顏丹</h3>
+          <div class="tagline">補氣養血 · 由內而外</div>
+          <div class="desc">氣血為容顏之根。氣血虧虛則面色萎黃、肌膚鬆弛、髮枯早白。駐顏丹以補氣養血為核心，調和五臟精氣，還原肌膚本然光澤與彈性。</div>
+          <div class="features">
+            <span>補氣血</span><span>潤肌膚</span><span>抗衰老</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ====== CTA ====== -->
+<div class="cta-sec reveal">
+  <h3>開始內養之旅</h3>
+  <p>每一味本草，皆為身體找回本來的節奏</p>
+  <a href="http://sj20655dym.sj168.top/pages/shop/index/index" class="btn-gold" target="_blank">前往商城選購 →</a>
+</div>
+
+<!-- ====== Footer ====== -->
+<footer class="ft">
+  <div class="ft-inner">
+    <h4>集 冉 堂</h4>
+    <p>康養內服 · 藥食同源</p>
+    <p style="font-size:15px;color:rgba(255,255,255,.4);margin-top:12px">內養外煥 · 由根處調起</p>
+    <div class="ft-bottom">&copy; 2025 集冉文化. All Rights Reserved.</div>
+  </div>
+</footer>
+
+<script>
+if(typeof IntersectionObserver!=='undefined'){
+  var observer=new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible')});
+  },{threshold:.1,rootMargin:'0px 0px -40px 0px'});
+  document.querySelectorAll('.reveal').forEach(el=>observer.observe(el));
+}else{
+  document.querySelectorAll('.reveal').forEach(function(el){el.classList.add('visible')});
+}
+</script>
+</body>
+</html>

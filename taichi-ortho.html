@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<html lang="zh-HK">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>太乙正骨 · 微雕 — 道門全真千峰先天派</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@300;400;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --brand:#a55300;--brand-light:#c46700;--brand-ghost:rgba(165,83,0,.06);
+    --gold:#c49a4a;--gold-warm:#b8863a;
+    --paper:#fcfaf7;--paper-dark:#f5f1e9;
+    --ink:#1a1410;--ink-sub:#6b6258;--ink-light:#a0988c;
+    --white:#fff;--line:#e8e3da;--line-strong:#d4cdc0;
+    --seal-red:#8b1a1a;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    font-family:"PingFang SC","Noto Sans HK","Microsoft YaHei",sans-serif;
+    color:var(--ink);background:var(--paper);line-height:1.85;
+    overflow-x:hidden;-webkit-font-smoothing:antialiased;
+    background-image:
+      radial-gradient(ellipse at 20% 5%,rgba(196,154,74,.03) 0%,transparent 50%),
+      radial-gradient(ellipse at 85% 30%,rgba(165,83,0,.02) 0%,transparent 40%);
+  }
+
+  /* ====== Reveal ====== */
+  .reveal{opacity:0;transform:translateY(32px);transition:all .9s cubic-bezier(.22,1,.36,1)}
+  .reveal.visible{opacity:1;transform:translateY(0)}
+  .reveal-d1{transition-delay:.1s}.reveal-d2{transition-delay:.2s}.reveal-d3{transition-delay:.3s}.reveal-d4{transition-delay:.4s}
+
+  /* ====== Top Bar ====== */
+  .top-bar{
+    position:fixed;top:0;left:0;width:100%;z-index:100;
+    padding:16px 40px;display:flex;justify-content:space-between;align-items:center;
+    background:rgba(252,250,247,.92);backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px);
+    border-bottom:1px solid var(--line);
+  }
+  .top-bar .brand{font-family:'Noto Serif SC',serif;font-size:18px;color:var(--brand);letter-spacing:3px;font-weight:600}
+  .top-bar .brand span{color:var(--ink-sub);font-weight:300;margin-left:12px;font-size:14px;letter-spacing:1px}
+  .top-bar a{color:var(--ink-sub);text-decoration:none;font-size:15px;transition:color .3s}
+  .top-bar a:hover{color:var(--brand)}
+
+  /* ====== Hero ====== */
+  .hero{
+    min-height:100vh;display:flex;align-items:center;
+    position:relative;overflow:hidden;
+    background:linear-gradient(175deg, var(--paper-dark) 0%, var(--paper) 40%, var(--white) 100%);
+  }
+  .hero-bg-stamp{
+    position:absolute;top:8%;right:8%;
+    width:360px;height:360px;opacity:.04;
+    border:2px solid var(--brand);border-radius:50%;
+  }
+  .hero-bg-line{
+    position:absolute;bottom:0;left:0;right:0;height:1px;
+    background:linear-gradient(to right,transparent,var(--brand),transparent);
+    opacity:.12;
+  }
+  .hero-content{
+    max-width:1040px;margin:0 auto;padding:120px 40px 60px;
+    position:relative;z-index:2;width:100%;
+  }
+  .hero-tag{
+    display:inline-block;font-size:16px;letter-spacing:4px;
+    color:var(--brand);margin-bottom:28px;font-weight:600;
+    opacity:0;animation:fadeUp 1.4s .3s cubic-bezier(.22,1,.36,1) forwards;
+  }
+  @keyframes fadeUp{from{opacity:0;transform:translateY(28px)}to{opacity:1;transform:translateY(0)}}
+  .hero h1{
+    font-family:'Noto Serif SC',serif;
+    font-size:clamp(42px,7vw,80px);color:var(--ink);
+    line-height:1.12;margin-bottom:16px;font-weight:300;letter-spacing:2px;
+    opacity:0;animation:fadeUp 1.4s .6s cubic-bezier(.22,1,.36,1) forwards;
+  }
+  .hero h1 em{
+    font-style:normal;font-weight:700;color:var(--brand);
+    display:block;font-size:clamp(28px,4vw,44px);letter-spacing:8px;margin-top:12px;
+  }
+  .hero .sub{
+    font-family:'Noto Serif SC',serif;
+    font-size:clamp(18px,2.5vw,22px);color:var(--ink-sub);
+    margin-bottom:40px;letter-spacing:1px;font-weight:300;
+    opacity:0;animation:fadeUp 1.4s .9s cubic-bezier(.22,1,.36,1) forwards;
+  }
+  .hero .school{
+    font-size:15px;color:var(--ink-light);letter-spacing:3px;
+    opacity:0;animation:fadeUp 1.4s 1.0s cubic-bezier(.22,1,.36,1) forwards;
+  }
+  .hero-scroll{
+    position:absolute;bottom:48px;left:50%;transform:translateX(-50%);z-index:2;
+    display:flex;flex-direction:column;align-items:center;
+    color:var(--brand);font-size:12px;letter-spacing:1px;opacity:.6;
+  }
+  .hero-scroll .vline{
+    width:1px;height:20px;
+    background:linear-gradient(to bottom,transparent,var(--brand),transparent);
+    animation:linePulse 2.5s ease-in-out infinite;
+  }
+  @keyframes linePulse{0%,100%{opacity:.3;transform:scaleY(1)}50%{opacity:1;transform:scaleY(1.3)}}
+
+  /* ====== Section Framework ====== */
+  section{padding:120px 0;position:relative}
+  .sec-inner{max-width:900px;margin:0 auto;padding:0 40px}
+  .sec-head{margin-bottom:64px;text-align:center}
+  .sec-head .tag{
+    font-size:16px;letter-spacing:8px;color:var(--gold);margin-bottom:20px;
+  }
+  .sec-head h2{
+    font-family:'Noto Serif SC',serif;
+    font-size:clamp(30px,4vw,42px);font-weight:300;color:var(--ink);
+    letter-spacing:3px;margin-bottom:16px;
+  }
+  .sec-head .lead{
+    font-size:17px;color:var(--ink-sub);line-height:2;max-width:640px;margin:0 auto;
+  }
+
+  /* ====== Quote Block ====== */
+  .quote-block{
+    text-align:center;padding:80px 40px;
+    border-top:1px solid var(--line);border-bottom:1px solid var(--line);
+    background:var(--white);
+  }
+  .quote-block .q{
+    font-family:'Noto Serif SC',serif;
+    font-size:clamp(20px,3vw,26px);color:var(--brand);line-height:1.8;
+    font-weight:600;letter-spacing:2px;max-width:720px;margin:0 auto 12px;
+  }
+  .quote-block .src{
+    font-size:15px;color:var(--ink-light);letter-spacing:2px;
+  }
+
+  /* ====== Philosophy: 形气神 ====== */
+  .form-spirit{background:var(--white)}
+  .triple-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:40px;text-align:center}
+  .triple-card{
+    padding:48px 32px;
+    border:1px solid var(--line);
+    background:var(--paper);
+  }
+  .triple-card .num{
+    font-family:'Noto Serif SC',serif;
+    font-size:48px;color:var(--brand);opacity:.2;line-height:1;
+  }
+  .triple-card h4{
+    font-family:'Noto Serif SC',serif;
+    font-size:28px;color:var(--ink);margin:12px 0 16px;font-weight:300;letter-spacing:2px;
+  }
+  .triple-card p{font-size:16px;color:var(--ink-sub);line-height:1.9}
+  .connector{
+    display:flex;align-items:center;justify-content:center;gap:0;margin:16px 0;
+  }
+  .connector .dot{width:6px;height:6px;background:var(--gold);border-radius:50%}
+  .connector .line{width:60px;height:1px;background:var(--line-strong)}
+
+  /* ====== Content Section ====== */
+  .content-sec{background:var(--paper)}
+  .content-sec.alt{background:var(--white)}
+  .content-body{
+    max-width:720px;margin:0 auto;
+    font-size:17px;color:var(--ink-sub);line-height:2.1;
+  }
+  .content-body p{margin-bottom:28px}
+  .content-body .highlight{
+    font-family:'Noto Serif SC',serif;
+    font-size:20px;color:var(--brand);font-weight:600;line-height:2;
+    text-align:center;padding:32px 0;letter-spacing:1px;
+  }
+
+  /* ====== Services Dual ====== */
+  .service-dual{display:grid;grid-template-columns:repeat(2,1fr);gap:40px;max-width:900px;margin:0 auto}
+  .svc-dual-card{
+    text-align:center;padding:56px 40px;
+    border:1px solid var(--line);background:var(--white);
+  }
+  .svc-dual-card .icon{
+    font-size:48px;margin-bottom:20px;opacity:.5;
+  }
+  .svc-dual-card .label{
+    font-family:'Noto Serif SC',serif;
+    font-size:15px;color:var(--gold);letter-spacing:4px;margin-bottom:12px;
+  }
+  .svc-dual-card h3{
+    font-family:'Noto Serif SC',serif;
+    font-size:28px;color:var(--brand);font-weight:300;letter-spacing:3px;margin-bottom:16px;
+  }
+  .svc-dual-card p{
+    font-size:16px;color:var(--ink-sub);line-height:1.9;
+  }
+
+  /* ====== Master Section ====== */
+  .master-sec{background:var(--white)}
+  .master-card{
+    max-width:800px;margin:0 auto;padding:0;
+    display:grid;grid-template-columns:200px 1fr;gap:48px;align-items:start;
+  }
+  .master-avatar{
+    width:160px;height:160px;border-radius:50%;
+    background:var(--brand-ghost);border:1px solid var(--line);
+    display:flex;align-items:center;justify-content:center;
+    font-family:'Noto Serif SC',serif;font-size:28px;color:var(--brand);opacity:.4;
+    margin:0 auto;
+  }
+  .master-info h3{
+    font-family:'Noto Serif SC',serif;
+    font-size:28px;color:var(--ink);font-weight:300;letter-spacing:2px;margin-bottom:8px;
+  }
+  .master-info .dharma{
+    font-size:15px;color:var(--gold);letter-spacing:3px;margin-bottom:24px;
+  }
+  .master-info .titles{
+    font-size:16px;color:var(--ink-sub);line-height:2.2;margin-bottom:24px;
+  }
+  .master-info .bio{
+    font-size:16px;color:var(--ink-sub);line-height:2;
+  }
+  .master-info .bio p{margin-bottom:18px}
+
+  /* ====== Slogan ====== */
+  .slogan-bar{
+    text-align:center;padding:100px 40px;
+    background:var(--brand);
+  }
+  .slogan-bar .s{
+    font-family:'Noto Serif SC',serif;
+    font-size:clamp(24px,4vw,36px);color:var(--white);letter-spacing:4px;font-weight:300;line-height:1.8;
+  }
+
+  /* ====== Seed Background ====== */
+  .section-bg-img{
+    position:relative;
+    background-image:url('IMG_4643.JPG');background-size:cover;background-position:center;background-attachment:fixed;
+  }
+  .section-bg-img::before{
+    content:'';position:absolute;top:0;left:0;width:100%;height:100%;
+    background:linear-gradient(180deg,var(--paper) 0%,rgba(252,250,247,.88) 30%,rgba(252,250,247,.88) 70%,var(--paper) 100%);
+  }
+  .section-bg-img>*{position:relative;z-index:1}
+
+  /* ====== Footer ====== */
+  .ft{background:var(--brand);color:rgba(255,255,255,.6);padding:60px 40px 32px;text-align:center}
+  .ft-inner{max-width:900px;margin:0 auto}
+  .ft h4{color:var(--white);margin-bottom:12px;font-size:16px;letter-spacing:4px;font-weight:600}
+  .ft p{font-size:16px;line-height:2}
+  .ft-bottom{margin-top:48px;font-size:14px;color:rgba(255,255,255,.35)}
+
+  /* ====== Mobile ====== */
+  @media(max-width:768px){
+    .top-bar{padding:14px 24px}
+    .top-bar .brand span{display:block;margin-left:0;margin-top:2px}
+    .hero-content{padding:100px 24px 60px}
+    .hero-bg-stamp{width:180px;height:180px;right:4%;top:12%}
+    .triple-grid{grid-template-columns:1fr;gap:24px}
+    .triple-card{padding:36px 28px}
+    .service-dual{grid-template-columns:1fr;gap:24px}
+    .svc-dual-card{padding:40px 28px}
+    .master-card{grid-template-columns:1fr;text-align:center;gap:32px}
+    .master-avatar{margin:0 auto}
+    section{padding:80px 0}
+    .sec-head h2{font-size:28px}
+    .quote-block{padding:56px 24px}
+    .quote-block .q{font-size:18px}
+  }
+</style>
+<noscript><style>.reveal{opacity:1!important;transform:none!important}</style></noscript>
+</head>
+<body>
+
+<!-- ====== Top Bar ====== -->
+<div class="top-bar">
+  <div class="brand">太乙正骨<span>道門全真 · 千峰先天派</span></div>
+  <a href="index.html">← 德醫美</a>
+</div>
+
+<!-- ====== Hero ====== -->
+<section class="hero">
+  <div class="hero-bg-stamp"></div>
+  <div class="hero-bg-line"></div>
+  <div class="hero-content">
+    <div class="hero-tag">道門全真 · 千峰先天派</div>
+    <h1>太乙正骨<em>微 雕</em></h1>
+    <div class="sub">正骨骼&nbsp;&nbsp;·&nbsp;&nbsp;通氣機&nbsp;&nbsp;·&nbsp;&nbsp;顯神相</div>
+    <div class="school">非物質文化遺產&nbsp;&nbsp;|&nbsp;&nbsp;道醫按摩正骨</div>
+  </div>
+  <div class="hero-scroll"><div class="vline"></div>scroll</div>
+</section>
+
+<!-- ====== Quote: 黄帝内经 ====== -->
+<div class="quote-block reveal">
+  <div class="q">骨正筋柔，氣血以流</div>
+  <div class="src">——《黃帝內經》</div>
+</div>
+
+<!-- ====== 形气神 ====== -->
+<section class="form-spirit">
+  <div class="sec-inner">
+    <div class="sec-head reveal">
+      <div class="tag">核心哲學</div>
+      <h2>形 · 氣 · 神</h2>
+      <div class="lead">道法自然。道門認為，人由形、氣、神三個部分組成。</div>
+    </div>
+    <div class="triple-grid">
+      <div class="triple-card reveal reveal-d1">
+        <div class="num">壹</div>
+        <h4>形</h4>
+        <p>物質形體<br>骨為框架，支撐全身</p>
+      </div>
+      <div class="triple-card reveal reveal-d2">
+        <div class="num">貳</div>
+        <h4>氣</h4>
+        <p>無形能量<br>連接形與神的運行媒介</p>
+      </div>
+      <div class="triple-card reveal reveal-d3">
+        <div class="num">參</div>
+        <h4>神</h4>
+        <p>精神意識<br>生命主宰，調控核心</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ====== 太乙正骨原理 ====== -->
+<section class="content-sec section-bg-img">
+  <div class="sec-inner">
+    <div class="sec-head reveal">
+      <div class="tag">太乙正骨</div>
+      <h2>着眼「形」的框架</h2>
+    </div>
+    <div class="content-body">
+      <p class="reveal reveal-d1">道家全真千峰先天派非遺正骨——太乙正骨、微雕，着眼「形」的框架：<strong style="color:var(--brand)">骨</strong>。骨正自然氣順，氣推血順則神通。神性通方顯人「先天健康、神相為美」的本來狀態。</p>
+      <p class="reveal reveal-d2">太乙正骨不治病，而是通過正骨使氣順，從而重啟每個人與生俱來的自養自癒能力。氣到血到，氣血俱到百病消。</p>
+      <div class="highlight reveal reveal-d3">骨正 → 氣順 → 神通</div>
+    </div>
+  </div>
+</section>
+
+<!-- ====== 气血关系 ====== -->
+<div class="quote-block reveal">
+  <div class="q">人之所有者，血與氣耳</div>
+  <div class="src">——《黃帝內經》</div>
+</div>
+
+<section class="content-sec alt">
+  <div class="sec-inner">
+    <div class="sec-head reveal">
+      <h2>氣血之道</h2>
+      <div class="lead">氣為血之帥，血為氣之母</div>
+    </div>
+    <div class="content-body">
+      <p class="reveal reveal-d1">氣推動血液循經骨骼經絡到達五臟。骨骼偏歪會造成氣血阻滯，而氣血不足就如汽車虧油——沒力氣、跑不動、沒神采，久而久之會導致全身各部位機能下降，甚至積疾。</p>
+      <p class="reveal reveal-d2">所以中醫有「氣血通，百病消」的說法。</p>
+    </div>
+  </div>
+</section>
+
+<!-- ====== 脊柱 ====== -->
+<div class="quote-block reveal">
+  <div class="q">人之生，氣之聚</div>
+  <div class="src">——《莊子 · 知北遊》</div>
+</div>
+
+<section class="content-sec section-bg-img">
+  <div class="sec-inner">
+    <div class="sec-head reveal">
+      <h2>脊柱 · 第二生命線</h2>
+    </div>
+    <div class="content-body">
+      <p class="reveal reveal-d1">骨之主——<strong style="color:var(--brand)">脊柱</strong>，是人的第二生命線。其上「掛」著人體五臟，起到為臟器提供支撐、減震緩衝、空間區隔的作用。</p>
+      <p class="reveal reveal-d2">脊柱的偏歪勞損導致臟器失位，從而喪失氣機。輕者面色異常、頭腦昏沉、失眠嗜睡、消極悲觀、焦慮內耗、胸悶心悸氣短；重者容易顯化為具體疾病，進而影響到個人生命氣運。</p>
+    </div>
+  </div>
+</section>
+
+<!-- ====== 业务 ====== -->
+<section class="content-sec alt" id="services">
+  <div class="sec-inner">
+    <div class="sec-head reveal">
+      <div class="tag">業務</div>
+      <h2>正骨 · 正顏微雕</h2>
+    </div>
+    <div class="service-dual">
+      <div class="svc-dual-card reveal reveal-d1">
+        <div class="icon">⟐</div>
+        <div class="label">先天健康</div>
+        <h3>正骨</h3>
+        <p>將骨骼復位到先天位置<br>打通氣機</p>
+      </div>
+      <div class="svc-dual-card reveal reveal-d2">
+        <div class="icon">◎</div>
+        <div class="label">神相為美</div>
+        <h3>正顏微雕</h3>
+        <p>引領氣血<br>顯化個體自然神性之美</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ====== Slogan ====== -->
+<div class="slogan-bar reveal">
+  <div class="s">先天健康&nbsp;&nbsp;·&nbsp;&nbsp;神相最美</div>
+</div>
+
+<!-- ====== 师父 ====== -->
+<section class="master-sec" id="master">
+  <div class="sec-inner">
+    <div class="sec-head reveal">
+      <div class="tag">傳承</div>
+      <h2>師父</h2>
+    </div>
+    <div class="master-card">
+      <div class="master-avatar reveal reveal-d1">先<br>水<br>子</div>
+      <div class="master-info reveal reveal-d2">
+        <h3>于文水</h3>
+        <div class="dharma">號：先水子</div>
+        <div class="titles">
+          道家全真千峰先天派&nbsp;&nbsp;第三代傳人<br>
+          道家龍門派&nbsp;&nbsp;第十三代傳人<br>
+          道醫按摩正骨&nbsp;&nbsp;非遺傳承人
+        </div>
+        <div class="bio">
+          <p>1980 年拜師牛勝先老先生，學習太極、八卦掌等功法，並屢獲比賽殊榮。1997 年拜著名軍醫脊椎病專家——高宇先生為師，系統學習脊椎整復技術。2006 年，因機緣入室道家千峰先天派，隨千峰先天派掌門席春生老師學習道家脊椎理療、內丹養生術，並整合貫通。</p>
+          <p>1998 年自天津解放橋醫院開始從醫，2000–2003 年在北京紅十字會醫院、北京科技大學醫院坐診。2004 年開始常出訪於香港、澳門、台灣、馬來西亞、東南亞等國，並設立多個工作室，至今整復 30,000+ 人次。曾為數位一線港台大陸明星、香港四大家族、文萊皇室、國內政商名人調理康復，得到極高聲譽。</p>
+          <p>疫情前回國，把技術回向給國內廣大群眾，以幫助更多人遠離脊椎問題的痛苦。2020–2023 年閉關悟道。2025 年被道家全真千峰先天派、北京市非遺項目《道醫按摩正骨》授予代表性傳承人。</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ====== Footer ====== -->
+<footer class="ft">
+  <div class="ft-inner">
+    <h4>道門全真 · 千峰先天派</h4>
+    <p>太乙正骨 · 微雕</p>
+    <div class="ft-bottom">&copy; 2025 道門全真千峰先天派. 非物質文化遺產 道醫按摩正骨</div>
+  </div>
+</footer>
+
+<script>
+// Scroll reveal
+if(typeof IntersectionObserver!=='undefined'){
+  var observer=new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible')});
+  },{threshold:.1,rootMargin:'0px 0px -40px 0px'});
+  document.querySelectorAll('.reveal').forEach(el=>observer.observe(el));
+}else{
+  document.querySelectorAll('.reveal').forEach(function(el){el.classList.add('visible')});
+}
+</script>
+</body>
+</html>
