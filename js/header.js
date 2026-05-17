@@ -53,11 +53,8 @@
     '</div>'+
   '</nav>'+
   '<div class="mobile-menu" id="mobile-menu">'+
-    '<a href="index.html" onclick="colaToggleMenu()">首頁 · 集冉文化（香港）</a>'+
     '<a href="'+homePrefix+'#services" onclick="colaToggleMenu()">漢方微針醫美</a>'+
     '<a href="'+homePrefix+'#products" onclick="colaToggleMenu()">康養產品</a>'+
-    '<a href="taichi-ortho.html" onclick="colaToggleMenu()">非遺正骨</a>'+
-    '<a href="wellness-products.html" onclick="colaToggleMenu()">康養內服</a>'+
     '<a href="'+homePrefix.replace('alchemy.html','')+'cases.html" onclick="colaToggleMenu()">客戶案例</a>'+
     '<button class="menu-close" onclick="colaToggleMenu()">✕ 關閉</button>'+
   '</div>';
