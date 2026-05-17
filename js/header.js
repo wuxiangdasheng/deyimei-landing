@@ -47,6 +47,7 @@
       '<ul class="nav-links">'+
         '<li><a href="'+homePrefix+'#services">漢方微針醫美</a></li>'+
         '<li><a href="'+homePrefix+'#products">康養產品</a></li>'+
+        '<li><a href="'+homePrefix+'#locations">聯絡門店</a></li>'+
         '<li><a href="'+homePrefix.replace('alchemy.html','')+'cases.html">客戶案例</a></li>'+
       '</ul>'+
       '<div class="menu-btn" onclick="colaToggleMenu()"><span></span><span></span><span></span></div>'+
@@ -55,6 +56,7 @@
   '<div class="mobile-menu" id="mobile-menu">'+
     '<a href="'+homePrefix+'#services" onclick="colaToggleMenu()">漢方微針醫美</a>'+
     '<a href="'+homePrefix+'#products" onclick="colaToggleMenu()">康養產品</a>'+
+    '<a href="'+homePrefix+'#locations" onclick="colaToggleMenu()">聯絡門店</a>'+
     '<a href="'+homePrefix.replace('alchemy.html','')+'cases.html" onclick="colaToggleMenu()">客戶案例</a>'+
     '<button class="menu-close" onclick="colaToggleMenu()">✕ 關閉</button>'+
   '</div>';
