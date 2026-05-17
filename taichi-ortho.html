@@ -1,0 +1,759 @@
+<!DOCTYPE html>
+<html lang="zh-HK">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>太乙正骨 · 微雕 — 集冉文化（香港）</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Ma+Shan+Zheng&family=Noto+Serif+TC:wght@300;400;600;700;900&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --brand:#a55300;--brand-light:#c46700;--brand-deep:#6b3500;
+    --gold:#c49a4a;--gold-warm:#b8863a;
+    --paper:#fcfaf7;--paper-dark:#f5f1e9;
+    --ink:#1a1410;--ink-sub:#5c5348;--ink-light:#a0988c;
+    --white:#fff;--line:#e8e3da;--line-strong:#d4cdc0;
+    --seal-red:#8b1a1a;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    font-family:"PingFang TC","Noto Sans TC","Microsoft JhengHei",sans-serif;
+    color:var(--ink);background:var(--paper);line-height:1.9;
+    overflow-x:hidden;-webkit-font-smoothing:antialiased;font-size:17px;
+    background-image:
+      radial-gradient(ellipse at 20% 5%,rgba(196,154,74,.03) 0%,transparent 50%),
+      radial-gradient(ellipse at 85% 30%,rgba(165,83,0,.02) 0%,transparent 40%);
+  }
+
+  /* ====== Reveal ====== */
+  .reveal{opacity:0;transform:translateY(32px);transition:all .9s cubic-bezier(.22,1,.36,1)}
+  .reveal.visible{opacity:1;transform:translateY(0)}
+  .d1{transition-delay:.1s}.d2{transition-delay:.2s}.d3{transition-delay:.3s}.d4{transition-delay:.4s}.d5{transition-delay:.5s}
+
+  /* ====== Top Bar ====== */
+  .top-bar{
+    position:fixed;top:0;left:0;width:100%;z-index:100;
+    padding:16px 40px;display:flex;justify-content:space-between;align-items:center;gap:12px;
+    background:rgba(252,250,247,.92);backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px);
+    border-bottom:1px solid var(--line);
+  }
+  .top-bar-inner{
+    max-width:1240px;width:100%;margin:0 auto;
+    display:flex;justify-content:space-between;align-items:center;
+  }
+  .top-bar .brand{font-family:'Noto Serif TC',serif;font-size:18px;color:var(--brand);letter-spacing:3px;font-weight:600}
+  .top-bar a{color:var(--ink-sub);text-decoration:none;font-size:15px;transition:color .3s}
+  .top-bar a:hover{color:var(--brand)}
+
+  /* nav menu */
+  .nav-menu{position:relative}
+  .nav-trigger{
+    color:var(--ink-sub);text-decoration:none;font-size:15px;transition:color .3s;
+    background:none;border:none;cursor:pointer;font-family:inherit;
+    display:flex;align-items:center;gap:6px;
+  }
+  .nav-trigger:hover{color:var(--brand)}
+  .nav-trigger .arrow{font-size:10px;transition:transform .3s}
+  .nav-dropdown{
+    position:absolute;top:100%;right:0;margin-top:10px;
+    background:var(--white);border:1px solid var(--line);
+    border-radius:6px;padding:8px 0;min-width:160px;
+    box-shadow:0 8px 32px rgba(26,20,16,.06);
+    opacity:0;visibility:hidden;transform:translateY(-6px);
+    transition:all .25s cubic-bezier(.22,1,.36,1);
+  }
+  .nav-menu:hover .nav-dropdown,
+  .nav-menu.active .nav-dropdown{
+    opacity:1;visibility:visible;transform:translateY(0);
+  }
+  .nav-menu:hover .nav-trigger .arrow,
+  .nav-menu.active .nav-trigger .arrow{transform:rotate(180deg)}
+  .nav-dropdown a{
+    display:block;padding:10px 20px;font-size:15px;color:var(--ink-sub);text-decoration:none;
+    transition:background .2s,color .2s;
+  }
+  .nav-dropdown a:hover{background:var(--paper-dark);color:var(--brand)}
+  .nav-dropdown a.active{color:var(--brand);font-weight:600}
+
+  /* ====== Hero — two equals ====== */
+  .hero{
+    min-height:100vh;display:flex;align-items:center;
+    position:relative;overflow:hidden;
+  }
+  .hero-bg{
+    position:absolute;inset:0;
+    background:linear-gradient(170deg, var(--paper-dark) 0%, var(--paper) 45%, #faf6ee 100%);
+  }
+  /* taiji — scroll-driven */
+  .hero-taiji{
+    position:absolute;top:70%;right:2%;transform:translateY(-50%);
+    width:min(700px,60vw);height:min(700px,60vw);opacity:.04;pointer-events:none;
+    will-change:transform;
+  }
+  .hero-content{
+    max-width:1100px;margin:0 auto;padding:120px 40px 60px;
+    position:relative;z-index:2;width:100%;text-align:center;
+  }
+  .hero-school{
+    font-size:15px;letter-spacing:8px;color:var(--gold);
+    margin-bottom:40px;
+    opacity:0;animation:fadeUp 1.4s .3s ease forwards;
+  }
+  @keyframes fadeUp{from{opacity:0;transform:translateY(28px)}to{opacity:1;transform:translateY(0)}}
+  @keyframes fadeUpLate{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+  .hero h1{
+    font-family:'Noto Serif TC',serif;
+    font-size:clamp(38px,6.5vw,76px);color:var(--ink);
+    line-height:1.1;font-weight:900;letter-spacing:4px;
+    opacity:0;animation:fadeUp 1.4s .6s ease forwards;
+  }
+  /* 正骨 · 微雕 — equal weight */
+  .hero h1 .pivot{color:var(--brand);font-weight:300;margin:0 .2em}
+  .title-green{color:#146a38!important}
+  .hero .tri{
+    font-family:'Noto Serif TC',serif;
+    font-size:clamp(16px,2.2vw,20px);color:var(--ink-sub);
+    letter-spacing:3px;font-weight:300;margin-top:24px;
+    display:flex;justify-content:center;gap:32px;
+    opacity:0;animation:fadeUp 1.4s .9s ease forwards;
+  }
+  .hero .tri span{position:relative;padding:0 16px}
+  .hero .tri span+span::before{content:'|';position:absolute;left:-8px;color:var(--line-strong)}
+  .hero-heritage{
+    font-size:16px;letter-spacing:6px;color:var(--gold);margin-top:28px;
+    opacity:0;animation:fadeUp 1.4s 1.1s ease forwards;
+  }
+  .hero-scroll{
+    position:absolute;bottom:14px;left:50%;transform:translateX(-50%);z-index:2;
+    display:none;flex-direction:column;align-items:center;gap:0;
+    color:var(--brand);font-size:12px;letter-spacing:1px;opacity:.5;line-height:1;
+  }
+  @media(max-width:768px){
+    .hero-scroll{display:flex}
+  }
+  .hero-scroll .scroll-text{
+    position:relative;z-index:2;margin-top:-80px;
+  }
+  .hero-scroll .vline{
+    width:28px;height:28px;opacity:0;
+    animation:handSlide 2.8s ease-in-out infinite;
+  }
+  @keyframes handSlide{
+    0%{transform:translateY(-40px);opacity:0}
+    15%{opacity:.45}
+    50%{transform:translateY(-20px);opacity:.45}
+    85%{opacity:0}
+    100%{transform:translateY(0);opacity:0}
+  }
+  @keyframes linePulse{0%,100%{opacity:.3;transform:scaleY(1)}50%{opacity:1;transform:scaleY(1.3)}}
+
+  /* ====== Section Framework ====== */
+  section{padding:90px 0;position:relative}
+  section.alt{background:var(--white)}
+  .sec-inner{max-width:840px;margin:0 auto;padding:0 40px}
+  .sec-inner.wide{max-width:960px}
+
+  /* ====== Stamp ====== */
+  .stamp{
+    position:absolute;top:-40px;right:40px;
+    width:80px;height:80px;border:2px solid var(--seal-red);
+    border-radius:4px;opacity:.15;transform:rotate(8deg);
+    display:flex;align-items:center;justify-content:center;
+    font-family:'Noto Serif TC',serif;font-size:13px;color:var(--seal-red);
+    letter-spacing:1px;text-align:center;line-height:1.3;
+    transition:opacity .4s,transform .6s cubic-bezier(.22,1,.36,1);
+  }
+  .stamp:hover{opacity:.28;transform:rotate(3deg)}
+
+  /* ====== Section Header ====== */
+  .sec-head{margin-bottom:52px;position:relative;overflow:visible}
+  .sec-head .wm-char{
+    position:absolute;right:calc((100vw - 100%) / -2);top:0;transform:translateY(-30%);
+    font-family:'Noto Serif TC',serif;
+    font-size:18vw;
+    color:var(--brand);opacity:.04;pointer-events:none;user-select:none;
+    line-height:.8;white-space:nowrap;z-index:0;
+  }
+  .sec-head .tag{
+    display:inline-block;font-size:14px;letter-spacing:6px;color:var(--gold);
+    margin-bottom:12px;padding:3px 0;border-bottom:1px solid var(--line);
+    position:relative;z-index:1;
+  }
+  .sec-head h2{
+    font-family:'Noto Serif TC',serif;
+    font-size:clamp(26px,3.5vw,38px);font-weight:300;color:var(--ink);
+    letter-spacing:3px;line-height:1.3;position:relative;z-index:1;
+  }
+  .sec-head .cite{
+    font-family:'Noto Serif TC',serif;
+    font-size:18px;color:var(--brand);font-weight:600;letter-spacing:2px;
+    margin-top:10px;
+  }
+  .sec-head .cite-src{
+    font-size:13px;color:var(--ink-light);margin-top:4px;letter-spacing:2px;
+  }
+
+  /* ====== Prose ====== */
+  .prose p{
+    font-size:17px;color:var(--ink-sub);line-height:2.1;margin-bottom:24px;
+  }
+
+  /* ====== Concept Tokens (形氣神) ====== */
+  .concept-row{
+    display:grid;grid-template-columns:repeat(3,1fr);gap:32px;
+    margin-bottom:48px;
+  }
+  .concept-card{
+    text-align:center;padding:60px 20px;
+    border:1.5px solid var(--line);border-radius:2px;
+    background:var(--white);
+    position:relative;overflow:visible;
+    transition:transform .45s cubic-bezier(.22,1,.36,1),box-shadow .45s, border-color .45s;
+    cursor:default;
+    min-height:340px;
+  }
+  .concept-card::before{
+    content:'';position:absolute;top:16px;left:50%;transform:translateX(-50%);
+    width:10px;height:10px;border-radius:50%;
+    background:var(--paper);border:1px solid var(--line);
+    z-index:1;
+  }
+  .concept-card::after{
+    content:'';position:absolute;top:26px;left:calc(50% - .5px);
+    width:1px;height:28px;background:var(--line);
+  }
+  .concept-card:hover,
+  .concept-card.hover-touch{
+    transform:translateY(-6px);
+    box-shadow:0 8px 32px rgba(165,83,0,.08);
+    border-color:var(--brand);
+  }
+  .concept-card:hover .char,
+  .concept-card.hover-touch .char{opacity:1;transition:opacity .5s}
+  .concept-card:hover::before,
+  .concept-card.hover-touch::before{border-color:var(--brand)}
+  .concept-card:hover::after,
+  .concept-card.hover-touch::after{background:var(--brand)}
+  .concept-card .char{
+    font-family:'Noto Serif TC',serif;
+    font-size:72px;color:var(--brand);opacity:.13;
+    line-height:1;padding-top:20px;
+    pointer-events:none;
+  }
+  .concept-card h4{
+    font-family:'Noto Serif TC',serif;
+    font-size:20px;color:var(--ink);margin:16px 0 12px;font-weight:300;letter-spacing:4px;
+    position:relative;z-index:1;
+  }
+  .concept-card p{font-size:15px;color:var(--ink-sub);line-height:1.9;position:relative;z-index:1}
+
+  /* ====== Highlight Pill ====== */
+  .highlight-pill{
+    text-align:center;padding:20px 0;
+    font-family:'Noto Serif TC',serif;
+    font-size:18px;color:var(--brand);font-weight:600;letter-spacing:2px;
+    border-top:1px solid var(--line);border-bottom:1px solid var(--line);
+    margin:32px 0;
+  }
+
+  /* ====== Quote Inline (integrated) ====== */
+  .quote-inline{
+    font-family:'Noto Serif TC',serif;
+    font-size:20px;color:var(--brand);font-weight:600;line-height:2;
+    text-align:center;padding:32px 0;letter-spacing:2px;
+    border-top:1px solid var(--line);border-bottom:1px solid var(--line);
+    margin:36px 0;
+  }
+  .quote-inline .src{display:block;font-size:14px;color:var(--ink-light);font-weight:300;margin-top:6px}
+
+  /* ====== Vertical rhythm markers ====== */
+  .section-mark{
+    position:absolute;left:40px;top:50%;
+    font-family:'Noto Serif TC',serif;
+    font-size:14px;color:var(--line-strong);letter-spacing:4px;
+    writing-mode:vertical-rl;transform:translateY(-50%);
+    opacity:.5;
+  }
+
+  /* ====== Bullet list ====== */
+  .bullet-list{list-style:none;padding:0;max-width:720px;margin:24px auto}
+  .bullet-list li{
+    font-size:16px;color:var(--ink-sub);line-height:2;padding:6px 0 6px 24px;
+    position:relative;
+  }
+  .bullet-list li::before{
+    content:'·';position:absolute;left:8px;color:var(--gold);
+  }
+
+  /* ====== Biz Block ====== */
+  .biz-block{max-width:960px;margin:0 auto}
+  .biz-claim{
+    text-align:center;margin-bottom:48px;
+    font-family:'Ma Shan Zheng','Noto Serif TC',cursive;
+    font-size:clamp(32px,6vw,60px);color:var(--brand);
+    letter-spacing:6px;font-weight:400;line-height:1.4;
+  }
+  .biz-claim .divider{
+    display:inline-block;margin:0 16px;color:var(--gold);
+  }
+  .biz-dual{display:grid;grid-template-columns:repeat(2,1fr);gap:32px}
+  .biz-card{
+    text-align:center;padding:56px 40px;
+    border:1px solid var(--line);background:var(--white);
+    position:relative;
+    transition:transform .45s cubic-bezier(.22,1,.36,1),box-shadow .45s, border-color .45s;
+    cursor:default;
+  }
+  .biz-card:hover{
+    transform:translateY(-6px);
+    box-shadow:0 8px 32px rgba(165,83,0,.06);
+    border-color:var(--brand);
+  }
+  .biz-card:hover .seal{opacity:.35;transition:opacity .5s}
+  .biz-card .seal{
+    position:absolute;top:-16px;left:50%;transform:translateX(-50%);
+    width:32px;height:32px;border:1.5px solid var(--seal-red);
+    border-radius:50%;opacity:.2;
+  }
+  .biz-card .icon{font-size:48px;margin-bottom:16px;opacity:.4}
+  .biz-card .label{
+    font-size:14px;color:var(--gold);letter-spacing:4px;margin-bottom:8px;
+  }
+  .biz-card h3{
+    font-family:'Noto Serif TC',serif;
+    font-size:26px;color:var(--brand);font-weight:300;letter-spacing:3px;margin-bottom:12px;
+  }
+  .biz-card p{font-size:16px;color:var(--ink-sub);line-height:1.9;margin-bottom:16px}
+  .biz-sub{
+    list-style:none;padding:0;display:flex;flex-wrap:wrap;gap:8px;justify-content:center;
+    border-top:1px solid var(--line);padding-top:16px;margin-top:4px;
+  }
+  .biz-sub li{
+    font-size:14px;color:var(--ink-sub);padding:2px 10px;
+    border:1px solid var(--line);border-radius:2px;
+  }
+  .tag-note{color:var(--gold);font-size:12px;margin-left:4px}
+
+  /* ====== Decorative separator ====== */
+  .ornament{
+    text-align:center;padding:16px 0;color:var(--line-strong);
+    font-size:14px;letter-spacing:6px;
+    transition:opacity .6s,color .6s;
+  }
+
+  /* ====== Master ====== */
+  .master-block{max-width:860px;margin:0 auto}
+  .master-layout{display:grid;grid-template-columns:220px 1fr;gap:48px;align-items:start}
+  .master-photo{
+    width:200px;height:240px;margin:0 auto;overflow:hidden;
+    border:2px solid var(--line);
+    transition:transform .5s cubic-bezier(.22,1,.36,1),border-color .5s;
+    cursor:default;
+  }
+  .master-photo:hover,
+  .master-photo.hover-touch{
+    transform:scale(1.04);
+    border-color:var(--brand);
+  }
+  .master-photo img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .6s cubic-bezier(.22,1,.36,1)}
+  .master-photo:hover img,
+  .master-photo.hover-touch img{transform:scale(1.06)}
+  .master-photo .ph-icon{font-size:36px;opacity:.25}
+  .master-info h3{
+    font-family:'Noto Serif TC',serif;
+    font-size:28px;color:var(--ink);font-weight:300;letter-spacing:2px;margin-bottom:4px;
+  }
+  .master-info .dharma{
+    font-size:15px;color:var(--gold);letter-spacing:3px;margin-bottom:18px;
+  }
+  .master-info .titles{
+    font-size:16px;color:var(--ink-sub);line-height:2.2;margin-bottom:20px;
+    padding-bottom:20px;border-bottom:1px solid var(--line);
+  }
+  .master-bio{font-size:16px;color:var(--ink-sub);line-height:2.1}
+  .master-bio p{margin-bottom:20px}
+
+  /* ====== Certificate ====== */
+  .cert-card{
+    text-align:center;padding:0;
+    border:none;background:transparent;
+    display:flex;flex-direction:column;align-items:center;gap:14px;
+    transition:transform .5s;
+  }
+  .cert-card:hover,
+  .cert-card.hover-touch{transform:scale(1.02);box-shadow:none}
+  .cert-card .cert-icon{font-size:48px;opacity:.22;color:var(--brand)}
+  .cert-card .cert-label{
+    font-family:'Noto Serif TC',serif;
+    font-size:16px;color:var(--ink-sub);letter-spacing:3px;
+  }
+
+  /* ====== bg-layer ====== */
+  .bg-layer{
+    position:relative;
+  }
+  .bg-layer::before{
+    content:'';position:absolute;top:0;left:0;width:100%;height:100%;
+    background:linear-gradient(180deg,rgba(252,250,247,.88) 0%,rgba(252,250,247,.78) 20%,rgba(252,250,247,.78) 80%,rgba(252,250,247,.88) 100%);
+    z-index:1;
+  }
+  .bg-layer>*{position:relative;z-index:2}
+  .bg-layer .sec-head .wm-char{z-index:0}
+
+  /* ====== Footer ====== */
+  .ft{background:var(--brand-deep);color:rgba(255,255,255,.55);padding:60px 40px 40px;text-align:center}
+  .ft-inner{max-width:900px;margin:0 auto}
+  .ft h4{color:var(--white);margin-bottom:8px;font-size:16px;letter-spacing:4px;font-weight:600}
+  .ft p{font-size:15px;line-height:2}
+  .ft-bottom{margin-top:36px;font-size:14px;color:rgba(255,255,255,.3)}
+
+  /* ====== Mobile ====== */
+  @media(max-width:768px){
+    .top-bar{padding:14px 24px}
+    .hero-content{padding:100px 24px 60px}
+    .hero-taiji{width:min(400px,70vw);height:min(400px,70vw);right:-15%;opacity:.06}
+    .hero .tri{gap:16px;flex-wrap:wrap;font-size:15px}
+    .hero .tri span{padding:0 8px}
+    .concept-row{grid-template-columns:1fr;gap:16px}
+    .concept-card{padding:48px 20px 32px;min-height:280px}
+    .concept-card .char{font-size:56px}
+    .biz-dual{grid-template-columns:1fr;gap:24px}
+    .biz-card{padding:40px 28px}
+    .biz-sub li{font-size:13px;padding:2px 8px}
+    .master-layout{grid-template-columns:1fr;text-align:center;gap:28px}
+    .master-photo{margin:0 auto}
+    section{padding:60px 0}
+    .sec-head .wm-char{font-size:30vw;opacity:.06;right:calc((100vw - 100%) / -2);top:0;transform:translateY(-30%)}
+    .stamp{right:20px;width:60px;height:60px;top:-30px}
+    .section-mark{display:none}
+    .biz-claim{font-size:24px;letter-spacing:2px;white-space:nowrap}
+    .sec-head h2{font-size:24px}
+    .quote-inline{font-size:17px;padding:24px 0}
+    .cert-dual{grid-template-columns:1fr;gap:24px}
+  }
+</style>
+<noscript><style>.reveal{opacity:1!important;transform:none!important}</style></noscript>
+</head>
+<body>
+
+<!-- ====== Top Bar ====== -->
+<div class="top-bar">
+  <div class="top-bar-inner">
+  <div class="brand"><a href="#" onclick="window.scrollTo({top:0,behavior:'smooth'});return false"><img src="img/logo-taichi.png" alt="千峰先天派" style="height:36px;width:auto;display:block"></a></div>
+  <div class="nav-menu">
+    <button class="nav-trigger">集冉文化（香港）<span class="arrow">▾</span></button>
+    <div class="nav-dropdown">
+      <a href="index.html">首页</a>
+      <a href="alchemy.html">中醫美</a>
+      <a href="taichi-ortho.html" class="active">非遺正骨</a>
+      <a href="wellness-products.html">康養產品</a>
+    </div>
+  </div>
+  </div>
+</div>
+
+<!-- ====== HERO — two equals ====== -->
+<section class="hero" style="z-index:6">
+  <div class="hero-bg"></div>
+  <img class="hero-taiji" src="svg/taiji.svg" alt="">
+  <div class="hero-content">
+    <div class="hero-school">— 道門全真 · 千峰先天派 —</div>
+    <h1 class="title-green">太乙正骨<span class="pivot">·</span>微雕</h1>
+    <div class="tri"><span>正骨骼</span><span>通氣機</span><span>顯神相</span></div>
+    <div class="hero-heritage">非物質文化遺產</div>
+  </div>
+  <div class="hero-scroll"><img class="vline" src="svg/palm.svg" alt=""><span class="scroll-text">下滑</span></div>
+</section>
+
+<!-- ====== 壹 · 骨正筋柔 ====== -->
+<section style="position:relative;z-index:5">
+  <div class="sec-inner wide" style="position:relative;z-index:1">
+    <div class="sec-head reveal">
+      <span class="wm-char">先天</span>
+      <div class="tag">道法自然</div>
+      <h2 class="title-green">骨正筋柔，氣血以流</h2>
+      <div class="cite-src">——《黃帝內經》</div>
+    </div>
+
+    <!-- 形氣神 cards -->
+    <div class="concept-row">
+      <div class="concept-card reveal d1">
+        <div class="char">形</div>
+        <h4>物質形體</h4>
+        <p>骨為框架</p>
+      </div>
+      <div class="concept-card reveal d2">
+        <div class="char">氣</div>
+        <h4>無形能量</h4>
+        <p>連接形與神</p>
+      </div>
+      <div class="concept-card reveal d3">
+        <div class="char">神</div>
+        <h4>精神意識</h4>
+        <p>生命主宰</p>
+      </div>
+    </div>
+
+    <div class="prose">
+      <p class="reveal">道法自然。</p>
+      <p class="reveal">道門認為，人由形、氣、神三個部分組成。「形」指物質形體，「氣」為連接形與神的無形能量，「神」則代表精神意識與生命主宰。氣為運行媒介，神為調控核心。</p>
+      <p class="reveal">道家全真千峰先天派非遺正骨（太乙正骨、微雕），著眼「形」的框架——骨，骨正自然氣順，氣推血順則神通。神性通方顯人「先天健康、神相為美」的本來狀態。</p>
+      <p class="reveal">太乙正骨不治病，而是通過正骨使氣順，從而重啓每個人都有的自養自愈能力。氣到血到，氣血俱到百病消。</p>
+    </div>
+  </div>
+</section>
+
+<div class="ornament reveal">⟡</div>
+
+<!-- ====== 貳 · 人之所有者 ====== -->
+<section class="alt bg-layer" style="overflow:hidden;z-index:4;padding-top:150px;padding-bottom:150px">
+  <div class="sec-inner">
+    <div class="sec-head reveal">
+      <span class="wm-char">氣血</span>
+      <div class="tag">氣血之道</div>
+      <h2 class="title-green">人之所有者，血與氣耳</h2>
+      <div class="cite-src">——《黃帝內經》</div>
+    </div>
+    <div class="prose">
+      <p class="reveal">氣為血之帥，血為氣之母。氣推動血液循經骨骼經絡到達五臟。骨骼偏歪會造成氣血阻滯，而氣血不足就如汽車虧油，沒力氣、跑不動、沒神采，久而久之會導致全身各部位的機能下降，甚至積疾。所以中醫有「氣血通，百病消」的說法。</p>
+    </div>
+  </div>
+</section>
+
+<div class="ornament reveal">⟡</div>
+
+<!-- ====== 參 · 人之生 ====== -->
+<section style="position:relative;z-index:3">
+  <div class="sec-inner" style="position:relative;z-index:1">
+    <div class="sec-head reveal">
+      <span class="wm-char">命·運</span>
+      <div class="tag">第二生命線</div>
+      <h2 class="title-green">人之生，氣之聚</h2>
+      <div class="cite-src">——《莊子 · 知北遊》</div>
+    </div>
+    <div class="prose">
+      <p class="reveal">骨之主——脊柱，是人的第二生命線，其上「掛」著人體五臟，並起到為臟器提供支撐、減震緩衝、空間區隔的作用。脊柱的偏歪勞損導致臟器失位從而喪失氣機。</p>
+      <p class="reveal">輕者表現如：</p>
+      <ul class="bullet-list reveal">
+        <li>面色異常</li><li>頭腦昏沈</li><li>失眠嗜睡</li>
+        <li>消極悲觀</li><li>焦慮內耗</li><li>胸悶心悸氣短</li>
+      </ul>
+      <p class="reveal">重則容易顯化為具體疾病，進而影響到個人生命氣運。</p>
+    </div>
+  </div>
+</section>
+
+<!-- ====== 業務 + 主張 ====== -->
+<section class="alt" style="padding-bottom:140px;z-index:2">
+  <div class="sec-inner wide">
+    <div class="biz-block">
+      <div class="biz-claim reveal title-green">
+        先天健康<span class="divider">·</span>神相為美
+      </div>
+
+  
+
+      <div class="biz-dual">
+        <div class="biz-card reveal d1">
+          <div class="seal"></div>
+          <div class="icon">⟐</div>
+          <div class="label">先天健康</div>
+          <h3>正骨</h3>
+          <p>將骨骼復位到先天位置<br>打通氣機</p>
+          <ul class="biz-sub">
+            <li>富貴枕</li><li>頸椎偏歪/前傾</li><li>脊柱偏歪、唔對稱</li>
+            <li>寒背/弓背/身形臃腫</li><li>高低膊</li>
+            <li>盆骨前傾</li><li>O形腳</li><li>長短腳</li>
+            <li>肋骨外翻</li><li>跌胯</li>
+            <li>肩周炎/五十肩</li><li>肩部僵硬、疼痛</li><li>鍵盤手/網球肘/關節疼痛</li>
+          </ul>
+        </div>
+        <div class="biz-card reveal d2">
+          <div class="seal"></div>
+          <div class="icon">◎</div>
+          <div class="label">神相為美</div>
+          <h3>正顏微雕</h3>
+          <p>引領氣血<br>顯化個體自然神性之美</p>
+          <ul class="biz-sub">
+            <li>習慣性下巴咬合異常</li>
+            <li>臉嘴鼻偏歪/唔對稱</li><li>大細眼</li><li>大細面</li>
+            <li>高低眉</li><li>長短下巴/凸嘴微調</li>
+            <li>面型/唇形微調</li><li>淡化法令紋/川字紋/鼻樑橫紋</li>
+            <li>鼻型重塑</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="ornament reveal" style="margin-top:-60px;padding-bottom:40px">⟡</div>
+
+<!-- ====== 師父 ====== -->
+<section style="z-index:1">
+  <div class="sec-inner">
+    <div class="sec-head" style="text-align:center">
+      <div class="tag reveal">傳承</div>
+    </div>
+    <div class="master-block">
+      <div class="master-layout">
+        <div class="master-photo reveal d1">
+          <img src="img/master-photo.jpg" alt="於文水師父">
+        </div>
+        <div class="master-info reveal d2">
+          <h3>於文水</h3>
+          <div class="dharma">號：先水子</div>
+          <div class="titles">
+            道家全真千峰先天派第三代傳人<br>
+            道家龍門派第十三代傳人<br>
+            道醫按摩正骨非遺傳承人
+          </div>
+          <div class="master-bio">
+            <p>1980 年拜師牛勝先老先生，學習太極、八卦掌等功法，並屢獲比賽殊榮。97 年拜著名軍醫脊椎病專家——高宇先生為師，系統學習脊椎整復技術。06 年，因機緣入室道家千峰先天派，隨千峰先天派掌門席春生老師學習道家脊椎理療、內丹養生術，並整合貫通。</p>
+            <p>1998 年自天津解放橋醫院開始從醫，00~03 年在北京紅十字會醫院、北京科技大學醫院坐診。04 年開始常出訪於香港、澳門、中國台灣、馬來西亞、東南亞等國並設立多個工作室，至今整復 3萬+人次。曾為數位一線港台大陸明星，香港四大富豪家族、文萊皇室、國內政商名人調理康復，得到極高聲譽。疫情前回國，把技術回向給國內廣大群眾，以幫助更多人遠離脊椎問題的痛苦。</p>
+            <p>2020~2023 年閉關悟道。2025 年被道家全真千峰先天派，北京市非遺項目《道醫按摩正骨》授予代表性傳承人。</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ====== 非遺證書 ====== -->
+<section class="alt">
+  <div class="sec-inner">
+    <div class="sec-head" style="text-align:center">
+      <div class="tag reveal">非物質文化遺產</div>
+      <h2 class="reveal">道醫按摩正骨、内丹术</h2>
+    </div>
+    <div class="cert-dual" style="display:grid;grid-template-columns:repeat(2,1fr);gap:32px;max-width:860px;margin:0 auto">
+      <div class="cert-card reveal d1">
+        <img src="img/cert-zhenggu.jpg" alt="道醫按摩正骨非遺證書" style="width:100%;height:auto;display:block">
+        <div class="cert-label">道醫按摩正骨</div>
+      </div>
+      <div class="cert-card reveal d2">
+        <img src="img/cert-neidan.jpg" alt="內丹養生非遺證書" style="width:100%;height:auto;display:block">
+        <div class="cert-label">內丹養生</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ====== Footer ====== -->
+<footer class="ft">
+  <div class="ft-inner">
+    <h4>道門全真 · 千峰先天派</h4>
+
+    <div class="ft-bottom">©2026 集冉文化（香港）</div>
+  </div>
+</footer>
+
+<script>
+// === Reveal on scroll ===
+if(typeof IntersectionObserver!=='undefined'){
+  var observer=new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible')});
+  },{threshold:.1,rootMargin:'0px 0px -40px 0px'});
+  document.querySelectorAll('.reveal').forEach(el=>observer.observe(el));
+}else{
+  document.querySelectorAll('.reveal').forEach(function(el){el.classList.add('visible')});
+}
+
+// === Watermark parallax ===
+(function(){
+  var wmChars=document.querySelectorAll('.wm-char');
+  if(!wmChars.length)return;
+  var ticking=false;
+  function updateWatermarks(){
+    var sTop=window.pageYOffset||document.documentElement.scrollTop;
+    var wh=window.innerHeight;
+    wmChars.forEach(function(char){
+      var secHead=char.parentElement;
+      var rect=secHead.getBoundingClientRect();
+      var secTop=rect.top+sTop;
+      var secMid=secTop+rect.height/2;
+      var scrollDist=sTop+wh/2-secMid;
+      var shift=scrollDist*.20;
+      char.style.transform='translateY(calc(-30% + '+shift+'px))';
+    });
+    ticking=false;
+  }
+  window.addEventListener('scroll',function(){
+    if(!ticking){requestAnimationFrame(updateWatermarks);ticking=true;}
+  },{passive:true});
+  updateWatermarks();
+})();
+
+// === Taiji scroll rotation ===
+(function(){
+  var taiji=document.querySelector('.hero-taiji');
+  if(!taiji)return;
+  var ticking=false;
+  function rotateTaiji(){
+    var sTop=window.pageYOffset||document.documentElement.scrollTop;
+    var deg=sTop*.16;
+    taiji.style.transform='translateY(-50%) rotate('+deg+'deg)';
+    ticking=false;
+  }
+  window.addEventListener('scroll',function(){
+    if(!ticking){requestAnimationFrame(rotateTaiji);ticking=true;}
+  },{passive:true});
+})();
+
+// === Hero scroll indicator: hide when scrolled ===
+(function(){
+  var hs=document.querySelector('.hero-scroll');
+  if(!hs)return;
+  window.addEventListener('scroll',function(){
+    var sTop=window.pageYOffset||document.documentElement.scrollTop;
+    hs.style.opacity=sTop>10?'0':'.5';
+  },{passive:true});
+})();
+
+// === Ornament glow on approach ===
+if(typeof IntersectionObserver!=='undefined'){
+  var ornObserver=new IntersectionObserver((entries)=>{
+    entries.forEach(function(e){
+      e.target.style.opacity=e.isIntersecting?'1':'.25';
+      e.target.style.color=e.isIntersecting?'':'var(--line-strong)';
+    });
+  },{threshold:.5});
+  document.querySelectorAll('.ornament').forEach(function(el){
+    el.style.opacity='.25';
+    ornObserver.observe(el);
+  });
+}
+
+// === Nav menu mobile toggle ===
+(function(){
+  var menu=document.querySelector('.nav-menu');
+  var trigger=menu&&menu.querySelector('.nav-trigger');
+  if(!trigger)return;
+  trigger.addEventListener('click',function(e){
+    e.preventDefault();
+    menu.classList.toggle('active');
+  });
+  document.addEventListener('click',function(e){
+    if(!menu.contains(e.target))menu.classList.remove('active');
+  });
+})();
+
+// === Scroll-triggered hover touch (mobile only) ===
+if(typeof IntersectionObserver!=='undefined' && window.innerWidth<=768){
+  var touchTargets=document.querySelectorAll('.concept-card,.biz-card,.master-photo,.cert-card');
+  var touchObs=new IntersectionObserver((entries)=>{
+    entries.forEach(function(e){
+      if(e.isIntersecting){
+        e.target.classList.add('hover-touch');
+      }else{
+        e.target.classList.remove('hover-touch');
+      }
+    });
+  },{threshold:.6,rootMargin:'0px 0px -30% 0px'});
+  touchTargets.forEach(function(el){touchObs.observe(el)});
+}
+</script>
+</body>
+</html>
