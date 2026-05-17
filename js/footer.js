@@ -6,7 +6,6 @@
         <div class="ft-brand">
           <img src="img/logo.png" alt="德醫美 Alchemy">
           <div class="ft-en">Alchemy · 中醫美</div>
-          <a href="index.html" style="color:var(--gold,#c9a96e);font-size:14px;text-decoration:none;display:inline-block;margin-top:4px;transition:opacity .3s" onmouseover="this.style.opacity='.7'" onmouseout="this.style.opacity='1'">集冉文化（香港）</a>
         </div>
         <div class="ft-cols">
           <div class="ft-col">
@@ -34,7 +33,7 @@
             </div>
         </div>
       </div>
-      <div class="ft-bottom">&copy; 2026 集冉文化（香港）. All rights reserved.</div>
+      <div class="ft-bottom">&copy; 2024~2026 <a href="index.html" style="color:rgba(255,255,255,.35);text-decoration:none">集冉文化（香港）</a> All rights reserved.</div>
     </div>
   </footer>`;
 
