@@ -50,7 +50,7 @@
       .ft-cols{display:flex;gap:80px}
       .ft-col h4{color:var(--white,#fff);margin-bottom:24px;font-size:16px;letter-spacing:4px;font-weight:600}
       .ft-col p,.ft-col a{display:block;color:rgba(255,255,255,.55);font-size:16px;text-decoration:none;line-height:2.2;transition:color .3s}
-      .ft-bottom{text-align:center;font-size:14px;color:rgba(255,255,255,.35);padding-top:0;border-top:none}
+      .ft-bottom{text-align:left;font-size:14px;color:rgba(255,255,255,.35);padding-top:0;border-top:none}
       .social-icons{display:flex;gap:12px;margin-top:8px}
       .social-icons a{color:rgba(255,255,255,.5);transition:color .3s;display:flex;align-items:center;width:20px;height:20px;flex-shrink:0}
       .social-icons a:hover{color:var(--gold,#c9a96e);padding-left:0}
