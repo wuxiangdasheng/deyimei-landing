@@ -165,11 +165,11 @@
 
   /* ── Section seal (bottom-right corner) ── */
   .section-seal{
-    position: absolute; right: 40px; bottom: 60px;
-    width: 56px; height: 78px; z-index: 2;
+    display: flex; justify-content: flex-end;
+    margin-top: 24px;
   }
   .section-seal img{
-    display: block; width: 100%; height: 100%; object-fit: contain;
+    width: 56px; height: 78px; object-fit: contain;
   }
 
   /* ═══ GEOMETRIC DIVIDER ═══ */
@@ -405,7 +405,6 @@
     .container { padding: 0 24px; }
     section { padding: 60px 0; }
     .regimen-grid{ grid-template-columns: 1fr; }
-    .section-seal{ right:24px; bottom:40px; }
     .image-full .logo-overlay{ width:min(120px,24vw); }
 
     /* ── Hamburger ── */
@@ -538,8 +537,8 @@
         <a href="#" class="arrow-link">→</a>
       </div>
     </div>
+    <div class="section-seal"><img src="assets/yi.png" alt="醫"></div>
   </div>
-  <div class="section-seal"><img src="assets/yi.png" alt="醫"></div>
 </section>
 
 
@@ -581,8 +580,8 @@
         <p>骨氣血三元調養同步疏解情志內耗，鬆開所有精神枷鎖，內心豐盈從容、鬆弛自由。</p>
       </div>
     </div>
+    <div class="section-seal"><img src="assets/mei.png" alt="美"></div>
   </div>
-  <div class="section-seal"><img src="assets/mei.png" alt="美"></div>
 </section>
 
 <!-- ═══════════════ FOOTER ═══════════════ -->
