@@ -461,7 +461,7 @@
 
 <!-- ═══════════════ HERO IMAGE ═══════════════ -->
 <div class="image-full reveal">
-  <img src="assets/sec_hero.png" alt="德醫美——骨·氣·血，由內而外的調養之美" loading="eager">
+  <img src="assets/sec_hero.png" alt="德醫美——骨·氣·血，由內而外的調養之美" loading="eager" class="parallax-img">
 </div>
 
 <!-- ═══════════════ HERO ═══════════════ -->
@@ -488,7 +488,7 @@
 
 <!-- ═══════════════ FULL-WIDTH IMAGE ═══════════════ -->
 <div class="image-full reveal" style="position:relative;">
-  <img src="assets/sec_products.jpg" alt="德醫美·調養體系" loading="lazy">
+  <img src="assets/sec_products.jpg" alt="德醫美·調養體系" loading="lazy" class="parallax-img">
   <img src="assets/logo-2.png" alt="德醫美" class="logo-overlay" style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:min(108px,17vw);height:auto;z-index:2;filter:drop-shadow(0 2px 12px rgba(0,0,0,0.15));">
 </div>
 
@@ -560,7 +560,7 @@
 
 <!-- ═══════════════ FULL-WIDTH IMAGE ═══════════════ -->
 <div class="image-full reveal">
-  <img src="assets/sec_value1.png" alt="形神共生·悅己歸心" loading="lazy">
+  <img src="assets/sec_value1.png" alt="形神共生·悅己歸心" loading="lazy" class="parallax-img">
 </div>
 
 <!-- ═══════════════ 形神共生 ═══════════════ -->
@@ -639,7 +639,7 @@
 
 /* ─── Image Parallax ─── */
 (function(){
-  var imgs=document.querySelectorAll('.image-full img');
+  var imgs=document.querySelectorAll('.image-full .parallax-img');
   var ticking=false;
   window.addEventListener('scroll',function(){
     if(!ticking){requestAnimationFrame(function(){
