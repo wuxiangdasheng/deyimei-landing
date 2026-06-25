@@ -6,7 +6,7 @@
 <title>德醫美 · 漢方中醫美</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@300;400;500;600;700&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@300;400;500;600;700&family=Great+Vibes&family=Tangerine:wght@400;700&display=swap" rel="stylesheet">
 <style>
 
   :root {
@@ -26,7 +26,7 @@
     --white:      #ffffff;
 
     --font-cn: 'Noto Serif SC', 'Songti SC', 'STSong', 'SimSun', serif;
-    --font-en: 'Cormorant Garamond', Georgia, 'Times New Roman', serif;
+    --font-en: 'Great Vibes', 'Tangerine', 'Georgia', serif;
 
     --max-w: 1200px;
     --ease: cubic-bezier(0.19, 1, 0.22, 1);
@@ -91,7 +91,7 @@
   }
   .sec-label .tag{
     font-size: 0.8rem; letter-spacing: 0.28em; color: var(--primary-dim);
-    font-family: var(--font-en); text-transform: uppercase; white-space: nowrap;
+    font-family: 'Cormorant Garamond', Georgia, serif; text-transform: uppercase; white-space: nowrap;
   }
   .sec-label::after{
     content: ''; flex: 1; height: 1px; background: var(--primary-light);
@@ -341,7 +341,7 @@
     display: flex; align-items: center; gap: 2rem; margin-bottom: 3rem;
     position: relative; z-index: 1;
   }
-  footer .f-brand { font-size: 2rem; font-weight: 200; letter-spacing: .15em; color: var(--white); font-family: var(--font-en); }
+  footer .f-brand { font-size: 2rem; font-weight: 200; letter-spacing: .15em; color: var(--white); font-family: 'Cormorant Garamond', Georgia, serif; }
   footer .f-vert {
     writing-mode: vertical-rl; font-size: .875rem; letter-spacing: .15em;
     color: var(--primary-light); line-height: 2.5; font-family: var(--font-cn);
@@ -531,32 +531,6 @@
   </div>
 </section>
 
-<!-- ═══════════════ 產品展示 ═══════════════ -->
-<section class="sec-alt">
-  <div class="container">
-    <div class="sec-label reveal">
-      <span class="tag">Signature Collection</span>
-    </div>
-    <div class="prod-grid reveal reveal-d1">
-      <div class="prod-featured" style="background-image:url('assets/sec_products.jpg');">
-        <span class="p-name">五行藥灸</span>
-        <span class="p-desc">以灸溫陽、精油行氣、循經入臟補氣行氣化氣</span>
-      </div>
-      <div class="prod-featured" style="background-image:url('assets/sec_value2_3.jpg');">
-        <span class="p-name">脾 胃 丸</span>
-        <span class="p-desc">專治不吸收</br>胃酸胃脹、助消化</span>
-      </div>
-      <div class="prod-featured" style="background-image:url('assets/sec_hero.jpg');">
-        <span class="p-name">熬 夜 丸</span>
-        <span class="p-desc">熬夜救星，清肝排毒</br>代謝痩肚、提亮膚色</span>
-      </div>
-      <div class="prod-featured" style="background-image:url('assets/sec_value4_footer.jpg');">
-        <span class="p-name">駐 顏 丹</span>
-        <span class="p-desc">補氣血專屬</br>卵巢早衰、月經不調、臉色暗沉</span>
-      </div>
-    </div>
-  </div>
-</section>
 
 <!-- ═══════════════ FULL-WIDTH IMAGE ═══════════════ -->
 <div class="image-full reveal">
@@ -647,7 +621,7 @@
       imgs.forEach(function(img){
         var r=img.getBoundingClientRect();
         if(r.bottom>0&&r.top<window.innerHeight){
-          img.style.transform='translateY('+((r.top/window.innerHeight-.5)*24)+'px)';
+          img.style.transform='translateY('+((r.top/window.innerHeight-.5)*48)+'px)';
         }
       });
       ticking=false;
