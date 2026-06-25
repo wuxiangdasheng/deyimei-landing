@@ -406,6 +406,22 @@
     .container { padding: 0 24px; }
     section { padding: 60px 0; }
     .regimen-grid{ grid-template-columns: 1fr; }
+
+    /* ── Mobile touch effects (replace hover) ── */
+    .reg-item:active{ background-color: rgba(180,151,110,0.08); transform: scale(0.97); transition: all .15s; }
+    .reg-item .arrow-link{ transition: all .2s; }
+    .reg-item .arrow-link:active{ background: var(--gold); color: var(--white); transform: scale(1.15); }
+    .value-card:active{ background: var(--paper-dim); transform: scale(0.97); transition: all .15s; }
+    .nav-desktop a:active{ color: var(--primary); }
+
+    @keyframes subtlePulse{
+      0%,100%{ box-shadow: 3px 3px 0 rgba(68,28,100,.04), 6px 6px 12px rgba(68,28,100,.03); }
+      50%{ box-shadow: 3px 3px 0 rgba(180,151,110,.06), 6px 6px 16px rgba(180,151,110,.04); }
+    }
+    .reg-item{ animation: subtlePulse 4s ease-in-out infinite; }
+    .reg-item:nth-child(2){ animation-delay: 1s; }
+    .reg-item:nth-child(3){ animation-delay: 2s; }
+    .reg-item:nth-child(4){ animation-delay: 3s; }
     .image-full .logo-overlay{ width:min(120px,24vw); }
 
     /* ── Hamburger ── */
