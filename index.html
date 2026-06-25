@@ -396,6 +396,7 @@
     .container { padding: 0 24px; }
     section { padding: 60px 0; }
     .regimen-grid{ grid-template-columns: 1fr; }
+    .image-full .logo-overlay{ width:min(120px,24vw); }
 
     /* ── Hamburger ── */
     .hamburger{
@@ -459,8 +460,9 @@
 </div>
 
 <!-- ═══════════════ HERO IMAGE ═══════════════ -->
-<div class="image-full reveal">
+<div class="image-full reveal" style="position:relative;">
   <img src="assets/sec_hero.png" alt="德醫美——骨·氣·血，由內而外的調養之美" loading="eager">
+  <img src="assets/logo-2.png" alt="德醫美" class="logo-overlay" style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:min(180px,28vw);height:auto;z-index:2;filter:drop-shadow(0 2px 12px rgba(0,0,0,0.15));">
 </div>
 
 <!-- ═══════════════ HERO ═══════════════ -->
@@ -483,27 +485,7 @@
   </div>
 </section>
 
-<!-- ═══════════════ 核心根基 ═══════════════ -->
-<section class="sec-alt" style="position:relative;overflow:hidden;">
-  <span class="char-bg" style="right:-4%;top:-3%;">元</span>
-  <div class="container">
-    <div class="sec-label reveal">
-      <span class="tag">Core Foundation</span>
-    </div>
-    <div class="brand-intro">
-      <div class="brand-intro-left reveal reveal-d1">
-       
-        <h2>核心根基<br>骨·氣·血 三元合一</h2>
-        <div class="en-caption">Core Foundation — Bone, Qi &amp; Blood in Unity</div>
-        <p>德醫美以中醫「骨、氣、血」三元合一為核心，針對女性全身抗衰＋面部養顏。三者互生：骨生氣 → 氣行血 → 血養骨，形成完整生命閉環。</p>
-      </div>
-      <div class="brand-intro-right reveal reveal-d2">
-        <img src="assets/sec_triangle.png" alt="骨·氣·血三元合一" class="intro-img" loading="lazy">
-        <div class="cycle-note">骨生氣&ensp;→&ensp;氣行血&ensp;→&ensp;血養骨&ensp;，形成完整生命閉環</div>
-      </div>
-    </div>
-  </div>
-</section>
+<!-- ═══════════════ 核心根基（已移除） ═══════════════ -->
 
 <!-- ═══════════════ FULL-WIDTH IMAGE ═══════════════ -->
 <div class="image-full reveal">
