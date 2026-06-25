@@ -621,7 +621,7 @@
       imgs.forEach(function(img){
         var r=img.getBoundingClientRect();
         if(r.bottom>0&&r.top<window.innerHeight){
-          img.style.transform='translateY('+((r.top/window.innerHeight-.5)*48)+'px)';
+          img.style.transform='translateY('+((r.top/window.innerHeight-.5)*32)+'px)';
         }
       });
       ticking=false;
