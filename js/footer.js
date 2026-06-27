@@ -33,7 +33,7 @@
             </div>
         </div>
       </div>
-      <div class="ft-bottom">&copy; 2024~2026 <a href="index.html" style="color:rgba(255,255,255,.35);text-decoration:none">集冉文化（香港）</a> All rights reserved.</div>
+      <div class="ft-bottom">&copy; 2024~2026 <a href="index.html" style="color:rgba(255,255,255,.35);text-decoration:none">德醫美 All rights reserved.</div>
     </div>
   </footer>`;
 
