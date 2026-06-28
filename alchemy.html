@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>德醫美 · 漢方中醫美</title>
+<title>德醫美·汉方中医美</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@300;400;600;700&display=swap" rel="stylesheet">
@@ -76,7 +76,7 @@
   .hero-actions{display:flex;gap:20px;flex-wrap:wrap;position:relative;opacity:0;animation:fadeUp 1.4s 1.2s cubic-bezier(.22,1,.36,1) forwards}
   .btn-ink{
     display:inline-flex;align-items:center;gap:10px;
-    padding:14px 34px;background:var(--gold);color:var(--brand);
+    padding:10px 34px;background:var(--gold);color:var(--brand);
     text-decoration:none;font-size:15px;font-weight:600;letter-spacing:2px;
     transition:all .35s cubic-bezier(.4,0,.2,1);
     font-family:'Noto Serif SC',serif;
@@ -94,7 +94,7 @@
   .hero-scroll{
     position:absolute;bottom:48px;left:50%;transform:translateX(-50%);z-index:2;
     display:flex;flex-direction:column;align-items:center;
-    color:var(--gold);font-size:12px;letter-spacing:1px;opacity:.7;
+    color:var(--gold);font-size:14px;letter-spacing:1px;opacity:.7;
   }
   .hero-scroll .vline{
     width:1px;height:20px;
@@ -126,7 +126,7 @@
 
   /* ====== Philosophy ====== */
   .philosophy{background:var(--white)}
-  .phil-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line)}
+  .phil-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line);position:relative}
   .phil-cell{
     background:var(--white);padding:64px 40px;text-align:center;
     transition:background .4s;position:relative;
@@ -214,6 +214,20 @@
   .svc-swipe-hint{display:none;justify-content:space-between}
   .svc-swipe-hint .swipe-left{display:none}
   .svc-swipe-hint .swipe-right{display:none}
+
+  .svc-cta{display:flex;justify-content:flex-end;margin-top:36px}
+  .btn-booking{
+    display:inline-flex;align-items:center;justify-content:center;
+    padding:14px 52px;
+    background:var(--white);
+    border:1px solid var(--gold);
+    color:var(--gold);
+    text-decoration:none;font-size:16px;
+    font-weight:500;letter-spacing:4px;
+    font-family:'Noto Serif SC',serif;
+    transition:all .3s;
+  }
+  .btn-booking:hover{background:var(--gold);color:var(--white)}
 
   /* ====== Core Values ====== */
   .core-values .value-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:20px}
@@ -320,10 +334,18 @@
 
   /* ====== Herb decorations ====== */
   .herb-deco{position:absolute;pointer-events:none;z-index:0}
-  .herb-deco.ginseng{right:2%;bottom:5%;width:320px;height:380px;opacity:.7}
+  .herb-deco.ginseng{
+    right:5%;bottom:80px;
+    width:56px;height:56px;
+    display:flex;align-items:center;justify-content:center;z-index:1;
+  }
+  .herb-deco.ginseng img{
+    display:block;width:100%;height:100%;
+    object-fit:contain;opacity:.7;
+  }
   .herb-deco.goji{right:5%;top:4%;width:300px;height:180px;opacity:.65}
   @media(max-width:768px){
-    .herb-deco.ginseng{width:180px;height:220px;right:0;bottom:2%}
+    .herb-deco.ginseng{width:56px;height:56px;right:5%;bottom:40px}
     .herb-deco.goji{width:180px;height:110px;right:0;top:2%}
   }
 
@@ -385,53 +407,18 @@
   <canvas class="hero-video" id="hero-canvas"></canvas>
   <div class="hero-overlay"></div>
   <div class="hero-content">
-    <div class="hero-tag">德醫美 · 漢方中醫美</div>
-    <h1>精炁神理<em>德醫之美</em></h1>
+    <div class="hero-tag">德醫美</div>
+    <h1>以德匠心<em>賦美時光</em></h1>
     <p class="sub">先醫療，後醫美。四診評估面部「症/態/形/狀」，以微針/埋線通經絡、理肌膚，喚發身體自癒力，循表及裏還原皮膚先天健康狀態</p>
     <div class="hero-actions">
-      <a href="#services" class="btn-ink">中醫美預約</a>
-      <a href="http://sj20655dym.sj168.top/pages/shop/index/index" class="btn-line">商品購買</a>
+      <a href="https://s.cchkw.com/pages/shop/index/diypage?pageid=14" class="btn-ink">預約</a>
     </div>
   </div>
   <div class="hero-scroll"><span>scroll</span><div class="vline"></div></div>
 </section>
 
 <!-- ====== Philosophy ====== -->
-<section class="philosophy" style="position:relative;overflow:hidden">
-  <svg class="herb-deco ginseng" viewBox="0 0 320 400" xmlns="http://www.w3.org/2000/svg">
-    <g stroke="#c9a96e" fill="none" stroke-linecap="round" stroke-linejoin="round">
-      <!-- main body -->
-      <path d="M160 380 C155 340,145 290,155 250 C148 230,135 215,120 210 C105 205,95 195,85 180 C78 168,82 155,95 152 C100 148,108 150,115 155" stroke-width="1.4"/>
-      <path d="M115 155 C105 140,95 125,100 110 C105 98,115 95,120 100 C125 90,135 82,145 85 C155 72,165 68,178 72 C185 60,198 58,205 65 C215 55,228 58,232 68 C240 62,250 65,250 75 C258 80,255 92,248 98 C252 108,248 118,240 125" stroke-width="1.4"/>
-      <!-- right branch -->
-      <path d="M160 250 C175 230,195 220,210 225 C225 230,235 225,240 215 C248 200,250 185,245 170" stroke-width="1.2"/>
-      <path d="M210 225 C218 218,225 215,230 218" stroke-width=".8"/>
-      <circle cx="230" cy="218" r="2" fill="#c9a96e" opacity=".3"/>
-      <!-- left branch -->
-      <path d="M148 280 C135 270,120 268,105 272 C90 278,82 285,75 295" stroke-width="1.2"/>
-      <!-- lower tendrils -->
-      <path d="M160 320 C148 310,135 315,125 325 C118 332,112 340,108 350" stroke-width="1"/>
-      <path d="M160 340 C172 332,185 335,195 345 C202 352,210 358,215 365" stroke-width="1"/>
-      <path d="M155 365 C145 358,132 362,122 372" stroke-width=".8"/>
-      <path d="M165 370 C178 365,190 370,198 378" stroke-width=".8"/>
-      <!-- root hairs -->
-      <path d="M75 295 C68 300,60 308,55 318" stroke-width=".6"/>
-      <path d="M245 170 C252 165,258 158,262 148" stroke-width=".6"/>
-      <path d="M108 350 C102 355,95 360,88 368" stroke-width=".6"/>
-      <path d="M215 365 C220 370,225 378,228 385" stroke-width=".6"/>
-      <!-- top leaves -->
-      <path d="M115 155 C95 130,75 110,55 100" stroke-width="1"/>
-      <path d="M115 155 C100 118,85 95,70 78" stroke-width=".8"/>
-      <path d="M240 125 C258 108,275 95,290 88" stroke-width="1"/>
-      <path d="M240 125 C255 100,268 82,278 68" stroke-width=".8"/>
-      <!-- grain dots -->
-      <circle cx="90" cy="152" r="1.5" fill="#c9a96e" opacity=".25"/>
-      <circle cx="210" cy="162" r="1.5" fill="#c9a96e" opacity=".25"/>
-      <circle cx="145" cy="85" r="1.5" fill="#c9a96e" opacity=".25"/>
-      <circle cx="60" cy="100" r="1.5" fill="#c9a96e" opacity=".25"/>
-      <circle cx="285" cy="88" r="1.5" fill="#c9a96e" opacity=".25"/>
-    </g>
-  </svg>
+<section class="philosophy" style="position:relative">
   <div class="sec-inner">
     <div class="phil-grid">
       <div class="phil-cell reveal reveal-d1">
@@ -454,6 +441,7 @@
       </div>
     </div>
   </div>
+  <div class="herb-deco ginseng"><img src="img/de.png" alt="德"></div>
 </section>
 
 <!-- ====== Core Values ====== -->
@@ -502,7 +490,7 @@
   <div class="sec-inner">
     <div class="sec-head reveal">
       <div class="tag">服務</div>
-      <h2>漢方微針醫美</h2>
+      <h2>漢方中醫美</h2>
       <p class="lead">以中醫微針為核心技術，涵蓋醫療級皮膚治療與醫美級抗衰修復兩大板塊</p>
     </div>
 
@@ -516,20 +504,22 @@
         <div class="svc-card"><span class="badge">Thread Slimming</span><div class="name">埋線減肥</div><div class="desc">以穴位埋線持續刺激經絡，調節食慾與代謝，實現健康減重</div></div>
       </div>
     <div class="svc-swipe-hint"><button class="swipe-btn swipe-left" aria-label="上一张"></button><button class="swipe-btn swipe-right" aria-label="下一张"></button></div>
+    <div class="svc-cta">
+      <a href="https://s.cchkw.com/pages/shop/index/diypage?pageid=14" class="btn-booking">預約→</a>
+    </div>
   </div>
 </section>
 
 <!-- ====== Products ====== -->
-<section class="products" id="products" style="position:relative;overflow:hidden">
+<!-- <section class="products" id="products" style="position:relative;overflow:hidden">
   <svg class="herb-deco goji" viewBox="0 0 300 180" xmlns="http://www.w3.org/2000/svg">
     <g stroke="#c9a96e" fill="none" stroke-linecap="round">
-      <!-- main branch -->
       <path d="M15 90 C30 82, 50 78, 75 72 C100 65, 130 62, 160 68 C185 72, 210 78, 235 75 C255 72, 275 68, 290 62" stroke-width="1.2"/>
       <path d="M160 68 C168 55, 175 42, 178 30" stroke-width="1"/>
       <path d="M210 78 C218 65, 225 52, 230 42" stroke-width="1"/>
       <path d="M75 72 C70 55, 65 42, 58 30" stroke-width=".9"/>
       <path d="M235 75 C242 88, 250 98, 258 105" stroke-width=".9"/>
-      <!-- berries -->
+    
       <circle cx="110" cy="65" r="4.5" fill="#c9a96e" opacity=".3"/>
       <circle cx="108" cy="62" r="2" fill="#c9a96e" opacity=".15"/>
       <circle cx="145" cy="72" r="4" fill="#c9a96e" opacity=".3"/>
@@ -543,20 +533,20 @@
       <circle cx="58" cy="30" r="3.5" fill="#c9a96e" opacity=".25"/>
       <circle cx="260" cy="72" r="4" fill="#c9a96e" opacity=".3"/>
       <circle cx="258" cy="70" r="1.8" fill="#c9a96e" opacity=".15"/>
-      <!-- leaves -->
+    
       <path d="M90 68 C85 55, 80 48, 72 42" stroke-width=".7"/>
       <path d="M130 70 C135 58, 138 50, 142 42" stroke-width=".7"/>
       <path d="M165 72 C160 82, 155 90, 148 96" stroke-width=".7"/>
       <path d="M218 76 C222 88, 228 98, 235 105" stroke-width=".7"/>
       <path d="M245 73 C248 85, 252 92, 258 98" stroke-width=".7"/>
-      <!-- scattered dots -->
+
       <circle cx="35" cy="85" r="1.5" fill="#c9a96e" opacity=".2"/>
       <circle cx="175" cy="65" r="1.3" fill="#c9a96e" opacity=".2"/>
       <circle cx="240" cy="68" r="1.3" fill="#c9a96e" opacity=".2"/>
     </g>
   </svg>
   <div class="sec-inner">
-    <div class="sec-head reveal">
+      <div class="sec-head reveal">
       <div class="tag">產品</div>
       <h2>康養內服</h2>
       <p class="lead">以中醫經典方劑為基礎，古法炮製。內服調理，與外治服務相輔相成</p>
@@ -582,7 +572,7 @@
       </div>
     </div>
   </div>
-</section>
+</section>-->
 
 <!-- ====== Locations ====== -->
 <section class="locations" id="locations">
@@ -606,7 +596,7 @@
         <img class="loc-img" src="img/loc-hongkong.jpg" alt="德醫美北京海淀店">
         <div class="loc-body">
         <div class="card-seal">北京 Beijing</div>
-        <h3>集冉漢方中醫美</h3>
+        <h3>漢方中醫美</h3>
         <p class="addr">海淀區阜石路甲19號<br>+86 18511841531</p>
         <a href="tel:+8618511841531" class="tel">致電預約</a>
         </div>

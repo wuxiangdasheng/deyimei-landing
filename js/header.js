@@ -45,8 +45,7 @@
         '<img class="logo-dark" src="img/logo-dark.png" alt="德醫美 Alchemy">'+
       '</a>'+
       '<ul class="nav-links">'+
-        '<li><a href="'+homePrefix+'#services">漢方微針醫美</a></li>'+
-        '<li><a href="'+homePrefix+'#products">康養產品</a></li>'+
+        '<li><a href="alchemy.html">漢方中醫美</a></li>'+
         '<li><a href="'+homePrefix+'#locations">聯絡門店</a></li>'+
         '<li><a href="'+homePrefix.replace('alchemy.html','')+'cases.html">客戶案例</a></li>'+
       '</ul>'+
@@ -54,8 +53,7 @@
     '</div>'+
   '</nav>'+
   '<div class="mobile-menu" id="mobile-menu">'+
-    '<a href="'+homePrefix+'#services" onclick="colaToggleMenu()">漢方微針醫美</a>'+
-    '<a href="'+homePrefix+'#products" onclick="colaToggleMenu()">康養產品</a>'+
+    '<a href="alchemy.html" onclick="colaToggleMenu()">漢方中醫美</a>'+
     '<a href="'+homePrefix+'#locations" onclick="colaToggleMenu()">聯絡門店</a>'+
     '<a href="'+homePrefix.replace('alchemy.html','')+'cases.html" onclick="colaToggleMenu()">客戶案例</a>'+
     '<button class="menu-close" onclick="colaToggleMenu()">✕ 關閉</button>'+

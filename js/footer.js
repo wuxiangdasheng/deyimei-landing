@@ -5,7 +5,6 @@
       <div class="ft-top">
         <div class="ft-brand">
           <img src="img/logo.png" alt="德醫美 Alchemy">
-          <div class="ft-en">Alchemy · 中醫美</div>
         </div>
         <div class="ft-cols">
           <div class="ft-col">
