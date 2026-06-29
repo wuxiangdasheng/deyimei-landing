@@ -3,27 +3,27 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>康養內服 — 集冉文化（香港）</title>
+<title>康養內服產品 — 德醫美</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@300;400;500;600;700&family=Great+Vibes&family=Tangerine:wght@400;700&family=Playfair+Display:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
 <style>
   :root{
-    --brand:#5c6a3e;--brand-light:#72854e;--brand-deep:#3e4a2a;
-    --brand-dim:#8a9a6a;--brand-pale:rgba(92,106,62,.06);
+    --brand:#4a1968;--brand-light:#6b3090;--brand-deep:#2e0f42;
+    --brand-dim:#9b7aaa;--brand-pale:rgba(74,25,104,.06);
     --gold:#c9a96e;--gold-warm:#b8944f;
     --paper:#fcfaf7;--paper-dim:#f5f1e9;
     --ink:#1a1410;--ink-soft:#6b6258;--ink-light:#a0988c;
     --white:#fff;--line:#e8e3da;--line-strong:#d4cdc0;
     --max-w:1200px;
     --ease:cubic-bezier(.19,1,.22,1);
-    --font-cn:'Noto Serif SC','Songti SC','STSong',serif;
+    --font-cn:'Noto Serif SC','Songti SC','STSong','SimSun',serif;
     --font-en:'Playfair Display',Georgia,serif;
   }
   *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
   html{scroll-behavior:smooth;font-size:100%}
   body{
-    font-family:'PingFang SC','Noto Sans HK','Microsoft YaHei',sans-serif;
+    font-family:var(--font-cn);
     font-size:1.0625rem;font-weight:350;line-height:2;
     color:var(--ink-soft);background:var(--paper);
     -webkit-font-smoothing:antialiased;overflow-x:hidden;
@@ -108,8 +108,10 @@
   .hero-bg{position:absolute;inset:0;background:linear-gradient(175deg,var(--paper) 0%,var(--white) 60%,var(--paper-dim) 100%)}
   .hero-bg-herb{
     position:absolute;top:8%;right:8%;
-    font-family:var(--font-cn);font-size:clamp(180px,22vw,320px);
-    color:var(--brand);opacity:.02;line-height:1;pointer-events:none;user-select:none;
+    opacity:.08;pointer-events:none;user-select:none;
+  }
+  .hero-bg-herb img{
+    width:clamp(240px,28vw,420px);height:auto;display:block;
   }
   .hero-content{
     max-width:var(--max-w);margin:0 auto;padding:100px 40px 60px;
@@ -151,7 +153,7 @@
 
   /* ═══ PHILOSOPHY ═══ */
   .phil-quote{
-    max-width:720px;margin:0 auto;text-align:center;padding:48px 0;
+    max-width:720px;margin:0 auto 64px;text-align:center;padding:48px 0;
     border-top:1px solid var(--line);border-bottom:1px solid var(--line);
   }
   .phil-quote .q{
@@ -165,13 +167,12 @@
   .prod-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
   .prod-card{
     text-align:center;padding:0 0 44px;
-    border:1px solid var(--line);background:var(--white);
+    background:var(--white);
     transition:all .45s var(--ease);position:relative;overflow:hidden;
   }
   .prod-card:hover{
     transform:translateY(-6px);
     box-shadow:0 12px 36px rgba(0,0,0,.05);
-    border-color:var(--brand);
   }
   .prod-card .prod-visual{
     height:200px;display:flex;align-items:center;justify-content:center;
@@ -185,15 +186,24 @@
   }
   .prod-card .prod-info{padding:36px 32px 0}
   .prod-card .en{
-    font-family:var(--font-en);font-size:.7rem;letter-spacing:.2em;
+    font-family:'Playfair Display',Georgia,serif;font-size:.7rem;letter-spacing:.2em;
     color:var(--gold);margin-bottom:10px;text-transform:uppercase;
   }
   .prod-card h3{
     font-family:var(--font-cn);
-    font-size:1.35rem;color:var(--ink);font-weight:500;letter-spacing:.08em;margin-bottom:10px;
+    font-size:1.5rem;color:var(--ink);font-weight:500;letter-spacing:.08em;margin-bottom:0px;
   }
-  .prod-card .tagline{font-size:.9rem;color:var(--brand);margin-bottom:18px;line-height:1.8}
-  .prod-card .desc{font-size:.95rem;color:var(--ink-soft);line-height:2.1}
+  .prod-card .tagline{font-family:'Playfair Display',Georgia,serif;font-size:1rem;color:var(--brand);margin-bottom:18px;line-height:1.8}
+  .prod-card .desc{font-size:.95rem;color:var(--ink-soft);line-height:2.1;text-align:left}
+  .prod-card .desc+.arrow-link{
+    display:flex;align-items:center;justify-content:center;
+    width:28px;height:28px;border:1px solid var(--gold);border-radius:50%;
+    color:var(--gold);text-decoration:none;font-size:.7rem;
+    margin-top:16px;transition:all .3s;
+  }
+  .prod-card .desc+.arrow-link:hover{background:var(--gold);color:var(--white)}
+  .prod-card .arrow-link:hover{background:var(--gold);color:var(--white)}
+  .prod-card .arrow-link.inverted{background:var(--gold);color:var(--white)}
   .prod-card .features{margin-top:22px;display:flex;flex-wrap:wrap;justify-content:center;gap:8px}
   .prod-card .features span{
     display:inline-block;padding:5px 14px;
@@ -203,29 +213,7 @@
   }
   .prod-card:hover .features span{border-color:var(--brand-dim);background:var(--brand-pale)}
 
-  /* ═══ CTA ═══ */
-  .cta-sec{
-    background:var(--brand);text-align:center;padding:80px 40px;
-    position:relative;overflow:hidden;
-  }
-  .cta-sec::before{
-    content:'';position:absolute;inset:0;pointer-events:none;
-    background:radial-gradient(ellipse at 50% 0%,rgba(138,154,106,.15) 0%,transparent 50%);
-  }
-  .cta-sec h3{
-    font-family:var(--font-cn);
-    font-size:clamp(1.4rem,2.5vw,1.8rem);color:var(--white);
-    font-weight:300;letter-spacing:.15em;margin-bottom:12px;position:relative;z-index:1;
-  }
-  .cta-sec p{font-size:1rem;color:rgba(255,255,255,.55);margin-bottom:32px;letter-spacing:.06em;position:relative;z-index:1}
-  .btn-gold{
-    display:inline-block;padding:14px 40px;
-    background:var(--gold);color:var(--ink);
-    text-decoration:none;font-size:1rem;font-weight:600;letter-spacing:.15em;
-    font-family:var(--font-cn);position:relative;z-index:1;
-    transition:all .35s var(--ease);
-  }
-  .btn-gold:hover{background:#d4b87a;transform:translateY(-2px);box-shadow:0 12px 32px rgba(201,169,110,.25)}
+  
 
   /* ═══ FOOTER ═══ */
   footer{
@@ -239,7 +227,7 @@
     background:radial-gradient(ellipse at 50% 0%,rgba(138,154,106,.08) 0%,transparent 50%);
   }
   footer .f-main{display:flex;align-items:center;gap:2rem;margin-bottom:2.5rem;position:relative;z-index:1}
-  footer .f-brand{font-size:1.8rem;font-weight:200;letter-spacing:.15em;color:var(--white);font-family:var(--font-en)}
+  footer .f-brand{font-size:1.8rem;font-weight:200;letter-spacing:.15em;color:var(--white);font-family:'Playfair Display',Georgia,serif}
   footer .f-vert{
     writing-mode:vertical-rl;font-size:.875rem;letter-spacing:.15em;
     color:var(--brand-dim);line-height:2.5;font-family:var(--font-cn);
@@ -272,9 +260,12 @@
     .container,.container-sm{padding:0 24px}
     section{padding:60px 0}
     .hero-content{padding:100px 24px 60px}
-    .hero-bg-herb{font-size:140px;right:4%;top:12%}
+    .hero-bg-herb{top:12%;right:4%}
+    .hero-bg-herb img{width:clamp(140px,35vw,200px)}
     .prod-grid{grid-template-columns:1fr;gap:24px}
     .prod-card .prod-visual{height:160px}
+    .prod-card .arrow-link{transition:all .2s}
+    .prod-card .arrow-link:active{background:var(--gold);color:var(--white);transform:scale(1.15)}
 
     .nav-desktop{display:none}
     .hamburger{display:flex;flex-direction:column;gap:5px;background:none;border:none;cursor:pointer;padding:4px;z-index:200;position:relative}
@@ -298,7 +289,7 @@
     .mobile-menu a.active{color:var(--brand);font-weight:600}
     .cta-sec{padding:60px 24px}
     footer{padding:4rem 1.5rem 2rem}
-    footer .f-brand{font-size:1.4rem}
+    footer .f-brand{font-size:2rem}
   }
 </style>
 <noscript><style>.reveal{opacity:1!important;transform:none!important}</style></noscript>
@@ -332,9 +323,8 @@
 <!-- ═══════════════ HERO ═══════════════ -->
 <section class="hero">
   <div class="hero-bg"></div>
-  <div class="hero-bg-herb">藥</div>
+  <div class="hero-bg-herb"><img src="img/medec.png" alt=""></div>
   <div class="hero-content">
-    <div class="hero-tag">Food as Medicine</div>
     <h1>康養內服<span class="hl">·</span>內養外煥</h1>
     <div class="en-sub">Nourish Within, Glow Without</div>
     <div class="geo-divider"><span class="line"></span><span class="dot"></span></div>
@@ -357,63 +347,46 @@
       <div class="q">正氣存內，邪不可干</div>
       <div class="src">——《黃帝內經》</div>
     </div>
-  </div>
-</section>
-
-<!-- ═══════════════ 產品 ═══════════════ -->
-<section class="alt">
-  <div class="container">
-    <h2 class="section-title reveal reveal-d1">三味本草 · 各司其職</h2>
-    <div class="sec-label reveal">
-      <span class="tag">Herbal Collection</span>
-    </div>
     <div class="prod-grid">
-      <!-- 熬夜丸 -->
       <div class="prod-card reveal reveal-d2">
         <div class="prod-visual"><img src="img/product-aoye.jpg" alt="熬夜丸" class="prod-img"></div>
         <div class="prod-info">
+            <h3>熬夜丸</h3>
           <div class="en">Liver Nourishing</div>
-          <h3>熬夜丸</h3>
           <div class="tagline">養肝護肝 · 修復透支</div>
           <div class="desc">肝藏血，主疏泄。長期熬夜耗傷肝陰，面色暗沉、雙目乾澀、情緒易躁。熬夜丸以疏肝養血為方，助肝恢復藏血機能。</div>
+          <a href="https://s.cchkw.com/pages/shop/goods/info?goods_id=23" class="arrow-link">→</a>
         </div>
       </div>
-      <!-- 脾胃丸 -->
       <div class="prod-card reveal reveal-d3">
         <div class="prod-visual"><img src="img/product-piwei.jpg" alt="脾胃丸" class="prod-img"></div>
         <div class="prod-info">
-          <div class="en">Stomach &amp; Spleen</div>
           <h3>脾胃丸</h3>
+          <div class="en">Stomach &amp; Spleen</div>
           <div class="tagline">健脾和胃 · 運化之源</div>
           <div class="desc">脾胃為後天之本，氣血生化之源。飲食不節、思慮過度最傷脾胃，令氣血無以化生，面黃肌瘦、倦怠無力。脾胃丸補中益氣、健運脾胃。</div>
+          <a href="https://s.cchkw.com/pages/shop/goods/info?goods_id=24" class="arrow-link">→</a>
         </div>
       </div>
-      <!-- 驻颜丹 -->
       <div class="prod-card reveal reveal-d4">
         <div class="prod-visual"><img src="img/product-zhuyan.jpg" alt="駐顏丹" class="prod-img"></div>
         <div class="prod-info">
-          <div class="en">Replenish Vitality</div>
           <h3>駐顏丹</h3>
+          <div class="en">Replenish Vitality</div>
           <div class="tagline">補氣養血 · 由內而外</div>
           <div class="desc">氣血為容顏之根。氣血虧虛則面色萎黃、肌膚鬆弛、髮枯早白。駐顏丹以補氣養血為核心，調和五臟精氣，還原肌膚本然光澤與彈性。</div>
+          <a href="https://s.cchkw.com/pages/shop/goods/info?goods_id=25" class="arrow-link">→</a>
         </div>
       </div>
     </div>
   </div>
 </section>
-
-<!-- ═══════════════ CTA ═══════════════ -->
-<div class="cta-sec reveal">
-  <h3>開始內養之旅</h3>
-  <p>每一味本草，皆為身體找回本來的節奏</p>
-  <a href="http://sj20655dym.sj168.top/pages/shop/index/index" class="btn-gold" target="_blank">前往商城選購 →</a>
-</div>
 
 <!-- ═══════════════ FOOTER ═══════════════ -->
 <footer>
   <div class="f-main">
-    <div class="f-brand">JIRAN</div>
-    <div class="f-vert">集冉堂</div>
+    <div class="f-brand">Alchemy</div>
+    <div class="f-vert">德醫美</div>
   </div>
   <div class="f-line"></div>
   <div class="f-slogan">康養內服 · 藥食同源 · 內養外煥</div>
@@ -425,6 +398,21 @@
 (function(){
   var o=new IntersectionObserver(function(e){e.forEach(function(e){if(e.isIntersecting){e.target.classList.add('reveal--visible');o.unobserve(e.target);}})},{threshold:.12,rootMargin:'0px 0px -40px 0px'});
   document.querySelectorAll('.reveal').forEach(function(e){o.observe(e);});
+})();
+
+/* ─── Arrow-link invert on card center ─── */
+(function(){
+  var cards=document.querySelectorAll('.prod-card');
+  if(!cards.length)return;
+  var obs=new IntersectionObserver(function(entries){
+    entries.forEach(function(e){
+      var link=e.target.querySelector('.arrow-link');
+      if(!link)return;
+      if(e.isIntersecting){link.classList.add('inverted')}
+      else{link.classList.remove('inverted')}
+    });
+  },{threshold:0,rootMargin:'0px 0px -82% 0px'});
+  cards.forEach(function(c){obs.observe(c)});
 })();
 
 /* ─── Hamburger Menu ─── */

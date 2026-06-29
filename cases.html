@@ -48,6 +48,23 @@ a{text-decoration:none;color:inherit}
 
 .empty-state{text-align:center;padding:80px 20px;color:#ccc;font-size:14px;line-height:1.8;grid-column:1/-1}
 
+/* Lightbox */
+.lightbox{position:fixed;inset:0;background:rgba(0,0,0,.92);z-index:9999;display:none;align-items:center;justify-content:center}
+.lightbox.open{display:flex}
+.lightbox img{max-width:90vw;max-height:82vh;object-fit:contain;border-radius:4px;user-select:none;-webkit-user-drag:none}
+.lightbox-btn{position:absolute;top:50%;transform:translateY(-50%);width:48px;height:48px;border:none;background:rgba(255,255,255,.1);color:#fff;font-size:24px;cursor:pointer;border-radius:50%;display:flex;align-items:center;justify-content:center;transition:background .25s;z-index:1}
+.lightbox-btn:hover{background:rgba(255,255,255,.25)}
+.lightbox-btn:disabled{opacity:.2;cursor:default}
+.lightbox-prev{left:24px}
+.lightbox-next{right:24px}
+.lightbox-close{position:absolute;top:20px;right:24px;width:40px;height:40px;font-size:20px;border:none;background:rgba(255,255,255,.1);color:#fff;cursor:pointer;border-radius:50%;display:flex;align-items:center;justify-content:center;transition:background .25s}
+.lightbox-close:hover{background:rgba(255,255,255,.25)}
+.lightbox-counter{position:absolute;bottom:24px;left:50%;transform:translateX(-50%);color:rgba(255,255,255,.5);font-size:13px;letter-spacing:2px}
+.case-detail-content img,.card-hero img{cursor:pointer}
+.case-detail-content img{transition:opacity .2s}
+.case-detail-content img:hover{opacity:.85}
+.card-hero img:hover{opacity:.85}
+
 @media(max-width:768px){
 .page-hero{padding:120px 24px 36px}
   .page-hero h1{font-size:28px}
@@ -77,6 +94,14 @@ a{text-decoration:none;color:inherit}
 </div>
 
 <div id="shared-footer"></div>
+
+<div class="lightbox" id="lightbox">
+  <button class="lightbox-close" onclick="closeLightbox()">✕</button>
+  <button class="lightbox-btn lightbox-prev" id="lb-prev" onclick="lbNav(-1)">‹</button>
+  <img id="lightbox-img" src="" alt="">
+  <button class="lightbox-btn lightbox-next" id="lb-next" onclick="lbNav(1)">›</button>
+  <div class="lightbox-counter" id="lb-counter"></div>
+</div>
 
 <script>
 // Hardcoded cases — edit here to update
@@ -125,6 +150,50 @@ function toggleDetail(i){
   if(el.classList.contains('open')){el.classList.remove('open');top.textContent='閱讀更多 ▾'}
   else{el.classList.add('open');top.textContent='收起 ▴'}
 }
+
+// Lightbox
+var lbImages=[];
+var lbIndex=0;
+function collectImages(){
+  lbImages=[];
+  document.querySelectorAll('.card-hero img, .case-detail-content img').forEach(function(img){
+    img.addEventListener('click',function(){openLightbox(lbImages.indexOf(this))});
+    lbImages.push(img);
+  });
+}
+function openLightbox(i){
+  lbIndex=i;
+  var lb=document.getElementById('lightbox');
+  var lbImg=document.getElementById('lightbox-img');
+  lbImg.src=lbImages[i].src;
+  document.getElementById('lb-counter').textContent=(i+1)+' / '+lbImages.length;
+  document.getElementById('lb-prev').disabled=(i===0);
+  document.getElementById('lb-next').disabled=(i===lbImages.length-1);
+  lb.classList.add('open');
+}
+function lbNav(dir){
+  lbIndex+=dir;
+  if(lbIndex<0)lbIndex=0;
+  if(lbIndex>lbImages.length-1)lbIndex=lbImages.length-1;
+  openLightbox(lbIndex);
+}
+function closeLightbox(){document.getElementById('lightbox').classList.remove('open')}
+document.addEventListener('keydown',function(e){
+  if(!document.getElementById('lightbox').classList.contains('open'))return;
+  if(e.key==='Escape')closeLightbox();
+  else if(e.key==='ArrowLeft')lbNav(-1);
+  else if(e.key==='ArrowRight')lbNav(1);
+});
+document.getElementById('lightbox').addEventListener('click',function(e){
+  if(e.target===this)closeLightbox();
+});
+// Re-collect after detail toggles (images inside collapsed detail)
+var origToggle=toggleDetail;
+toggleDetail=function(i){
+  origToggle(i);
+  collectImages();
+};
+collectImages();
 </script>
 <script src="js/header.js"></script>
 <script src="js/footer.js"></script>

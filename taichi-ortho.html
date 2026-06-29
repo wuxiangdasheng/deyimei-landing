@@ -349,6 +349,80 @@
     font-size:1rem;color:var(--ink-soft);letter-spacing:3px;
   }
 
+  /* ═══ CASE GALLERY ═══ */
+  .case-grid{
+    display:grid;grid-template-columns:repeat(5,1fr);gap:16px;
+  }
+  .case-item{
+    position:relative;overflow:hidden;
+    border:1px solid var(--line);
+    transition:all .4s var(--ease);
+    aspect-ratio:3/4;cursor:pointer;
+  }
+  .case-item:hover{
+    border-color:var(--brand);
+    box-shadow:0 6px 24px rgba(165,83,0,.06);
+  }
+  .case-item img{
+    width:100%;height:100%;object-fit:cover;display:block;
+    transition:transform .5s var(--ease);
+  }
+  .case-item:hover img{transform:scale(1.04)}
+  .case-item .case-label{
+    position:absolute;bottom:0;left:0;right:0;
+    padding:8px 0;text-align:center;
+    font-size:.7rem;color:var(--white);letter-spacing:.1em;
+    background:linear-gradient(to top,rgba(165,83,0,.55),transparent);
+    font-family:var(--font-cn);
+  }
+  @media(max-width:900px){.case-grid{grid-template-columns:repeat(3,1fr)}}
+  @media(max-width:500px){.case-grid{grid-template-columns:repeat(2,1fr)}}
+
+  /* ═══ LIGHTBOX ═══ */
+  .lightbox{
+    position:fixed;inset:0;z-index:9999;
+    background:rgba(10,5,0,.92);
+    display:flex;flex-direction:column;align-items:center;justify-content:center;
+    gap:20px;
+    opacity:0;visibility:hidden;transition:all .35s var(--ease);
+  }
+  .lightbox.active{opacity:1;visibility:visible}
+  .lightbox .lb-img-wrap{
+    display:flex;align-items:center;justify-content:center;
+    max-width:90vw;max-height:70vh;
+  }
+  .lightbox .lb-img-wrap img{
+    max-width:90vw;max-height:70vh;
+    object-fit:contain;border-radius:4px;
+    box-shadow:0 8px 48px rgba(0,0,0,.3);
+  }
+  .lightbox .lb-close{
+    position:absolute;top:24px;right:32px;
+    width:40px;height:40px;display:flex;align-items:center;justify-content:center;
+    color:var(--gold);font-size:1.5rem;cursor:pointer;
+    border:1px solid rgba(201,169,110,.2);border-radius:50%;
+    transition:all .3s;z-index:1;
+  }
+  .lightbox .lb-close:hover{background:rgba(201,169,110,.12);border-color:rgba(201,169,110,.45)}
+  .lightbox .lb-controls{
+    display:flex;align-items:center;gap:20px;
+  }
+  .lightbox .lb-arrow{
+    width:44px;height:44px;display:flex;align-items:center;justify-content:center;
+    color:var(--gold);font-size:1.2rem;cursor:pointer;
+    border:1px solid rgba(201,169,110,.25);border-radius:50%;
+    transition:all .3s;z-index:1;user-select:none;
+  }
+  .lightbox .lb-arrow:hover{background:rgba(201,169,110,.12);border-color:rgba(201,169,110,.5)}
+  .lightbox .lb-counter{
+    color:rgba(255,255,255,.5);font-size:.85rem;letter-spacing:.1em;min-width:60px;text-align:center;
+  }
+  @media(max-width:768px){
+    .lightbox .lb-arrow{width:36px;height:36px;font-size:1rem}
+    .lightbox .lb-img-wrap{max-height:55vh}
+    .lightbox .lb-img-wrap img{max-height:55vh}
+  }
+
   /* ═══ FOOTER ═══ */
   footer{
     background:#bf9e59;color:rgba(255,255,255,.8);
@@ -543,10 +617,6 @@
   </div>
 </section>
 
-<div style="width:100%;overflow:hidden;background:#f5f1e9;height:clamp(280px,40vh,500px)">
-  <img src="img/divider-master.jpg" alt="" class="parallax-img" style="width:100%;height:100%;object-fit:cover;display:block;transform:scale(1.25)">
-</div>
-
 <!-- ═══════════════ 業務 + 主張 ═══════════════ -->
 <section class="alt" style="padding-bottom:120px;z-index:2">
   <div class="container">
@@ -597,7 +667,33 @@
   </div>
 </section>
 
-<!-- ═══════════════ 師父 ═══════════════ -->
+<div style="width:100%;overflow:hidden;background:#f5f1e9;height:clamp(280px,40vh,500px)">
+  <img src="img/divider-master.jpg" alt="" class="parallax-img" style="width:100%;height:100%;object-fit:cover;display:block;transform:scale(1.25)">
+</div>
+
+<!-- ═══════════════ 見證改變 ═══════════════ -->
+<section class="alt">
+  <div class="container">
+    <h2 class="section-title reveal reveal-d1">見證改變</h2>
+    <div class="sec-label reveal">
+      <span class="tag">Case Studies</span>
+    </div>
+    <div class="case-grid">
+      <div class="case-item reveal reveal-d2"><img src="img/case-0.png" alt="案例"><div class="case-label">前 / 後</div></div>
+      <div class="case-item reveal reveal-d3"><img src="img/case-1.png" alt="案例"><div class="case-label">前 / 後</div></div>
+      <div class="case-item reveal reveal-d4"><img src="img/case-2.png" alt="案例"><div class="case-label">前 / 後</div></div>
+      <div class="case-item reveal reveal-d5"><img src="img/case-3.png" alt="案例"><div class="case-label">前 / 後</div></div>
+      <div class="case-item reveal reveal-d6"><img src="img/case-4.png" alt="案例"><div class="case-label">前 / 後</div></div>
+      <div class="case-item reveal reveal-d2"><img src="img/case-5.png" alt="案例"><div class="case-label">前 / 後</div></div>
+      <div class="case-item reveal reveal-d3"><img src="img/case-6.png" alt="案例"><div class="case-label">前 / 後</div></div>
+      <div class="case-item reveal reveal-d4"><img src="img/case-7.png" alt="案例"><div class="case-label">前 / 後</div></div>
+      <div class="case-item reveal reveal-d5"><img src="img/case-8.png" alt="案例"><div class="case-label">前 / 後</div></div>
+      <div class="case-item reveal reveal-d6"><img src="img/case-9.png" alt="案例"><div class="case-label">前 / 後</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════ 傳承人 ═══════════════ -->
 <section style="z-index:1">
   <div class="container-sm">
     <h2 class="section-title reveal reveal-d1">傳承人</h2>
@@ -744,6 +840,65 @@ if(typeof IntersectionObserver!=='undefined' && window.innerWidth<=768){
   },{threshold:.6,rootMargin:'0px 0px -30% 0px'});
   document.querySelectorAll('.concept-card,.biz-card,.master-photo,.cert-card').forEach(function(el){touchObs.observe(el)});
 }
+
 </script>
+
+<div class="lightbox" id="lightbox">
+  <div class="lb-close" id="lb-close">✕</div>
+  <div class="lb-img-wrap"><img src="" alt="" id="lb-img"></div>
+  <div class="lb-controls">
+    <div class="lb-arrow lb-prev" id="lb-prev">‹</div>
+    <div class="lb-counter" id="lb-counter"></div>
+    <div class="lb-arrow lb-next" id="lb-next">›</div>
+  </div>
+</div>
+
+<script>
+
+/* ─── Lightbox ─── */
+(function(){
+  var items=document.querySelectorAll('.case-item img');
+  if(!items.length)return;
+  var lb=document.getElementById('lightbox');
+  var lbImg=document.getElementById('lb-img');
+  var lbCounter=document.getElementById('lb-counter');
+  var curIdx=0;
+  var srcs=[];
+  items.forEach(function(img,i){
+    srcs.push(img.src);
+    img.parentElement.addEventListener('click',function(){open(i)});
+  });
+  function open(i){
+    curIdx=i;lbImg.src=srcs[i];lb.classList.add('active');
+    lbCounter.textContent=(i+1)+' / '+srcs.length;
+    document.body.style.overflow='hidden';
+  }
+  function close(){
+    lb.classList.remove('active');
+    document.body.style.overflow='';
+  }
+  function prev(){
+    curIdx=(curIdx-1+srcs.length)%srcs.length;
+    lbImg.src=srcs[curIdx];
+    lbCounter.textContent=(curIdx+1)+' / '+srcs.length;
+  }
+  function next(){
+    curIdx=(curIdx+1)%srcs.length;
+    lbImg.src=srcs[curIdx];
+    lbCounter.textContent=(curIdx+1)+' / '+srcs.length;
+  }
+  document.getElementById('lb-close').addEventListener('click',close);
+  document.getElementById('lb-prev').addEventListener('click',prev);
+  document.getElementById('lb-next').addEventListener('click',next);
+  lb.addEventListener('click',function(e){if(e.target===lb)close()});
+  document.addEventListener('keydown',function(e){
+    if(!lb.classList.contains('active'))return;
+    if(e.key==='Escape')close();
+    if(e.key==='ArrowLeft')prev();
+    if(e.key==='ArrowRight')next();
+  });
+})();
+</script>
+
 </body>
 </html>
