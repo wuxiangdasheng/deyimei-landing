@@ -478,9 +478,18 @@
     .concept-row{grid-template-columns:1fr;gap:16px}
     .concept-card{padding:48px 20px 32px;min-height:auto}
     .concept-card .char{font-size:56px}
+
+    /* ── seal-tag 渐入 ── */
+    .concept-card .seal-tag{opacity:0;transition:opacity .8s var(--ease)}
+    .concept-card.reveal--visible .seal-tag{opacity:1}
+
     .biz-card .biz-body{padding:36px 24px 32px}
     .biz-card .biz-side{width:64px;padding:28px 0 20px}
     .biz-card .biz-side .side-title{font-size:3rem}
+
+    /* ── 去掉 biz-card 点击描边 ── */
+    .biz-card:hover{border-color:var(--line);box-shadow:none}
+
     .master-photo{margin:0 auto}
 
     .nav-desktop{display:none}
