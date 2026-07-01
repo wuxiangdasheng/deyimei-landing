@@ -19,11 +19,8 @@
     --primary-dim: #9b7aaa;
     --primary-light: #d4c8de;
     --primary-deep: #2e0f42;
-    --seal-red:   #d48b8d;
-    --seal-red-dim: #edd5d6;
     --gold:       #b8976e;
     --stone:      #8a8580;
-    --stone-light:#b8b4ae;
     --white:      #ffffff;
 
     --font-cn: 'Noto Serif SC', 'Songti SC', 'STSong', 'SimSun', serif;
@@ -48,7 +45,7 @@
     padding-top: 80px;
   }
 
-  /* ═══ FIXED TOP BAR ═══ */
+  /* ═══ TOP BAR ═══ */
   .top-bar{
     position: fixed; top: 0; left: 0; width: 100%; z-index: 100;
     padding: 16px 40px;
@@ -59,10 +56,7 @@
     max-width: var(--max-w); width: 100%; margin: 0 auto;
     display: flex; justify-content: space-between; align-items: center;
   }
-  .top-bar .brand{
-    display: flex; align-items: center;
-    text-decoration: none; color: inherit;
-  }
+  .top-bar .brand{ display: flex; align-items: center; text-decoration: none; color: inherit; }
   .top-bar .brand-logo{ height: 40px; width: auto; display: block; }
   .nav-desktop{ display: flex; align-items: center; gap: 32px; }
   .nav-desktop a{
@@ -79,19 +73,183 @@
   .nav-desktop a.active{ color: var(--primary); font-weight: 600; }
   .nav-desktop a.active::after{ width: 100%; }
 
-  /* ═══ FULL-WIDTH IMAGE ═══ */
-  .recruit-body {
-    padding: 0;
+  /* ═══ CONTAINER ═══ */
+  .container { max-width: var(--max-w); margin: 0 auto; padding: 0 40px; }
+  .container-sm { max-width: 960px; margin: 0 auto; padding: 0 40px; }
+
+  /* ═══ SECTION ═══ */
+  section { padding: 100px 0; position: relative; }
+  section.alt { background: var(--paper-dim); }
+
+  /* ═══ HERO ═══ */
+  .hero{
+    min-height: 70vh; display: flex; align-items: center;
+    background: linear-gradient(175deg, var(--paper) 0%, var(--white) 50%, var(--paper-dim) 100%);
+    position: relative; overflow: hidden;
+  }
+  .hero::before{
+    content: ''; position: absolute; top: -20%; right: -10%; width: 500px; height: 500px;
+    background: radial-gradient(circle, rgba(74,25,104,.04) 0%, transparent 70%);
+    border-radius: 50%;
+  }
+  .hero-content{ position: relative; z-index: 2; width: 100%; }
+  .hero .en-brand{
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: .85rem; letter-spacing: .25em; color: var(--primary-dim);
+    margin-bottom: 24px;
+  }
+  .hero h1{
+    font-size: clamp(2.2rem, 5vw, 3.6rem); font-weight: 500;
+    color: var(--primary); line-height: 1.2; margin-bottom: 16px;
+    letter-spacing: .08em;
+  }
+  .hero .sub{
+    font-size: 1.1rem; color: var(--ink-soft); letter-spacing: .1em;
+    margin-bottom: 12px;
+  }
+  .hero .en-sub{
+    font-family: var(--font-en); font-size: 1rem; font-style: italic;
+    color: var(--primary-dim); letter-spacing: .08em;
+  }
+  .hero .geo-line{
+    display: flex; align-items: center; gap: 16px; margin-top: 36px;
+  }
+  .geo-line .gl{ flex: 1; max-width: 80px; height: 1px; background: var(--primary-light); }
+  .geo-line .gd{ width: 5px; height: 5px; background: var(--primary); }
+
+  /* ═══ SECTION HEAD ═══ */
+  .sec-head{ text-align: center; margin-bottom: 56px; }
+  .sec-head .tag{
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: .8rem; letter-spacing: .28em; color: var(--primary-dim);
+    text-transform: uppercase; margin-bottom: 12px;
+  }
+  .sec-head h2{
+    font-size: clamp(1.6rem, 3vw, 2.2rem); font-weight: 500;
+    color: var(--ink); letter-spacing: .06em;
+  }
+  .sec-head .lead{
+    max-width: 700px; margin: 20px auto 0;
+    font-size: .95rem; color: var(--ink-soft); line-height: 2.2;
+  }
+
+  /* ═══ DEMAND CARDS ═══ */
+  .demand-grid{
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px;
+    margin-top: 40px;
+  }
+  .demand-card{
+    text-align: center; padding: 48px 32px 40px;
+    background: var(--white); border-radius: 6px;
+    border: 1px solid var(--primary-light);
+    transition: transform .3s var(--ease), box-shadow .3s var(--ease);
+  }
+  .demand-card:hover{ transform: translateY(-4px); box-shadow: 0 8px 32px rgba(74,25,104,.08); }
+  .demand-card .icon{
+    width: 56px; height: 56px; border-radius: 50%;
+    background: rgba(74,25,104,.06); margin: 0 auto 24px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.5rem; color: var(--primary);
+  }
+  .demand-card h3{
+    font-size: 1.15rem; font-weight: 500; color: var(--primary);
+    margin-bottom: 8px; letter-spacing: .06em;
+  }
+  .demand-card .en{
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: .75rem; color: var(--primary-dim);
+    letter-spacing: .1em; text-transform: uppercase;
+  }
+
+  /* ═══ TWO-COLUMN ═══ */
+  .two-col{
+    display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: start;
+  }
+  .col-block{ padding: 48px 40px; background: var(--white); border-radius: 6px; }
+  .col-block.store{ border-top: 3px solid var(--primary); }
+  .col-block.personal{ border-top: 3px solid var(--gold); }
+  .col-block .col-tag{
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: .75rem; letter-spacing: .2em; color: var(--primary-dim);
+    text-transform: uppercase; margin-bottom: 8px;
+  }
+  .col-block h3{
+    font-size: 1.5rem; font-weight: 500; color: var(--primary);
+    margin-bottom: 6px; letter-spacing: .06em;
+  }
+  .col-block .col-en{
+    font-size: .8rem; color: var(--primary-dim); letter-spacing: .08em;
+    margin-bottom: 32px;
+  }
+  .col-block .desc{ font-size: .95rem; color: var(--ink-soft); line-height: 2.2; }
+  .col-block .desc p+ p{ margin-top: 16px; }
+  .col-block .target{
+    margin-top: 28px; padding-top: 20px;
+    border-top: 1px solid var(--primary-light);
+    font-size: .85rem; color: var(--stone); letter-spacing: .04em;
+  }
+  .col-block .target span{ color: var(--primary-dim); font-weight: 500; }
+
+  /* ═══ ADVANTAGE GRID ═══ */
+  .adv-grid{
+    display: grid; grid-template-columns: repeat(2, 1fr); gap: 32px;
+  }
+  .adv-card{
+    display: flex; gap: 24px; padding: 40px 36px;
+    background: var(--white); border-radius: 6px;
+    border: 1px solid var(--primary-light);
+    transition: transform .3s var(--ease), box-shadow .3s var(--ease);
+  }
+  .adv-card:hover{ transform: translateY(-2px); box-shadow: 0 4px 20px rgba(74,25,104,.06); }
+  .adv-card .num{
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: 2.5rem; color: var(--primary); font-weight: 300;
+    line-height: 1; flex-shrink: 0; width: 48px;
+  }
+  .adv-card h4{
+    font-size: 1.1rem; font-weight: 500; color: var(--primary);
+    margin-bottom: 4px; letter-spacing: .04em;
+  }
+  .adv-card .adv-sub{
+    font-size: .85rem; color: var(--primary-dim); letter-spacing: .06em;
+    margin-bottom: 12px;
+  }
+  .adv-card .adv-desc{ font-size: .9rem; color: var(--ink-soft); line-height: 2; }
+
+  /* ═══ CTA ═══ */
+  .cta-section{ text-align: center; }
+  .cta-section h2{
+    font-size: clamp(1.4rem, 2.5vw, 1.8rem); font-weight: 500;
+    color: var(--ink); letter-spacing: .06em; margin-bottom: 16px;
+  }
+  .cta-section .cta-text{
+    max-width: 640px; margin: 0 auto 36px;
+    font-size: 1rem; color: var(--ink-soft); line-height: 2.2;
+  }
+
+  /* ═══ CONTACT ═══ */
+  .contact-box{
+    max-width: 580px; margin: 0 auto;
+    padding: 48px 40px; background: var(--white);
+    border: 1px solid var(--primary-light); border-radius: 6px;
     text-align: center;
-    background: var(--white);
   }
-  .recruit-body img {
-    display: block;
-    width: 100%;
-    max-width: 800px;
-    margin: 0 auto;
-    height: auto;
+  .contact-box h3{
+    font-size: 1.3rem; font-weight: 500; color: var(--primary);
+    margin-bottom: 32px; letter-spacing: .06em;
   }
+  .contact-box .c-row{
+    display: flex; align-items: baseline; gap: 16px;
+    padding: 14px 0; border-bottom: 1px solid rgba(155,122,170,.12);
+    font-size: .95rem; color: var(--ink-soft);
+  }
+  .contact-box .c-row:last-child{ border-bottom: none; }
+  .contact-box .c-label{
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: .78rem; color: var(--primary-dim);
+    letter-spacing: .12em; width: 72px; flex-shrink: 0; text-align: right;
+  }
+  .contact-box .c-val{ text-align: left; letter-spacing: .04em; }
 
   /* ═══ FOOTER ═══ */
   footer {
@@ -125,14 +283,35 @@
     font-size: .75rem; letter-spacing: .05em; position: relative; z-index: 1;
   }
 
+  /* ═══ REVEAL ═══ */
+  .reveal{ opacity: 0; transform: translateY(36px); transition: opacity .8s var(--ease),transform .8s var(--ease); }
+  .reveal--visible{ opacity: 1; transform: translateY(0); }
+  .reveal-d1{ transition-delay: .08s; } .reveal-d2{ transition-delay: .16s; }
+  .reveal-d3{ transition-delay: .24s; } .reveal-d4{ transition-delay: .32s; }
+
   /* ═══ RESPONSIVE ═══ */
   .hamburger{ display: none; }
   .mobile-menu{ display: none; }
-  @media (max-width: 768px) {
+  @media(max-width: 768px) {
     .nav-desktop{ display: none; }
     .top-bar { padding: 14px 24px; }
     body { padding-top: 58px; }
-    .recruit-body img { max-width: 100%; }
+    .container, .container-sm { padding: 0 24px; }
+    section { padding: 60px 0; }
+    .hero { min-height: 50vh; }
+    .hero h1 { font-size: 2rem; }
+
+    .demand-grid{ grid-template-columns: 1fr; gap: 16px; }
+    .two-col{ grid-template-columns: 1fr; gap: 24px; }
+    .adv-grid{ grid-template-columns: 1fr; gap: 16px; }
+    .adv-card{ flex-direction: column; gap: 12px; padding: 32px 24px; }
+    .adv-card .num{ width: auto; }
+
+    .col-block{ padding: 32px 24px; }
+    .contact-box{ padding: 32px 24px; }
+    .contact-box .c-row{ flex-direction: column; gap: 4px; }
+    .contact-box .c-label{ text-align: left; width: auto; }
+
     footer { padding: 4rem 1.5rem 2rem; }
 
     .hamburger{
@@ -186,20 +365,157 @@
       <span></span><span></span><span></span>
     </button>
     <div class="mobile-menu">
-        <a href="index.html">認識德醫美</a>
-        <a href="taichi-ortho.html">非遺整骨</a>
-        <a href="moxibustion.html">古法藥灸</a>
-        <a href="wellness-products.html">康養產品</a>
-        <a href="alchemy.html">微針醫美</a>
-        <a href="recruit.html" class="active">招商加盟</a>
+      <a href="index.html">認識德醫美</a>
+      <a href="taichi-ortho.html">非遺整骨</a>
+      <a href="moxibustion.html">古法藥灸</a>
+      <a href="wellness-products.html">康養產品</a>
+      <a href="alchemy.html">微針醫美</a>
+      <a href="recruit.html" class="active">招商加盟</a>
     </div>
   </div>
 </div>
 
-<!-- ═══════════════ RECRUIT ═══════════════ -->
-<div class="recruit-body">
-  <img src="img/recruit.jpg" alt="德醫美招商加盟">
-</div>
+<!-- ═══════════════ HERO ═══════════════ -->
+<section class="hero">
+  <div class="container">
+    <div class="hero-content reveal">
+      <div class="en-brand">Alchemy</div>
+      <h1>德醫美<br>現正招募代理</h1>
+      <div class="sub">誠邀美容院、養生門店及個人創業者攜手合作，共享市場紅利。</div>
+      <div class="en-sub">Welcome to join us</div>
+      <div class="geo-line">
+        <span class="gl"></span><span class="gd"></span><span class="gl"></span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════ 三大熱門需求 ═══════════════ -->
+<section class="alt">
+  <div class="container-sm">
+    <div class="sec-head reveal">
+      <div class="tag">Market Demand</div>
+      <h2>三大熱門需求　　市場紅利可觀</h2>
+      <div class="lead">德醫美提供二次激生生物產品，專注抗衰與修護領域，針對三大熱門需求：抗衰修護、熬夜透紅、炎性痘肌修護。效果極佳，口碑極佳，回購率高，開拓市場極簡，利潤可觀。</div>
+    </div>
+    <div class="demand-grid">
+      <div class="demand-card reveal reveal-d1">
+        <div class="icon">✦</div>
+        <h3>抗衰修護</h3>
+        <div class="en">Anti-Aging Repair</div>
+      </div>
+      <div class="demand-card reveal reveal-d2">
+        <div class="icon">✦</div>
+        <h3>炎性痘肌</h3>
+        <div class="en">Acne & Inflammation</div>
+      </div>
+      <div class="demand-card reveal reveal-d3">
+        <div class="icon">✦</div>
+        <h3>熬夜透紅</h3>
+        <div class="en">Overnight Recovery</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════ 合作方案 ═══════════════ -->
+<section>
+  <div class="container-sm">
+    <div class="sec-head reveal">
+      <div class="tag">Cooperation Model</div>
+      <h2>兩種合作模式　　靈活選擇</h2>
+    </div>
+    <div class="two-col">
+      <div class="col-block store reveal reveal-d1">
+        <div class="col-tag">Store Exclusive</div>
+        <h3>實體門店專享</h3>
+        <div class="col-en">破解拓客與升單難題</div>
+        <div class="desc">
+          <p>無需額外裝修，亦無需新增陳列項目，只需上架即可增加營收。</p>
+          <p>為您門店同步選擇成熟爆款服務，以「預防體驗」切入內銷，適合療程後升單與清潔，有效鎖住老客戶，打破門店經營困境。</p>
+        </div>
+        <div class="target"><span>適用對象：</span>美容院、養生館、理療店、美療會所</div>
+      </div>
+      <div class="col-block personal reveal reveal-d2">
+        <div class="col-tag">Personal Startup</div>
+        <h3>個人輕創業</h3>
+        <div class="col-en">零壓力副業</div>
+        <div class="desc">
+          <p>無需實體店鋪，線上線下皆可開展。</p>
+          <p>透過微信、Instagram、Facebook、WhatsApp 引流，朋友圈分享等渠道，無需囤貨，免費提供培訓並有成熟運營法扶助，新手亦可快速上手，隨時隨地接單。分享型獲利，日積月累的被動收入來源。</p>
+        </div>
+        <div class="target"><span>適用對象：</span>尋求副業的個人、社交媒體經營者</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════ 核心優勢 ═══════════════ -->
+<section class="alt">
+  <div class="container">
+    <div class="sec-head reveal">
+      <div class="tag">Core Advantages</div>
+      <h2>我們的核心合作優勢</h2>
+    </div>
+    <div class="adv-grid">
+      <div class="adv-card reveal reveal-d1">
+        <div class="num">1</div>
+        <div>
+          <h4>產品競爭力強　差異化明顯</h4>
+          <div class="adv-sub">Strong Product Competitiveness</div>
+          <div class="adv-desc">針對小眾門戶痛點，配方安全可靠，讓受眾感受信賴，有效提升功效。</div>
+        </div>
+      </div>
+      <div class="adv-card reveal reveal-d2">
+        <div class="num">2</div>
+        <div>
+          <h4>盈利模式靈活　線上線下雙線變現</h4>
+          <div class="adv-sub">Flexible Profit Model</div>
+          <div class="adv-desc">實體門店可上架零售，搭配課程與服務做內銷式，快速提升客單價與利潤。個人代理可透過社交帶貨、線下人脈拓展，無需店面隨時接單。</div>
+        </div>
+      </div>
+      <div class="adv-card reveal reveal-d3">
+        <div class="num">3</div>
+        <div>
+          <h4>高黏著屬性　創造持續收入</h4>
+          <div class="adv-sub">High Retention · Recurring Revenue</div>
+          <div class="adv-desc">養生內調具有極高黏著度，客戶持續回購，一次成交長期收益，建立穩定現金流。</div>
+        </div>
+      </div>
+      <div class="adv-card reveal reveal-d4">
+        <div class="num">4</div>
+        <div>
+          <h4>低門檻合作　無高額負擔</h4>
+          <div class="adv-sub">Low Barrier Entry</div>
+          <div class="adv-desc">不收取加盟費、管理費。無需巨大固定存貨，可依自身能力靈活選擇進貨數量，小額資金即可啟動，風險極低。</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════ CTA ═══════════════ -->
+<section>
+  <div class="container-sm cta-section reveal">
+    <h2>誠邀全港各大美容養生門店<br>及有意創業的朋友一同合作</h2>
+    <div class="cta-text">共同拓展養生商機，分享豐厚利潤。</div>
+    <div class="contact-box">
+      <h3>聯絡我們</h3>
+      <div class="c-row">
+        <div class="c-label">聯絡電話</div>
+        <div class="c-val">+852 6367 1884 / 9514 5441</div>
+      </div>
+      <div class="c-row">
+        <div class="c-label">WhatsApp</div>
+        <div class="c-val">6367 1884 / 9514 5441</div>
+      </div>
+      <div class="c-row">
+        <div class="c-label">地址</div>
+        <div class="c-val">香港中環皇后大道中23-33A號<br>萬邦行9樓13室<br><span style="font-size:.85rem;color:var(--stone)">Room 913F Melbourne Plaza<br>33-33A Queens Road Central</span></div>
+      </div>
+    </div>
+  </div>
+</section>
 
 <!-- ═══════════════ FOOTER ═══════════════ -->
 <footer>
@@ -213,6 +529,12 @@
 </footer>
 
 <script>
+/* ─── Scroll Reveal ─── */
+(function(){
+  var o=new IntersectionObserver(function(e){e.forEach(function(e){if(e.isIntersecting){e.target.classList.add('reveal--visible');o.unobserve(e.target);}})},{threshold:.12,rootMargin:'0px 0px -40px 0px'});
+  document.querySelectorAll('.reveal').forEach(function(e){o.observe(e);});
+})();
+
 /* ─── Hamburger Menu Toggle ─── */
 (function(){
   var btn=document.querySelector('.hamburger');
