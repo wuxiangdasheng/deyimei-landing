@@ -119,6 +119,7 @@
   }
   .services .sec-head h2{color:var(--brand)}
   .products .sec-head h2{color:var(--brand)}
+  .alt .sec-head h2{color:var(--brand)}
   .sec-head .lead{
     font-size:17px;color:var(--ink-sub);line-height:2;
   }
@@ -228,6 +229,99 @@
     transition:all .3s;
   }
   .btn-booking:hover{background:var(--gold);color:var(--white)}
+
+  /* ═══ CASE GALLERY ═══ */
+  .case-grid{
+    display:grid;grid-template-columns:repeat(5,1fr);gap:20px;
+    margin-top:48px;
+  }
+  .case-item{
+    position:relative;overflow:hidden;
+    border:1px solid var(--line);
+    border-radius:4px;background:var(--white);
+    transition:all .5s cubic-bezier(.22,1,.36,1);
+    aspect-ratio:3/4;cursor:pointer;
+  }
+  .case-item::before{
+    content:'';position:absolute;top:0;left:0;width:0;height:3px;
+    background:var(--gold);z-index:3;
+    transition:width .5s cubic-bezier(.22,1,.36,1);
+  }
+  .case-item::after{
+    content:'';position:absolute;inset:0;
+    background:linear-gradient(to top,rgba(62,2,57,.28),transparent 55%);
+    opacity:0;z-index:2;
+    transition:opacity .5s cubic-bezier(.22,1,.36,1);
+  }
+  .case-item:hover{
+    border-color:var(--gold);
+    box-shadow:0 12px 36px rgba(62,2,57,.10);
+    transform:translateY(-6px);
+  }
+  .case-item:hover::before{width:100%}
+  .case-item:hover::after{opacity:1}
+  .case-item img{
+    width:100%;height:100%;object-fit:cover;display:block;
+    transition:transform .7s cubic-bezier(.22,1,.36,1);
+  }
+  .case-item:hover img{transform:scale(1.06)}
+  .case-item .case-label{
+    position:absolute;bottom:16px;left:16px;
+    padding:7px 18px;
+    font-size:.75rem;color:var(--white);letter-spacing:.15em;
+    background:rgba(62,2,57,.65);
+    backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);
+    border-left:2px solid var(--gold);
+    font-family:'Noto Serif SC',serif;
+    z-index:3;
+    transition:all .5s cubic-bezier(.22,1,.36,1);
+  }
+  .case-item:hover .case-label{
+    background:rgba(62,2,57,.82);
+    border-left-color:var(--white);
+  }
+  @media(max-width:900px){.case-grid{grid-template-columns:repeat(3,1fr);gap:12px}}
+  @media(max-width:500px){.case-grid{grid-template-columns:repeat(2,1fr);gap:10px}}
+
+  /* ═══ LIGHTBOX ═══ */
+  .lightbox{
+    display:none;position:fixed;inset:0;z-index:9999;
+    background:rgba(26,20,16,.93);
+    justify-content:center;align-items:center;cursor:pointer;
+    animation:lbFadeIn .35s ease;
+  }
+  .lightbox.open{display:flex}
+  .lightbox-body{
+    position:relative;cursor:default;display:flex;flex-direction:column;align-items:center;
+    animation:lbZoom .45s cubic-bezier(.22,1,.36,1);
+  }
+  .lightbox-body img{
+    max-width:90vw;max-height:85vh;object-fit:contain;display:block;
+    border-radius:4px;box-shadow:0 24px 64px rgba(0,0,0,.45);
+  }
+  .lightbox-close{
+    position:absolute;top:-48px;right:0;
+    width:40px;height:40px;display:flex;align-items:center;justify-content:center;
+    border:1px solid rgba(201,169,110,.35);color:var(--gold);
+    font-size:20px;cursor:pointer;border-radius:50%;
+    background:transparent;transition:all .3s;line-height:1;
+  }
+  .lightbox-close:hover{background:var(--gold);color:var(--white);border-color:var(--gold)}
+  .lightbox-nav{display:flex;align-items:center;justify-content:center;gap:20px;margin-top:16px}
+  .lightbox-nav button{
+    width:40px;height:40px;display:flex;align-items:center;justify-content:center;
+    border:1px solid rgba(201,169,110,.35);color:var(--gold);
+    background:transparent;border-radius:50%;cursor:pointer;
+    font-size:18px;transition:all .3s;line-height:1;
+  }
+  .lightbox-nav button:hover{background:var(--gold);color:var(--white);border-color:var(--gold)}
+  .lightbox-nav button:disabled{opacity:.25;cursor:default;pointer-events:none}
+  .lightbox-counter{
+    font-size:13px;color:rgba(201,169,110,.7);letter-spacing:.12em;
+    font-family:'Noto Serif SC',serif;min-width:48px;text-align:center;
+  }
+  @keyframes lbFadeIn{from{opacity:0}to{opacity:1}}
+  @keyframes lbZoom{from{opacity:0;transform:scale(.9)}to{opacity:1;transform:scale(1)}}
 
   /* ====== Core Values ====== */
   .core-values .value-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:20px}
@@ -510,6 +604,27 @@
   </div>
 </section>
 
+<!-- ═══════════════ 見證改變 ═══════════════ -->
+<section class="alt" style="position:relative;background:var(--white)">
+  <div class="sec-inner">
+    <div class="sec-head reveal">
+      <div class="tag">見證</div>
+      <h2>原生下的自然改變</h2>
+      <p class="lead">不手術、不填充、幾近無創，追求自然之美</p>
+    </div>
+    <div class="case-grid">
+      <div class="case-item reveal reveal-d2"><img src="casesimg/1.jpg" alt="案例"><div class="case-label">前 / 後</div></div>
+      <div class="case-item reveal reveal-d3"><img src="casesimg/2.jpg" alt="案例"><div class="case-label">前 / 後</div></div>
+      <div class="case-item reveal reveal-d4"><img src="casesimg/3.jpg" alt="案例"><div class="case-label">前 / 後</div></div>
+      <div class="case-item reveal reveal-d5"><img src="casesimg/4.jpg" alt="案例"><div class="case-label">前 / 後</div></div>
+      <div class="case-item reveal reveal-d6"><img src="casesimg/5.jpg" alt="案例"><div class="case-label">前 / 後</div></div>
+      <div class="case-item reveal reveal-d2"><img src="casesimg/6.jpg" alt="案例"><div class="case-label">前 / 後</div></div>
+      <div class="case-item reveal reveal-d3"><img src="casesimg/7.jpg" alt="案例"><div class="case-label">前 / 後</div></div>
+      <div class="case-item reveal reveal-d4"><img src="casesimg/8.jpg" alt="案例"><div class="case-label">前 / 後</div></div>
+    </div>
+  </div>
+</section>
+
 <!-- ====== Products ====== -->
 <!-- <section class="products" id="products" style="position:relative;overflow:hidden">
   <svg class="herb-deco goji" viewBox="0 0 300 180" xmlns="http://www.w3.org/2000/svg">
@@ -671,6 +786,54 @@ if(typeof IntersectionObserver!=='undefined'){
   grid.addEventListener('scroll',update);
   window.addEventListener('resize',update);
   update();
+})();
+
+// Case image lightbox
+(function(){
+  var items=document.querySelectorAll('.case-item');
+  if(!items.length)return;
+  var images=[];items.forEach(function(it){var im=it.querySelector('img');if(im)images.push(im.src)});
+  if(!images.length)return;
+  var total=images.length,current=0;
+
+  // Build lightbox DOM
+  var lb=document.createElement('div');lb.className='lightbox';lb.setAttribute('aria-label','图片放大');
+  var body=document.createElement('div');body.className='lightbox-body';
+  var img=document.createElement('img');
+  var close=document.createElement('button');close.className='lightbox-close';close.textContent='✕';
+
+  // Navigation
+  var nav=document.createElement('div');nav.className='lightbox-nav';
+  var prev=document.createElement('button');prev.textContent='‹';prev.setAttribute('aria-label','上一张');
+  var counter=document.createElement('span');counter.className='lightbox-counter';
+  var next=document.createElement('button');next.textContent='›';next.setAttribute('aria-label','下一张');
+  nav.appendChild(prev);nav.appendChild(counter);nav.appendChild(next);
+
+  body.appendChild(img);body.appendChild(close);body.appendChild(nav);lb.appendChild(body);
+  document.body.appendChild(lb);
+
+  function updateCounter(){counter.textContent=(current+1)+' / '+total}
+  function updateNav(){prev.disabled=current<=0;next.disabled=current>=total-1}
+  function show(){
+    img.src=images[current];updateCounter();updateNav();
+    lb.classList.add('open');document.body.style.overflow='hidden';
+  }
+  function go(dir){current=(current+dir+total)%total;img.style.animation='none';img.offsetHeight;img.style.animation='lbZoom .35s cubic-bezier(.22,1,.36,1)';show()}
+  function closeIt(){lb.classList.remove('open');document.body.style.overflow=''}
+
+  items.forEach(function(item,i){
+    item.addEventListener('click',function(e){current=i;show()});
+  });
+  prev.addEventListener('click',function(e){e.stopPropagation();go(-1)});
+  next.addEventListener('click',function(e){e.stopPropagation();go(1)});
+  lb.addEventListener('click',function(e){if(e.target===lb)closeIt()});
+  close.addEventListener('click',closeIt);
+  document.addEventListener('keydown',function(e){
+    if(!lb.classList.contains('open'))return;
+    if(e.key==='Escape')closeIt();
+    if(e.key==='ArrowLeft')go(-1);
+    if(e.key==='ArrowRight')go(1);
+  });
 })();
 </script>
 </body>
