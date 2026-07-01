@@ -164,7 +164,7 @@
   .phil-quote .src{font-size:.85rem;color:var(--ink-light);letter-spacing:2px}
 
   /* ═══ PRODUCT GRID ═══ */
-  .prod-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+  .prod-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-bottom:50px}
   .prod-card{
     text-align:center;padding:0 0 44px;
     background:var(--white);
@@ -271,6 +271,21 @@
     .prod-card .arrow-link{transition:all .2s}
     .prod-card .arrow-link:active{background:var(--gold);color:var(--white);transform:scale(1.15)}
 
+  /* ═══ TRIO ═══ */
+  .trio-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-bottom:32px;margin-top:48px}
+  .trio-img{border-radius:8px;overflow:hidden;justify-self:end;max-width:85%}
+  .trio-img img{width:100%;height:auto;display:block;object-fit:cover}
+  .trio-text{text-align:center;font-size:1.1rem;color:var(--ink-soft);line-height:2.2;font-weight:350}
+  .trio-row{display:none}
+  @media(max-width:768px){
+    .trio-grid{display:none}
+    .trio-text-dt{display:none}
+    .trio-row{display:grid;grid-template-columns:1fr 1fr;gap:16px;align-items:center}
+    .trio-row .trio-text{text-align:left;font-size:.95rem;line-height:1.9}
+    .trio-row .trio-img{border-radius:6px;overflow:hidden}
+    .trio-row .trio-img img{width:90%;height:auto;display:block}
+  }
+
     .nav-desktop{display:none}
     .hamburger{display:flex;flex-direction:column;gap:5px;background:none;border:none;cursor:pointer;padding:4px;z-index:200;position:relative}
     .hamburger span{display:block;width:24px;height:2px;background:var(--ink-soft);transition:all .3s var(--ease)}
@@ -309,19 +324,19 @@
       <img src="img/logo-dark.png" alt="集冉文化（香港）">
     </a>
     <nav class="nav-desktop">
-      <a href="index.html">認識德醫美</a>
-      <a href="alchemy.html">漢方中醫美</a>
-      <a href="taichi-ortho.html">非遺正骨</a>
-      <a href="wellness-products.html" class="active">康養產品</a>
-      <a href="#">古法藥灸</a>
+        <a href="index.html" class="active">認識德醫美</a>
+        <a href="taichi-ortho.html">非遺整骨</a>
+        <a href="moxibustion.html">古法藥灸</a>
+        <a href="wellness-products.html">康養產品</a>
+        <a href="alchemy.html">漢方中醫美</a>
     </nav>
     <button class="hamburger" aria-label="菜單"><span></span><span></span><span></span></button>
     <div class="mobile-menu">
-      <a href="index.html">認識德醫美</a>
-      <a href="alchemy.html">漢方中醫美</a>
-      <a href="taichi-ortho.html">非遺正骨</a>
-      <a href="wellness-products.html" class="active">康養產品</a>
-      <a href="#">古法藥灸</a>
+        <a href="index.html" class="active">認識德醫美</a>
+        <a href="taichi-ortho.html">非遺整骨</a>
+        <a href="moxibustion.html">古法藥灸</a>
+        <a href="wellness-products.html">康養產品</a>
+        <a href="alchemy.html">漢方中醫美</a>
     </div>
   </div>
 </div>
@@ -389,7 +404,19 @@
         </div>
       </div>
     </div>
+
+    <div class="trio-grid">
+      <div class="trio-img"><img src="img/product.png" alt="三者同用產品組合"></div>
+      <div class="trio-img"><img src="img/16.jpg" alt="三者同用產品組合"></div>
+    </div>
+    <div class="trio-row">
+      <div class="trio-img"><img src="img/product.png" alt="三者同用產品組合"></div>
+      <p class="trio-text">三者同用<br>打通代謝、清除瘀堵、補足元氣，體態、氣色、體質同步變好。</p>
+    </div>
+    <p class="trio-text trio-text-dt">三者同用<br>打通代謝、清除瘀堵、補足元氣，體態、氣色、體質同步變好。</p>
+
   </div>
+
 </section>
 
 <!-- ═══════════════ FOOTER ═══════════════ -->

@@ -45,6 +45,7 @@
     position:fixed;top:0;left:0;width:100%;z-index:100;
     padding:16px 40px;
     background:rgba(252,250,247,.92);backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px);
+    box-shadow:0 1px 3px rgba(0,0,0,0.05);
   }
   .top-bar-inner{
     max-width:1200px;width:100%;margin:0 auto;
@@ -90,7 +91,7 @@
     display:flex;align-items:center;gap:18px;justify-content:center;
   }
   .sec-label .tag{
-    font-family:var(--font-en);font-size:.8rem;letter-spacing:.28em;
+    font-family:'Playfair Display',Georgia,serif;font-size:.8rem;letter-spacing:.28em;
     color:var(--primary-dim);text-transform:uppercase;
   }
   .sec-label::before,.sec-label::after{
@@ -193,28 +194,39 @@
   .cta-section{text-align:center;padding:48px 0}
   .cta-btn{
     display:inline-block;padding:16px 48px;
-    background:var(--primary);color:var(--white);
+    background:transparent;color:var(--primary);
     text-decoration:none;font-size:1.05rem;letter-spacing:.15em;
     border-radius:60px;transition:all .35s var(--ease);
-    border:1px solid var(--primary);
+    border:1.5px solid var(--primary);
   }
-  .cta-btn:hover{background:var(--primary-deep);border-color:var(--primary-deep)}
+  .cta-btn:hover{background:var(--primary);color:var(--white)}
+
+  .hero-cta{position:absolute;left:10%;bottom:60px;z-index:2}
 
   /* ═══ FOOTER ═══ */
   footer{
     background:var(--primary-deep);color:rgba(255,255,255,.55);
-    padding:4rem 2.5rem 2.5rem;text-align:center;
+    padding:5rem 2.5rem 2.5rem;
+    display:flex;flex-direction:column;align-items:center;
     position:relative;overflow:hidden;
   }
   footer::before{
-    content:'';position:absolute;top:0;left:0;width:100%;height:100%;
-    background:radial-gradient(ellipse at 50% 0%,rgba(212,200,222,.06) 0%,transparent 60%);
-    pointer-events:none;
+    content:'';position:absolute;inset:0;pointer-events:none;
+    background:radial-gradient(ellipse at 50% 0%,rgba(212,200,222,.08) 0%,transparent 50%);
   }
-  footer .f-brand{font-size:1.8rem;font-weight:200;letter-spacing:.15em;color:var(--white);font-family:'Playfair Display',Georgia,serif;position:relative;z-index:1}
-  footer .f-slogan{font-size:.875rem;letter-spacing:.12em;color:var(--primary-dim);margin:1.5rem 0;position:relative;z-index:1}
-  footer .f-line{width:1px;height:3rem;background:rgba(255,255,255,.15);margin:0 auto;position:relative;z-index:1}
-  footer .f-copy{font-size:.8rem;margin-top:1.5rem;position:relative;z-index:1}
+  footer .f-main{display:flex;align-items:center;gap:2rem;margin-bottom:2.5rem;position:relative;z-index:1}
+  footer .f-brand{font-size:1.8rem;font-weight:200;letter-spacing:.15em;color:var(--white);font-family:'Playfair Display',Georgia,serif}
+  footer .f-vert{
+    writing-mode:vertical-rl;font-size:.875rem;letter-spacing:.15em;
+    color:var(--primary-dim);line-height:2.5;font-family:var(--font-cn);
+  }
+  footer .f-line{width:1px;height:3rem;background:rgba(255,255,255,.15);position:relative;z-index:1}
+  footer .f-slogan{font-size:.875rem;letter-spacing:.12em;color:var(--primary-dim);margin:1.5rem 0;position:relative;z-index:1;font-family:var(--font-cn)}
+  footer .f-copy{font-size:.75rem;letter-spacing:.05em;position:relative;z-index:1}
+
+  /* ═══ DIVIDER IMAGE ═══ */
+  .divider-img{width:100%;overflow:hidden;height:clamp(180px,35vh,400px)}
+  .divider-img .parallax-img{width:100%;height:120%;object-fit:cover;display:block;will-change:transform;margin-top:-10%}
 
   /* ═══ REVEAL ═══ */
   .reveal{opacity:0;transform:translateY(32px);transition:opacity .8s var(--ease),transform .8s var(--ease)}
@@ -285,21 +297,21 @@
       <img src="assets/logo.png" alt="德醫美" class="brand-logo">
     </a>
     <nav class="nav-desktop">
-      <a href="index.html">認識德醫美</a>
-      <a href="alchemy.html">漢方中醫美</a>
-      <a href="taichi-ortho.html">非遺正骨</a>
-      <a href="wellness-products.html">康養產品</a>
-      <a href="moxibustion.html" class="active">古法藥灸</a>
+        <a href="index.html" class="active">認識德醫美</a>
+        <a href="taichi-ortho.html">非遺整骨</a>
+        <a href="moxibustion.html">古法藥灸</a>
+        <a href="wellness-products.html">康養產品</a>
+        <a href="alchemy.html">漢方中醫美</a>
     </nav>
     <button class="hamburger" aria-label="菜單">
       <span></span><span></span><span></span>
     </button>
     <div class="mobile-menu">
-      <a href="index.html">認識德醫美</a>
-      <a href="alchemy.html">漢方中醫美</a>
-      <a href="taichi-ortho.html">非遺正骨</a>
-      <a href="wellness-products.html">康養產品</a>
-      <a href="moxibustion.html" class="active">古法藥灸</a>
+        <a href="index.html" class="active">認識德醫美</a>
+        <a href="taichi-ortho.html">非遺整骨</a>
+        <a href="moxibustion.html">古法藥灸</a>
+        <a href="wellness-products.html">康養產品</a>
+        <a href="alchemy.html">漢方中醫美</a>
     </div>
   </div>
 </div>
@@ -311,6 +323,7 @@
     <h1>五行<br>精油草本灸</h1>
     <div class="hero-tag">Moxibustion Essential Oil Cure</div>
   </div>
+  <a href="https://s.cchkw.com/pages/shop/index/diypage?pageid=17" class="cta-btn hero-cta">預約→</a>
  </div>
 </section>
 
@@ -349,6 +362,9 @@
   </div>
 </section>
 
+<!-- ═══════════════ DIVIDER ═══════════════ -->
+<div class="divider-img"><img src="img/deli.jpg" alt="" class="parallax-img" loading="lazy"></div>
+
 <!-- ═══════════════ 精油專屬配備 ═══════════════ -->
 <section class="alt">
   <div class="container">
@@ -373,31 +389,31 @@
         <tr>
           <td>壓力積聚、情緒抑鬱、經歬不適、月經紊亂、痛經、生殖焦慮</td>
           <td>肝</td>
-          <td><span class="elem-icon">🌿</span>木</td>
+          <td>木</td>
           <td>玫瑰 · 佛手柑</td>
         </tr>
         <tr>
           <td>手足冰冷、血液循環欠佳</td>
           <td>心</td>
-          <td><span class="elem-icon">🔥</span>火</td>
+          <td>火</td>
           <td>檀香 · 人參 · 生薑 · 肉桂</td>
         </tr>
         <tr>
           <td>疲倦乏力、水濕停滯、消化不良，改善脾虛濕盛引發的帶下異常</td>
           <td>脾</td>
-          <td><span class="elem-icon">⛰️</span>土</td>
+          <td>土</td>
           <td>佛手 · 甜橙 · 乳香</td>
         </tr>
         <tr>
           <td>鼻敏感、易受外感、皮膚狀態不穩</td>
           <td>肺</td>
-          <td><span class="elem-icon">⚪</span>金</td>
+          <td>金</td>
           <td>薰衣草 · 尤加利</td>
         </tr>
         <tr>
           <td>腰膝酸軟、畏寒怕冷、頭髮脱落、宮寒、腎陽不足、性慾減退、腰膝冷痛</td>
           <td>腎</td>
-          <td><span class="elem-icon">💧</span>水</td>
+          <td>水</td>
           <td>苦橙 · 依蘭 · 檀香</td>
         </tr>
         <tr>
@@ -405,7 +421,8 @@
           <td>腎
               肝
               脾</td>
-          <td><span class="elem-icon"></span>水</td>
+          <td><
+              水</td>
           <td></td>
         </tr>
         <tr>
@@ -417,6 +434,9 @@
     
   </div>
 </section>
+
+<!-- ═══════════════ DIVIDER ═══════════════ -->
+<div class="divider-img"><img src="img/deli2.jpg" alt="" class="parallax-img" loading="lazy"></div>
 
 <!-- ═══════════════ 五大核心益處 ═══════════════ -->
 <section>
@@ -465,19 +485,15 @@
   </div>
 </section>
 
-<!-- ═══════════════ CTA ═══════════════ -->
-<section class="alt">
-  <div class="container-sm cta-section">
-    <a href="https://s.cchkw.com/pages/shop/index/diypage?pageid=15" class="cta-btn">預約→</a>
-  </div>
-</section>
-
 <!-- ═══════════════ FOOTER ═══════════════ -->
 <footer>
+  <div class="f-main">
+    <div class="f-brand">Alchemy</div>
+    <div class="f-vert">德醫美</div>
+  </div>
   <div class="f-line"></div>
-  <div class="f-slogan">The Art of Alchemy</div>
-  <div class="f-brand">Alchemy</div>
-  <div class="f-copy">© 2026 德醫美（香港）. 版權所有</div>
+  <div class="f-slogan">五行精油 · 草本灸養 · 循經入臟</div>
+  <div class="f-copy">&copy; 2024~2026 德醫美 All rights reserved.</div>
 </footer>
 
 <script>
@@ -504,6 +520,26 @@
       menu.classList.remove('active');
       document.body.style.overflow='';
     });
+  });
+})();
+</script>
+
+<script>
+/* ─── Image Parallax ─── */
+(function(){
+  var imgs=document.querySelectorAll('.parallax-img');
+  var ticking=false;
+  window.addEventListener('scroll',function(){
+    if(!ticking){requestAnimationFrame(function(){
+      var sy=window.scrollY;
+      imgs.forEach(function(img){
+        var r=img.getBoundingClientRect();
+        if(r.bottom>0&&r.top<window.innerHeight){
+          img.style.transform='translateY('+((r.top/window.innerHeight-.5)*32)+'px)';
+        }
+      });
+      ticking=false;
+    });ticking=true;}
   });
 })();
 </script>
