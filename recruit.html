@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="zh-HK">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>德醫美丨招商加盟</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@300;400;500;600;700&family=Great+Vibes&family=Tangerine:wght@400;700&family=Playfair+Display:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+<style>
+
+  :root {
+    --ink:        #1c1a18;
+    --ink-soft:   #3d3a36;
+    --paper:      #faf7f2;
+    --paper-dim:  #f2efe8;
+    --paper-warm: #ede6db;
+    --primary:    #4a1968;
+    --primary-dim: #9b7aaa;
+    --primary-light: #d4c8de;
+    --primary-deep: #2e0f42;
+    --seal-red:   #d48b8d;
+    --seal-red-dim: #edd5d6;
+    --gold:       #b8976e;
+    --stone:      #8a8580;
+    --stone-light:#b8b4ae;
+    --white:      #ffffff;
+
+    --font-cn: 'Noto Serif SC', 'Songti SC', 'STSong', 'SimSun', serif;
+    --font-en: 'Great Vibes', 'Tangerine', 'Georgia', serif;
+
+    --max-w: 1200px;
+    --ease: cubic-bezier(0.19, 1, 0.22, 1);
+  }
+
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; font-size: 100%; }
+
+  body {
+    font-family: var(--font-cn);
+    font-size: 1.0625rem;
+    font-weight: 350;
+    line-height: 2;
+    color: var(--ink-soft);
+    background: var(--paper);
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+    padding-top: 80px;
+  }
+
+  /* ═══ FIXED TOP BAR ═══ */
+  .top-bar{
+    position: fixed; top: 0; left: 0; width: 100%; z-index: 100;
+    padding: 16px 40px;
+    background: rgba(252,250,247,.92); backdrop-filter: blur(24px); -webkit-backdrop-filter: blur(24px);
+    box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+  }
+  .top-bar-inner{
+    max-width: var(--max-w); width: 100%; margin: 0 auto;
+    display: flex; justify-content: space-between; align-items: center;
+  }
+  .top-bar .brand{
+    display: flex; align-items: center;
+    text-decoration: none; color: inherit;
+  }
+  .top-bar .brand-logo{ height: 40px; width: auto; display: block; }
+  .nav-desktop{ display: flex; align-items: center; gap: 32px; }
+  .nav-desktop a{
+    font-size: 15px; color: var(--ink-soft); text-decoration: none;
+    letter-spacing: 0.06em; transition: color .3s;
+    position: relative; padding-bottom: 4px;
+  }
+  .nav-desktop a::after{
+    content: ''; position: absolute; bottom: 0; left: 0; width: 0; height: 1.5px;
+    background: var(--primary); transition: width .3s var(--ease);
+  }
+  .nav-desktop a:hover{ color: var(--primary); }
+  .nav-desktop a:hover::after{ width: 100%; }
+  .nav-desktop a.active{ color: var(--primary); font-weight: 600; }
+  .nav-desktop a.active::after{ width: 100%; }
+
+  /* ═══ FULL-WIDTH IMAGE ═══ */
+  .recruit-body {
+    padding: 0;
+    text-align: center;
+    background: var(--white);
+  }
+  .recruit-body img {
+    display: block;
+    width: 100%;
+    max-width: 800px;
+    margin: 0 auto;
+    height: auto;
+  }
+
+  /* ═══ FOOTER ═══ */
+  footer {
+    background: var(--primary); color: rgba(255,255,255,0.55);
+    padding: 6rem 2.5rem 3rem;
+    display: flex; flex-direction: column; align-items: center;
+    position: relative; overflow: hidden;
+  }
+  footer::before {
+    content: ''; position: absolute; inset: 0; pointer-events: none;
+    background: radial-gradient(ellipse at 50% 0%, rgba(198,182,216,0.12) 0%, transparent 50%);
+  }
+  footer .f-main {
+    display: flex; align-items: center; gap: 2rem; margin-bottom: 3rem;
+    position: relative; z-index: 1;
+  }
+  footer .f-brand { font-size: 2rem; font-weight: 200; letter-spacing: .15em; color: var(--white); font-family: 'Playfair Display', Georgia, serif; }
+  footer .f-vert {
+    writing-mode: vertical-rl; font-size: .875rem; letter-spacing: .15em;
+    color: var(--primary-light); line-height: 2.5; font-family: var(--font-cn);
+  }
+  footer .f-line {
+    width: 1px; height: 3rem; background: rgba(255,255,255,0.2);
+    position: relative; z-index: 1;
+  }
+  footer .f-slogan {
+    font-size: .875rem; letter-spacing: .12em; color: var(--primary-light);
+    margin: 2rem 0; position: relative; z-index: 1; font-family: var(--font-cn);
+  }
+  footer .f-copy {
+    font-size: .75rem; letter-spacing: .05em; position: relative; z-index: 1;
+  }
+
+  /* ═══ RESPONSIVE ═══ */
+  .hamburger{ display: none; }
+  .mobile-menu{ display: none; }
+  @media (max-width: 768px) {
+    .nav-desktop{ display: none; }
+    .top-bar { padding: 14px 24px; }
+    body { padding-top: 58px; }
+    .recruit-body img { max-width: 100%; }
+    footer { padding: 4rem 1.5rem 2rem; }
+
+    .hamburger{
+      display: flex; flex-direction: column; gap: 5px;
+      background: none; border: none; cursor: pointer; padding: 4px;
+      z-index: 200; position: relative;
+    }
+    .hamburger span{
+      display: block; width: 24px; height: 2px;
+      background: var(--ink-soft); transition: all .3s var(--ease);
+    }
+    .hamburger.active span:nth-child(1){ transform: translateY(7px) rotate(45deg); }
+    .hamburger.active span:nth-child(2){ opacity: 0; }
+    .hamburger.active span:nth-child(3){ transform: translateY(-7px) rotate(-45deg); }
+
+    .mobile-menu{
+      position: fixed; top: 0; left: 0; width: 100%; height: 100vh;
+      background: rgba(250,247,242,.97); backdrop-filter: blur(16px);
+      z-index: 150; display: flex; flex-direction: column;
+      align-items: center; justify-content: center; gap: 32px;
+      opacity: 0; visibility: hidden; transition: all .35s var(--ease);
+    }
+    .mobile-menu.active{ opacity: 1; visibility: visible; }
+    .mobile-menu a{
+      font-size: 1.4rem; color: var(--ink-soft); text-decoration: none;
+      letter-spacing: 0.12em; font-family: var(--font-cn);
+      transition: color .3s; font-weight: 400;
+    }
+    .mobile-menu a:hover{ color: var(--primary); }
+    .mobile-menu a.active{ color: var(--primary); font-weight: 600; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ═══════════════ TOP BAR ═══════════════ -->
+<div class="top-bar">
+  <div class="top-bar-inner">
+    <a href="index.html" class="brand">
+      <img src="assets/logo.png" alt="德醫美" class="brand-logo">
+    </a>
+    <nav class="nav-desktop">
+      <a href="index.html">認識德醫美</a>
+      <a href="taichi-ortho.html">非遺整骨</a>
+      <a href="moxibustion.html">古法藥灸</a>
+      <a href="wellness-products.html">康養產品</a>
+      <a href="alchemy.html">微針醫美</a>
+      <a href="recruit.html" class="active">招商加盟</a>
+    </nav>
+    <button class="hamburger" aria-label="菜單">
+      <span></span><span></span><span></span>
+    </button>
+    <div class="mobile-menu">
+        <a href="index.html">認識德醫美</a>
+        <a href="taichi-ortho.html">非遺整骨</a>
+        <a href="moxibustion.html">古法藥灸</a>
+        <a href="wellness-products.html">康養產品</a>
+        <a href="alchemy.html">微針醫美</a>
+        <a href="recruit.html" class="active">招商加盟</a>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════ RECRUIT ═══════════════ -->
+<div class="recruit-body">
+  <img src="img/recruit.jpg" alt="德醫美招商加盟">
+</div>
+
+<!-- ═══════════════ FOOTER ═══════════════ -->
+<footer>
+  <div class="f-main">
+    <div class="f-brand">Alchemy</div>
+    <div class="f-vert">德醫美</div>
+  </div>
+  <div class="f-line"></div>
+  <div class="f-slogan">以德匠心 · 賦美時光</div>
+  <div class="f-copy">&copy; 2026 德醫美 Alchemy. All rights reserved.</div>
+</footer>
+
+<script>
+/* ─── Hamburger Menu Toggle ─── */
+(function(){
+  var btn=document.querySelector('.hamburger');
+  var menu=document.querySelector('.mobile-menu');
+  if(!btn||!menu)return;
+  btn.addEventListener('click',function(e){
+    e.preventDefault();
+    btn.classList.toggle('active');
+    menu.classList.toggle('active');
+    document.body.style.overflow=menu.classList.contains('active')?'hidden':'';
+  });
+  menu.querySelectorAll('a').forEach(function(a){
+    a.addEventListener('click',function(){
+      btn.classList.remove('active');
+      menu.classList.remove('active');
+      document.body.style.overflow='';
+    });
+  });
+})();
+</script>
+
+</body>
+</html>
