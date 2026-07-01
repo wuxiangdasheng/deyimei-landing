@@ -46,16 +46,18 @@
       '</a>'+
       '<ul class="nav-links">'+
         '<li><a href="alchemy.html">漢方中醫美</a></li>'+
+        '<li><a href="#cases">客戶案例</a></li>'+
         '<li><a href="'+homePrefix+'#locations">聯絡門店</a></li>'+
-        '<li><a href="'+homePrefix.replace('alchemy.html','')+'cases.html">客戶案例</a></li>'+
+        '<li><a href="index.html">認識德醫美</a></li>'+
       '</ul>'+
       '<div class="menu-btn" onclick="colaToggleMenu()"><span></span><span></span><span></span></div>'+
     '</div>'+
   '</nav>'+
   '<div class="mobile-menu" id="mobile-menu">'+
     '<a href="alchemy.html" onclick="colaToggleMenu()">漢方中醫美</a>'+
+    '<a href="#cases" onclick="colaToggleMenu()">客戶案例</a>'+
     '<a href="'+homePrefix+'#locations" onclick="colaToggleMenu()">聯絡門店</a>'+
-    '<a href="'+homePrefix.replace('alchemy.html','')+'cases.html" onclick="colaToggleMenu()">客戶案例</a>'+
+    '<a href="index.html" onclick="colaToggleMenu()">認識德醫美</a>'+
     '<button class="menu-close" onclick="colaToggleMenu()">✕ 關閉</button>'+
   '</div>';
 
@@ -95,5 +97,21 @@ function colaToggleMenu(){
     var scrolled=window.scrollY>60;
     nav.classList.toggle('scrolled',scrolled);
     if(logoLight&&logoDark){logoLight.style.opacity=scrolled?'0':'1';logoDark.style.opacity=scrolled?'1':'0'}
+  });
+})();
+
+// Smooth scroll for nav hash links
+(function(){
+  document.addEventListener('click',function(e){
+    var a=e.target.closest('a');
+    if(!a)return;
+    var href=a.getAttribute('href');
+    if(!href||!href.startsWith('#'))return;
+    var id=href.slice(1);
+    if(!id)return;
+    var target=document.getElementById(id);
+    if(!target)return;
+    e.preventDefault();
+    target.scrollIntoView({behavior:'smooth',block:'start'});
   });
 })();
