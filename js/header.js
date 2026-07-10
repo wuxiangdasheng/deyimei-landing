@@ -35,29 +35,30 @@
 // Inject nav HTML
 (function(){
   var isHome=!!document.querySelector('.hero-video');
-  var homePrefix=isHome?'':'alchemy.html';
   var activePage=location.pathname.split('/').pop()||'alchemy.html';
 
   var html='<nav class="nav" id="navbar">'+
     '<div class="nav-inner">'+
-      '<a href="#" onclick="window.scrollTo({top:0,behavior:&apos;smooth&apos;});return false" class="nav-brand">'+
+      '<a href="index.html" class="nav-brand">'+
         '<img class="logo-light" src="img/logo.png" alt="德醫美 Alchemy">'+
         '<img class="logo-dark" src="img/logo-dark.png" alt="德醫美 Alchemy">'+
       '</a>'+
       '<ul class="nav-links">'+
-        '<li><a href="alchemy.html">微針醫美</a></li>'+
-        '<li><a href="#cases">客戶案例</a></li>'+
-        '<li><a href="'+homePrefix+'#locations">聯絡門店</a></li>'+
         '<li><a href="index.html">認識德醫美</a></li>'+
+        '<li><a href="taichi-ortho.html">非遺整骨</a></li>'+
+        '<li><a href="moxibustion.html">古法藥灸</a></li>'+
+        '<li><a href="wellness-products.html">康養產品</a></li>'+
+        '<li><a href="alchemy.html">微針醫美</a></li>'+
       '</ul>'+
       '<div class="menu-btn" onclick="colaToggleMenu()"><span></span><span></span><span></span></div>'+
     '</div>'+
   '</nav>'+
   '<div class="mobile-menu" id="mobile-menu">'+
-    '<a href="alchemy.html" onclick="colaToggleMenu()">微針醫美</a>'+
-    '<a href="#cases" onclick="colaToggleMenu()">客戶案例</a>'+
-    '<a href="'+homePrefix+'#locations" onclick="colaToggleMenu()">聯絡門店</a>'+
     '<a href="index.html" onclick="colaToggleMenu()">認識德醫美</a>'+
+    '<a href="taichi-ortho.html" onclick="colaToggleMenu()">非遺整骨</a>'+
+    '<a href="moxibustion.html" onclick="colaToggleMenu()">古法藥灸</a>'+
+    '<a href="wellness-products.html" onclick="colaToggleMenu()">康養產品</a>'+
+    '<a href="alchemy.html" onclick="colaToggleMenu()">微針醫美</a>'+
     '<button class="menu-close" onclick="colaToggleMenu()">✕ 關閉</button>'+
   '</div>';
 
