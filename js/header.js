@@ -25,8 +25,8 @@
     .mobile-menu{display:none;position:fixed;top:0;left:0;right:0;bottom:0;background:#f9f1fa;backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);z-index:101;flex-direction:column;align-items:center;justify-content:center;gap:40px}
     .mobile-menu a{font-family:'Noto Serif SC',serif;color:#1a1410;font-size:22px;text-decoration:none;letter-spacing:6px;font-weight:300;transition:color .3s}
     .mobile-menu a:hover{color:#3e0239}
-    .mobile-menu .menu-close{margin-top:16px;padding:12px 40px;border:1px solid #d4cdc0;color:#6b6258;font-size:14px;letter-spacing:3px;cursor:pointer;background:none;font-family:'Noto Serif SC',serif;transition:all .3s}
-    .mobile-menu .menu-close:hover{color:#1a1410;border-color:#1a1410}
+    .mobile-menu .mobile-close{position:absolute;top:24px;right:24px;font-size:28px;color:#6b6258;cursor:pointer;background:none;border:none;line-height:1;padding:8px;font-family:inherit;transition:color .3s}
+    .mobile-menu .mobile-close:hover{color:#1a1410}
     @media(max-width:768px){.nav-links{display:none}.menu-btn{display:flex}.nav-inner{padding:0 24px}}
   `;
   document.head.appendChild(s);
@@ -54,14 +54,13 @@
     '</div>'+
   '</nav>'+
   '<div class="mobile-menu" id="mobile-menu">'+
+    '<button class="mobile-close" onclick="colaToggleMenu()">✕</button>'+
     '<a href="index.html" onclick="colaToggleMenu()">認識德醫美</a>'+
     '<a href="taichi-ortho.html" onclick="colaToggleMenu()">非遺整骨</a>'+
     '<a href="moxibustion.html" onclick="colaToggleMenu()">五行精油草本灸</a>'+
     '<a href="wellness-products.html" onclick="colaToggleMenu()">康養產品</a>'+
     '<a href="alchemy.html" onclick="colaToggleMenu()">微針醫美</a>'+
     '<a href="recruit.html" onclick="colaToggleMenu()">共創代理招募</a>'+
-    '<a href="https://s.cchkw.com" onclick="colaToggleMenu()">商城</a>'+
-    '<button class="menu-close" onclick="colaToggleMenu()">✕ 關閉</button>'+
   '</div>';
 
   var el=document.getElementById('shared-header');
