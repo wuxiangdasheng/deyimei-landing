@@ -15,6 +15,9 @@
     .nav-links a::after{content:'';position:absolute;bottom:0;left:0;width:0;height:1px;background:#c9a96e;transition:width .35s cubic-bezier(.4,0,.2,1)}
     .nav-links a:hover{color:#c9a96e}
     .nav-links a:hover::after{width:100%}
+    .nav-links a.active{color:#c9a96e;font-weight:500}
+    .nav-links a.active::after{width:100%}
+    .nav.scrolled .nav-links a.active{color:#3e0239;font-weight:600}
     .nav.scrolled .nav-links a{color:#6b6258}
     .nav.scrolled .nav-links a:hover{color:#1a1410}
     .nav.scrolled .logo-light{opacity:1}
@@ -24,6 +27,7 @@
     .nav.scrolled .menu-btn span{background:#1a1410}
     .mobile-menu{display:none;position:fixed;top:0;left:0;right:0;bottom:0;background:#f9f1fa;z-index:101;flex-direction:column;align-items:center;justify-content:center;gap:32px}
     .mobile-menu a{font-family:'Noto Serif SC',serif;color:#1a1410;font-size:1.4rem;text-decoration:none;letter-spacing:.12em;font-weight:400;transition:color .3s}
+    .mobile-menu a.active{color:#3e0239;font-weight:600}
     .mobile-menu a:hover{color:#3e0239}
     .mobile-menu .mobile-close{position:absolute;top:24px;right:24px;font-size:28px;color:#6b6258;cursor:pointer;background:none;border:none;line-height:1;padding:8px;font-family:inherit;transition:color .3s}
     .mobile-menu .mobile-close:hover{color:#1a1410}
@@ -68,6 +72,12 @@
 
   var el=document.getElementById('shared-header');
   if(el){el.innerHTML=html}else{document.body.insertAdjacentHTML('afterbegin',html)}
+
+  // Highlight current page link
+  setTimeout(function(){
+    var links=document.querySelectorAll('a[href="'+activePage+'"]');
+    for(var i=0;i<links.length;i++)links[i].classList.add('active');
+  },0);
 
   // Non-homepage: solid nav with dark logo
   if(!isHome){
