@@ -25,6 +25,71 @@
     background-image:
       radial-gradient(ellipse at 20% 5%,rgba(201,169,110,.03) 0%,transparent 50%),
       radial-gradient(ellipse at 85% 30%,rgba(62,2,57,.02) 0%,transparent 40%);
+    padding-top:80px;
+  }
+
+  /* ====== TOP BAR ====== */
+  .top-bar{
+    position:fixed;top:0;left:0;width:100%;z-index:100;
+    padding:16px 40px;
+    background:rgba(252,250,247,.92);backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px);
+    box-shadow:0 1px 3px rgba(0,0,0,0.05);
+  }
+  .top-bar-inner{
+    max-width:1200px;width:100%;margin:0 auto;
+    display:flex;justify-content:space-between;align-items:center;
+  }
+  .top-bar .brand{display:flex;align-items:center;text-decoration:none;color:inherit}
+  .top-bar .brand-logo{height:40px;width:auto;display:block}
+  .nav-desktop{display:flex;align-items:center;gap:32px}
+  .nav-desktop a{
+    font-size:15px;color:var(--ink-sub);text-decoration:none;
+    letter-spacing:.06em;transition:color .3s;
+    position:relative;padding-bottom:4px;
+  }
+  .nav-desktop a::after{
+    content:'';position:absolute;bottom:0;left:0;width:0;height:1.5px;
+    background:var(--brand);transition:width .3s cubic-bezier(.19,1,.22,1);
+  }
+  .nav-desktop a:hover{color:var(--brand)}
+  .nav-desktop a:hover::after{width:100%}
+  .nav-desktop a.active{color:var(--brand);font-weight:600}
+  .nav-desktop a.active::after{width:100%}
+  .hamburger{display:none}
+  .mobile-menu{display:none}
+
+  @media(max-width:768px){
+    .nav-desktop{display:none}
+    .top-bar{padding:14px 24px}
+    body{padding-top:58px}
+
+    .hamburger{
+      display:flex;flex-direction:column;gap:5px;
+      background:none;border:none;cursor:pointer;padding:4px;
+      z-index:200;position:relative;
+    }
+    .hamburger span{
+      display:block;width:24px;height:2px;
+      background:var(--ink-sub);transition:all .3s cubic-bezier(.19,1,.22,1);
+    }
+    .hamburger.active span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+    .hamburger.active span:nth-child(2){opacity:0}
+    .hamburger.active span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+
+    .mobile-menu{
+      position:fixed;top:0;left:0;width:100%;height:100vh;
+      background:rgba(252,250,247,.97);backdrop-filter:blur(16px);
+      z-index:150;display:flex;flex-direction:column;
+      align-items:center;justify-content:center;gap:32px;
+      opacity:0;visibility:hidden;transition:all .35s cubic-bezier(.19,1,.22,1);
+    }
+    .mobile-menu.active{opacity:1;visibility:visible}
+    .mobile-menu a{
+      font-size:1.4rem;color:var(--ink-sub);text-decoration:none;
+      letter-spacing:.12em;transition:color .3s;font-weight:400;
+    }
+    .mobile-menu a:hover{color:var(--brand)}
+    .mobile-menu a.active{color:var(--brand);font-weight:600}
   }
 
   /* ====== Hero ====== */
@@ -493,8 +558,31 @@
 </head>
 <body>
 
-<!-- ====== Nav ====== -->
-<div id="shared-header"></div>
+<!-- ═══════════════ TOP BAR ═══════════════ -->
+<div class="top-bar">
+  <div class="top-bar-inner">
+    <a href="index.html" class="brand">
+      <img src="assets/logo.png" alt="德醫美" class="brand-logo">
+    </a>
+    <nav class="nav-desktop">
+      <a href="index.html">認識德醫美</a>
+      <a href="taichi-ortho.html">非遺整骨</a>
+      <a href="moxibustion.html">古法藥灸</a>
+      <a href="wellness-products.html">康養產品</a>
+      <a href="alchemy.html" class="active">微針醫美</a>
+    </nav>
+    <button class="hamburger" aria-label="菜單">
+      <span></span><span></span><span></span>
+    </button>
+    <div class="mobile-menu">
+      <a href="index.html">認識德醫美</a>
+      <a href="taichi-ortho.html">非遺整骨</a>
+      <a href="moxibustion.html">古法藥灸</a>
+      <a href="wellness-products.html">康養產品</a>
+      <a href="alchemy.html" class="active">微針醫美</a>
+    </div>
+  </div>
+</div>
 
 <!-- ====== Hero ====== -->
 <section class="hero">
@@ -713,10 +801,29 @@
 
 <!-- ====== Footer ====== -->
 <div id="shared-footer"></div>
-<script src="js/header.js"></script>
+<script>
+/* ─── Hamburger Menu Toggle ─── */
+(function(){
+  var btn=document.querySelector('.hamburger');
+  var menu=document.querySelector('.mobile-menu');
+  if(!btn||!menu)return;
+  btn.addEventListener('click',function(e){
+    e.preventDefault();
+    btn.classList.toggle('active');
+    menu.classList.toggle('active');
+    document.body.style.overflow=menu.classList.contains('active')?'hidden':'';
+  });
+  menu.querySelectorAll('a').forEach(function(a){
+    a.addEventListener('click',function(){
+      btn.classList.remove('active');
+      menu.classList.remove('active');
+      document.body.style.overflow='';
+    });
+  });
+})();
+</script>
 <script src="js/footer.js"></script>
 <script>
-// Nav scroll (now in header.js)
 // Canvas video render — video never in DOM, Quark can't detect it
 (function(){
   try{
