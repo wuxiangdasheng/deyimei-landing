@@ -22,8 +22,8 @@
     .menu-btn{display:none;flex-direction:column;gap:5px;cursor:pointer;z-index:101;padding:4px}
     .menu-btn span{display:block;width:22px;height:1.5px;background:rgba(255,255,255,.85);transition:all .3s}
     .nav.scrolled .menu-btn span{background:#1a1410}
-    .mobile-menu{display:none;position:fixed;top:0;left:0;right:0;bottom:0;background:#f9f1fa;z-index:101;flex-direction:column;align-items:center;justify-content:center;gap:40px}
-    .mobile-menu a{font-family:'Noto Serif SC',serif;color:#1a1410;font-size:22px;text-decoration:none;letter-spacing:6px;font-weight:300;transition:color .3s}
+    .mobile-menu{display:none;position:fixed;top:0;left:0;right:0;bottom:0;background:#f9f1fa;z-index:101;flex-direction:column;align-items:center;justify-content:center;gap:32px}
+    .mobile-menu a{font-family:'Noto Serif SC',serif;color:#1a1410;font-size:1.4rem;text-decoration:none;letter-spacing:.12em;font-weight:400;transition:color .3s}
     .mobile-menu a:hover{color:#3e0239}
     .mobile-menu .mobile-close{position:absolute;top:24px;right:24px;font-size:28px;color:#6b6258;cursor:pointer;background:none;border:none;line-height:1;padding:8px;font-family:inherit;transition:color .3s}
     .mobile-menu .mobile-close:hover{color:#1a1410}
