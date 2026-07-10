@@ -61,6 +61,7 @@
     '<a href="wellness-products.html" onclick="colaToggleMenu()">康養產品</a>'+
     '<a href="alchemy.html" onclick="colaToggleMenu()">微針醫美</a>'+
     '<a href="recruit.html" onclick="colaToggleMenu()">共創代理招募</a>'+
+    '<a href="https://s.cchkw.com" onclick="colaToggleMenu()">商城</a>'+
   '</div>';
 
   var el=document.getElementById('shared-header');
