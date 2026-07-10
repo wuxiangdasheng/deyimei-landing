@@ -56,9 +56,11 @@
   '<div class="mobile-menu" id="mobile-menu">'+
     '<a href="index.html" onclick="colaToggleMenu()">認識德醫美</a>'+
     '<a href="taichi-ortho.html" onclick="colaToggleMenu()">非遺整骨</a>'+
-    '<a href="moxibustion.html" onclick="colaToggleMenu()">古法藥灸</a>'+
+    '<a href="moxibustion.html" onclick="colaToggleMenu()">五行精油草本灸</a>'+
     '<a href="wellness-products.html" onclick="colaToggleMenu()">康養產品</a>'+
     '<a href="alchemy.html" onclick="colaToggleMenu()">微針醫美</a>'+
+    '<a href="recruit.html" onclick="colaToggleMenu()">共創代理招募</a>'+
+    '<a href="https://s.cchkw.com" onclick="colaToggleMenu()">商城</a>'+
     '<button class="menu-close" onclick="colaToggleMenu()">✕ 關閉</button>'+
   '</div>';
 
