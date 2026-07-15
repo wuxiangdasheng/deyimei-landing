@@ -78,27 +78,56 @@
   .nav-desktop a.active{ color: var(--primary); font-weight: 600; }
   .nav-desktop a.active::after{ width: 100%; }
 
-  /* ═══ HERO SHOP BUTTON ═══ */
+  /* ═══ HERO ACTIONS ═══ */
+  .image-full{--hero-bottom:48px;}
+  .hero-actions{
+    position:absolute;bottom:var(--hero-bottom);right:48px;z-index:3;
+    display:flex;flex-direction:column;align-items:center;gap:8px;
+  }
+  .hero-bone-qi-blood{
+    position:absolute;left:48px;bottom:var(--hero-bottom);z-index:3;
+    color:#fff;font-family:var(--font-cn);
+    display:flex;flex-direction:column;align-items:center;gap:6px;
+    font-size:15px;letter-spacing:.16em;line-height:.95;
+    white-space:nowrap;
+    text-shadow:
+      0 2px 6px rgba(28,26,24,.45),
+      0 1px 2px rgba(28,26,24,.28),
+      0 1px 2px rgba(255,255,255,.35);
+  }
+  .hero-bone-qi-blood .zh{display:block;}
+  .hero-bone-qi-blood .divider{
+    display:block;width:38px;height:1px;
+    background:rgba(255,255,255,.82);
+    box-shadow:
+      0 2px 6px rgba(28,26,24,.45),
+      0 1px 2px rgba(28,26,24,.28),
+      0 1px 2px rgba(255,255,255,.35);
+  }
+  .hero-bone-qi-blood .en{
+    display:block;
+    font-family:'Playfair Display',Georgia,serif;font-size:.45em;
+    letter-spacing:.1em;line-height:1.08;text-align:center;color:#fff;
+  }
   .hero-shop-btn{
-    position:absolute;bottom:48px;right:48px;transform:none;
     padding:12px 40px;
-    background:var(--gold);
-    color:var(--white);
-    border:none;
-    text-decoration:none;
-    font-size:15px;
-    letter-spacing:0.15em;
-    font-family:var(--font-cn);
-    border-radius:2px;
-    transition:all .35s var(--ease);
-    z-index:3;
+    background:var(--gold);color:var(--white);
+    border:none;text-decoration:none;font-size:15px;
+    letter-spacing:0.15em;font-family:var(--font-cn);
+    border-radius:2px;transition:all .35s var(--ease);
     white-space:nowrap;
   }
-  .hero-shop-btn:hover{
-    background:var(--primary);
-    color:var(--white);
+  .hero-shop-btn:hover,.hero-shop-btn:active{
+    background:var(--primary);color:var(--white);
     box-shadow:0 4px 20px rgba(74,25,104,.35);
   }
+  .hero-recruit-link{
+    color:var(--gold);font-size:14px;letter-spacing:.12em;
+    font-family:var(--font-cn);text-decoration:none;
+    line-height:1;white-space:nowrap;transition:color .3s var(--ease);
+    text-shadow:0 1px 2px #fff,0 1px 2px rgba(28,26,24,.28),0 1px 2px rgba(255,255,255,.35);
+  }
+  .hero-recruit-link:hover,.hero-recruit-link:active{color:var(--primary)}
 
   /* ═══ CONTAINER ═══ */
   .container { max-width: var(--max-w); margin: 0 auto; padding: 0 40px; }
@@ -459,7 +488,11 @@
     .hamburger.active span:nth-child(2){ opacity: 0; }
     .hamburger.active span:nth-child(3){ transform: translateY(-7px) rotate(-45deg); }
 
-    .hero-shop-btn{ bottom:40px;right:24px;padding:4px 18px;font-size:14px；}
+    .image-full{--hero-bottom:40px;}
+    .hero-actions{right:24px;gap:10px}
+    .hero-shop-btn{padding:4px 18px;font-size:14px;}
+    .hero-recruit-link{font-size:13px;}
+    .hero-bone-qi-blood{left:24px;font-size:30px;letter-spacing:.1em;}
 
     /* ── Mobile overlay menu ── */
     .mobile-menu{
@@ -516,7 +549,15 @@
 <!-- ═══════════════ HERO IMAGE ═══════════════ -->
 <div class="image-full reveal">
   <img src="assets/sec_hero.jpg" alt="德醫美——骨·氣·血，由內而外的調養之美" loading="eager" class="parallax-img">
-  <a href="http://s.cchkw.com/" target="_blank" rel="noopener" class="hero-shop-btn">前往商城→</a>
+  <div class="hero-bone-qi-blood">
+    <span class="zh">骨 氣 血</span>
+    <span class="divider" aria-hidden="true"></span>
+    <span class="en">Bone·qi·BLOOD<br>in Unity</span>
+  </div>
+  <div class="hero-actions">
+    <a href="http://s.cchkw.com/" target="_blank" rel="noopener" class="hero-shop-btn">前往商城→</a>
+    <a href="recruit.html" class="hero-recruit-link">共創代理招募</a>
+  </div>
 </div>
 
 <!-- ═══════════════ HERO ═══════════════ -->
